@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://zycin.github.io</id>
+    <id>https://www.fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-10-18T06:36:08.661Z</updated>
+    <updated>2019-10-18T07:54:40.672Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://zycin.github.io"/>
-    <link rel="self" href="https://zycin.github.io/atom.xml"/>
+    <link rel="alternate" href="https://www.fastt.cn"/>
+    <link rel="self" href="https://www.fastt.cn/atom.xml"/>
     <subtitle>不忘初心  方得始终</subtitle>
-    <logo>https://zycin.github.io/images/avatar.png</logo>
-    <icon>https://zycin.github.io/favicon.ico</icon>
+    <logo>https://www.fastt.cn/images/avatar.png</logo>
+    <icon>https://www.fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
     <entry>
         <title type="html"><![CDATA[Hello GeekBlog]]></title>
-        <id>https://zycin.github.io/post/Hello-GeekBlog</id>
-        <link href="https://zycin.github.io/post/Hello-GeekBlog">
+        <id>https://www.fastt.cn/post/Hello-GeekBlog</id>
+        <link href="https://www.fastt.cn/post/Hello-GeekBlog">
         </link>
         <updated>2019-10-18T05:35:36.000Z</updated>
         <summary type="html"><![CDATA[<p>👏 👏 👏 欢迎来到 <strong>GeekBlog</strong>！<br>
@@ -27,8 +27,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[MarkDown语法教程]]></title>
-        <id>https://zycin.github.io/post/Uxq5UPSzs</id>
-        <link href="https://zycin.github.io/post/Uxq5UPSzs">
+        <id>https://www.fastt.cn/post/Uxq5UPSzs</id>
+        <link href="https://www.fastt.cn/post/Uxq5UPSzs">
         </link>
         <updated>2019-10-18T02:48:26.000Z</updated>
         <summary type="html"><![CDATA[<p>这篇文章主要介绍MarkDown的常用语法</p>
