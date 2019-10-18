@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Vue学习第二天 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Vue学习第二天</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>Vue</strong> 第二天</p>
+<!-- more -->
+<h3 id="vue第二天"><code>Vue</code>第二天</h3>
+<h4 id="子组件传值给父组件super-important">子组件传值给父组件(super important)</h4>
+<ul>
+<li><code>Vue</code>是一个单向数据流框架，理论上只有父传子的直接操作，没有子传父的直接操作，因此需要做到子传父了效果了，则需要一个中间层的<code>ViewModel</code>对象来实现，具体操作步骤如下：
+<ul>
+<li>单独声明一个中间<code>ViewModel</code>对象，直接<code>new Vue()</code>即可</li>
+<li>在父组件中通过<code>VM</code>对象的<code>$on()</code>方法监听一个事件的回调函数，<code>$on()</code>的第一个参数是监听的事件名称，可以是任意自定义事件，第二个参数就是监听事件执行的回调函数。那么就可以通过这个事件的执行最终拿到执行时的实参值赋值给父组件中的<code>Model</code>里的一个值来接收了</li>
+<li>最后就是在子组件中通过<code>VM</code>对象的<code>$emit()</code>方法来调用上边父组件中监听的自定义事件，并最终将参数值传递给监听的自定义事件，<code>$emit()</code>两个参数，第一个参数是要执行的事件名，第二个参数是执行事件回调时传递的实参</li>
+</ul>
+</li>
+</ul>
+<h4 id="组件中的过滤器filter模块">组件中的过滤器<code>filter</code>模块</h4>
+<ul>
+<li>
+<p>组件中可以通过<code>filters</code>来定义过滤器方法</p>
+</li>
+<li>
+<p>也可以直接利用<code>Vue.filter()</code>来定义全局过滤器，第一个参数是过滤器名称，第二个参数是过滤器行为。</p>
+<blockquote>
+<p>注意：如果全局过滤器名字和组件内过滤器同名时，那么<code>Vue</code>会优先使用组件内过滤器来使用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="组件中的watch监听器模块">组件中的<code>watch</code>监听器模块</h4>
+<ul>
+<li><code>watch</code>模块的作用就是可以监听<code>Model</code>里某个值变化时的新值和旧值，通过方法里的两个参数来获取到值变化前后的新旧值</li>
+<li>如果是对于复合<code>json</code>的深度<code>watch</code>时，则需要配置<code>deep</code>为<code>true</code>，并使用<code>handler</code>来处理监视函数</li>
+</ul>
+<h4 id="组件中的computed计算模块">组件中的<code>computed</code>计算模块</h4>
+<ul>
+<li><code>computed</code>模块里的函数可以直接在视图中通过八字胡调用，而<code>computed</code>里的方法的触发则是在方法里用到的<code>Model</code>值发生变化时就自动会触发方法的调用，非常方便</li>
+</ul>
+<h4 id="组件的生命周期super-important">组件的生命周期(super important)</h4>
+<ul>
+<li>从<code>new Vue()</code>开始，伴随着<code>Vue</code>开始运行到用<code>el</code>将组件渲染到页面中某个地方，在<code>Vue</code>中都有虚拟<code>DOM</code>这样一个概念，那么组件从创建到销毁这一整个过程就是一个完整的生命周期过程，在不同生命周期里处理某些业务逻辑代码，可以达到立竿见影的效果，实际项目开发时，生命周期也是解决问题最好的入手点。</li>
+</ul>
+<h4 id="vue-router的使用"><code>vue-router</code>的使用</h4>
+<ul>
+<li>
+<p>需要引入<code>vue-router.js</code>文件，强大的<code>Vue</code>路由器可以利用跳转的方式来解决页面中具体要渲染的内容。</p>
+</li>
+<li>
+<p>首先需要通过<code>Vue</code>的<code>use()</code>方法引入<code>VueRouter</code>的中间件，中间件就是在使用<code>Vue</code>过程中额外使用的其他第三方插件的概念。</p>
+</li>
+<li>
+<p>然后就是实例化路由对象，通过<code>routes</code>来配置一条条的路由规则，每个路由规则都是一个路由对象，主要含有<code>path</code>和<code>component</code>两个配置项</p>
+</li>
+<li>
+<p>最后就是在实例化<code>VM</code>对象时通过<code>router</code>配置上一步实例化的路由对象</p>
+</li>
+<li>
+<p>那么在组件中，可以通过使用<code>vue-router</code>提供的<code>router-view</code>组件来渲染根据路由路径路由要渲染的组件内容即可</p>
+</li>
+<li>
+<p>使用<code>vue-router</code>提供的<code>router-link</code>组件就可以做出来跳转路由路径用的超链接标签，通过属性<code>to</code>可以选择要跳转的路径。通过这里可以看出，而<code>vue-router</code>的实现原理其实就是<code>锚链接</code></p>
+</li>
+<li>
+<p>一个实际项目中肯定会定义很多个不同的路由路径，那么实际开发时配置<code>routes</code>时仅仅只是靠<code>path</code>和<code>component</code>还不够，需要一个<code>name</code>的配置项，这样每个路由路径都有个不同<code>name</code>时，<code>router-link</code>就可以通过<code>v-bind</code>的方式来绑定一个<code>to</code>，然后通过<code>{name:路由路径名称}</code>来完成根据路由路径的渲染</p>
+</li>
+<li>
+<p>使用<code>vue-router</code>时，当往路由路径链接的路径组件里传参时，则有两种传参方式，当然都是<code>get</code>类型的传参</p>
+<ul>
+<li><code>query string</code>传参规则，和以前的使用方式一样，依然是通过<code>?</code>后边拼接路径的参数传递</li>
+<li><code>params string</code>传参规则则是在路径中直接以<code>/:参数名</code>来配置参数，那么通过<code>router-link</code>传参时，则直接<code>:to=&quot;{name:'路由路径名称',query/params:{参数名:'参数值'}}&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>Vue</code>的路由本质就是一个数组，因此也可以通过路由提供的方法<code>addRoutes</code>，来动态添加路由</p>
+</li>
+<li>
+<p>路由路径跳转时，不仅仅可以只跳转显示一个组件，也可以配置<code>component</code>为<code>components</code>来配置多个组件的显示。那么就需要在定义<code>&lt;router-view&gt;</code>时，添加<code>name</code>属性来根据不同名称路由路径展示不同组件内容。并且还有默认值组件<code>default</code>，内部可以随意嵌套子组件，这样扩展起来很方便</p>
+<pre><code class="language-javascript">var router = new VueRouter({
+    routers:[
+        name:'home',
+        path:'/home',
+        components:{
+        	'header':HeadVue,
+        	'body':BodyVue,
+        }
+    ]
+});
+
+//那么在入口App中
+&lt;router-view name=&quot;head&quot;&gt;&lt;/router-view&gt;
+</code></pre>
+</li>
+<li>
+<p>路由路径可以嵌套使用，就是在某个路由路径里配置一个<code>children</code>选项，这样就可以在里边添加子路由路径了</p>
+</li>
+<li>
+<p>路由路径可以通过配置<code>redirect</code>来对项目首次访问时进行默认重定向跳转和404页面跳转</p>
+<pre><code class="language-javascript">router.addRoutes([
+    {path:'/',redirect:{name:'home'}},
+    {name:'home',path:'/home',component:Home,children:[
+        {name:'home.movie',path:'movie',component:Movie},
+        {name:'home.music',path:'music',component:Music},
+    ]},
+    {path:'*',component:NotFound}
+]);
+</code></pre>
+</li>
+<li>
+<p>路由钩子的使用，通过路由对象的<code>beforeEach()</code>方法可以在访问前进行拦截，你可以叫它路由拦截器也行，路由过滤器也行，随你开心就好。<code>beforeEach()</code>方法的参数是个回调函数，里边有三个参数，分别是<code>to</code>，<code>from</code>，<code>next</code>，<code>to</code>表示当前路由路径要跳转到的目标路径地址，<code>from</code>表示从哪个路径发起的访问，<code>next</code>一个方法，如果传参<code>false</code>则表示阻止路径跳转，不传参则表示放行访问。可以搭配路由路径的<code>meta</code>元数据配置项来做一些路径跳转的权限判断使用，<code>meta</code>可以直接被<code>to</code>获取并使用。<code>next()</code>里也可以传递要跳转的路径的<code>name</code>配置，例如<code>next({name:'login'})</code></p>
+<pre><code class="language-javascript">router.addRoutes([
+    {name:'home',path:'/home',component:Home,meta:{checkLogin:true}}
+]);
+
+router.beforeEach((to,from,next)=&gt;{
+    if(to.meta.checkLogin){
+       next();
+    }else{
+       next(false);
+    }
+});
+</code></pre>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/2_qcFNW6o" class="tag">
+                    vue
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/Vue1">
+                  <h3 class="post-title">
+                    Vue学习第一天
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

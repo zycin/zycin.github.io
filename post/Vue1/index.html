@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Vue学习第一天 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Vue学习第一天</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>Vue</strong> 第一天</p>
+<!-- more -->
+<h3 id="vue第一天"><code>Vue</code>第一天</h3>
+<h4 id="mvvm框架和vue的认识"><code>MVVM</code>框架和<code>Vue</code>的认识</h4>
+<ul>
+<li><code>MVVM</code>全名称是<code>Model-View-ViewModel</code>，是基于以前的<code>MVC</code>提出的一种新型的页面结构数据处理框架，基于<code>MVVM</code>框架思想衍生出了现今的<code>Angular</code>、<code>Vue</code>和<code>React</code>三个主流使用的前端框架，<code>MVVM</code>是目前实现<code>RESTful</code>面向资源开发的最优思想设计，实现了前后端完全分离式的开发方式，提高了项目后期的可扩展和维护性。</li>
+<li><code>Vue</code>是基于<code>MVVM</code>框架思想衍生出来的一款框架，作者是<code>尤玉溪</code>，<code>Vue</code>的整个结构就是将页面处理过程在内存中使用虚拟<code>DOM</code>完成，并最终将结果<code>DOM</code>渲染到页面中去使用</li>
+</ul>
+<h4 id="vue框架的底层原理"><code>Vue</code>框架的底层原理</h4>
+<ul>
+<li>
+<p><code>Vue</code>底层主要是将<code>MVVM</code>作为数据绑定的入口，整合<code>Observer</code>、<code>Compile</code>和<code>Watcher</code>三者。通过<code>Observer</code>来监听自己的<code>model</code>的数据变化，通过<code>Compile</code>来解析编译模板指令（<code>vue</code>中是用来解析 {{}}），最终利用<code>watcher</code>搭起<code>observer</code>和<code>Compile</code>之间的通信桥梁，达到数据变化到视图更新这样一系列的操作。</p>
+<img src="../post-images/vue.jpg" />
+</li>
+</ul>
+<h4 id="第一个vue基本使用代码">第一个<code>Vue</code>基本使用代码</h4>
+<ul>
+<li>
+<p>目前市场上用的<code>Vue</code>版本主要是<code>2.+</code>的版本，引入<code>vue.js</code>后，就可以开始一段愉快的<code>Vue</code>之旅了</p>
+<pre><code class="language-javascript">//ViewModel
+var vm = new Vue({
+    el:'#app',
+    //View部分，在Vue的template中，只能有一个根标签
+    template:`&lt;ul&gt;
+		&lt;li&gt;北京&lt;/li&gt;
+		&lt;li&gt;上海&lt;/li&gt;
+		&lt;li&gt;深圳&lt;/li&gt;
+		&lt;li&gt;广州&lt;/li&gt;
+		&lt;li&gt;{{city1}}&lt;/li&gt;
+		&lt;li&gt;{{city2}}&lt;/li&gt;
+	&lt;/ul&gt;`,
+    //Model
+    data(){
+        return {
+            city1:'郑州',
+            city2:'天津',
+        };
+    },
+});
+console.log(vm.city1,vm.city2);
+</code></pre>
+</li>
+<li>
+<p>通过上边代码可以看出，<code>Vue</code>的视图<code>template</code>结构可以直接使用<code>Model</code>里的任何数据，使用方式和<code>art-template</code>的八字胡语法是一样的</p>
+</li>
+<li>
+<p>在实例化<code>Vue</code>对象时，实际就是获得了<code>Vue</code>的<code>ViewModel</code>部分，那么页面中使用的就可以通过<code>ViewModel</code>对象直接使用<code>Vue</code>框架结构中的<code>Model</code>部分的数据</p>
+</li>
+<li>
+<p>在<code>Vue</code>的<code>template</code>视图结构中，新加入了很多<code>Vue</code>指令来方便视图使用<code>Model</code>中的数据，指令是以属性的方式在<code>template</code>中使用的，意思就是直接给标签里添加指令属性就<code>ok</code>了，语法就是<code>v-指令名</code>，例如：<code>&lt;div v-show=&quot;true&quot;&gt;Hello Vue&lt;/div&gt;</code></p>
+</li>
+</ul>
+<h4 id="vue双向数据绑定的使用"><code>Vue</code>双向数据绑定的使用</h4>
+<ul>
+<li><code>Vue</code>框架中最强大的地方呢，除了将页面数据独立出来使用和处理外，还有很多其他强大的特点，双向数据绑定就是其中之一，通过对表单元素添加<code>v-model</code>来直接获取表单元素的<code>value</code>，然后直接修改<code>Model</code>里的数据，就可以达到一个目的，那就是使用<code>Model</code>数据的其他地方立即修改数据的显示</li>
+</ul>
+<h4 id="vue常用指令"><code>Vue</code>常用指令</h4>
+<blockquote>
+<p>主要是针对<code>View</code>视图的<code>template</code>使用<code>Model</code>里实体模型对象数据的一种快捷方便的操作命令</p>
+</blockquote>
+<ul>
+<li><code>v-text</code>：输出普通的字符串文本内容，即便是带有<code>html</code>标签信息的字符串也是普通显示</li>
+<li><code>v-html</code>：输出内容信息，如果有<code>html</code>标签内容了，则会按<code>html</code>标签格式输出</li>
+<li><code>v-if</code>和<code>v-else</code>：根据一个<code>bool</code>类型值判断执行不同的<code>template</code>内容</li>
+<li><code>v-show</code>：根据一个<code>bool</code>类型值判断是否显示某个<code>template</code>内容</li>
+<li><code>v-on</code>：视图中触发事件执行的指令，后边直接接事件名称即可使用，也可以简写为例如<code>:click</code>，也可以直接用<code>@click</code>的写法</li>
+<li><code>v-bind</code>：绑定外部<code>class</code>的指令，也可以简写为<code>:class</code>，可以绑定的值格式有三种
+<ul>
+<li>直接绑定外部<code>class</code>的名称，也可以通过<code>Model</code>来绑定</li>
+<li>利用一些简单的表达式绑定外部<code>class</code>的处理，比如经典的三元表达式或者是短路语法思想等等</li>
+<li>利用<code>json</code>来绑定<code>class</code>样式，需要使用的样式可以通过<code>bool</code>类型来处理键值对关系</li>
+<li>利用<code>json</code>和某个想表达的动态值来绑定不同的样式，一般要配合<code>v-for</code>指令搭配使用才<code>ok</code></li>
+<li>还可以做自定义属性的绑定配置，在父子组件值传递中经常使用</li>
+</ul>
+</li>
+<li><code>v-for</code>：循环数组或<code>json</code>都可以，参数里第一个是<code>value</code>，第二个是<code>index</code>，如果循环的是<code>json</code>了，那么第二个是<code>key</code>，第三个是<code>index</code>，但是不要忘记配上一个<code>:key</code>来提高循环效率</li>
+<li><code>v-once</code>：只渲染元素和组件<code>一次</code>。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。</li>
+</ul>
+<h4 id="vue的methods模块"><code>Vue</code>的<code>methods</code>模块</h4>
+<ul>
+<li><code>Vue</code>里执行方法的主要模块，常用来处理事件要执行的方法主体的配置</li>
+</ul>
+<h4 id="vue的渲染"><code>Vue</code>的渲染</h4>
+<ul>
+<li>在<code>Vue</code>使用时，可以将组件的主体部分代码单独封装出去，利用<code>Vue</code>的<code>render</code>方法来渲染对主体部分进行直接渲染，这个方法的作用就是创建虚拟<code>DOM</code>的，这样做了，只需要提供往哪里渲染的<code>el</code>就<code>ok</code>了</li>
+<li>这样做的另一个好处就是可以使用<code>Vue</code>另一个强大父子组件嵌套关系来对页面进行分割处理</li>
+</ul>
+<h4 id="vue父子组件的使用"><code>Vue</code>父子组件的使用</h4>
+<ul>
+<li>基于上边一步的渲染操作，就可以在某个入口组件处，通过<code>components</code>模块来引入子组件模块使用了，<code>components</code>里则是配置要使用的子组件的名称和具体子组件的<code>js</code>对象代码</li>
+<li>子组件的使用是非常灵活的，可以同时给多个父组件使用都没有问题，因此可以利用子组件的这种特性将页面中常用的公共部分单独封装出去，哪里要用就给哪里用即可</li>
+<li>父组件可以直接将自己的<code>Model</code>数据的值传递给子组件的属性，也就是说子组件中可以利用<code>v-bind</code>自定义各种各样的属性来接收父组件中的传值操作，而在子组件中，接收父组件传递过来的值则是通过<code>props</code>模块来接收即可</li>
+<li>可以利用<code>Vue.component()</code>方法将某个组件做为全局组件使用，这样就可以灵活被父组件随意使用了</li>
+</ul>
+<h4 id="vue的常用事件修饰符"><code>Vue</code>的常用事件修饰符</h4>
+<ul>
+<li><code>.stop</code>：阻止点击事件冒泡。等同于<code>JavaScript</code>中的<code>event.stopPropagation()</code></li>
+<li><code>.prevent</code>：防止执行预设的行为（如果事件可取消，则取消该事件，而不停止事件的进一步传播），等同于<code>JavaScript</code>中的<code>event.preventDefault()</code>，<code>prevent</code>等同于<code>JavaScript</code>的<code>e.preventDefault()</code>，用于取消默认事件。</li>
+<li><code>.capture</code>：与阻止事件冒泡的方向相反，强制事件冒泡传递，事件捕获由外到内,捕获事件：嵌套两三层父子关系，然后所有都有点击事件，点击子节点，就会触发从外至内 父节点到子节点的点击事件</li>
+<li><code>.self</code>：只会触发自己范围内的事件，不包含子元素</li>
+<li><code>.once</code>：只执行一次，如果我们在<code>@click</code>事件上添加<code>.once</code>修饰符，只要点击按钮只会执行一次事件。</li>
+<li><code>.native</code>：在组件里包含了其他事件操作时，在执行组件内自己的事件前，会先执行<code>.native</code>的原生事件，然后再执行组件内的事件</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/2_qcFNW6o" class="tag">
+                    vue
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/module-npm">
+                  <h3 class="post-title">
+                    模块化和npm
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

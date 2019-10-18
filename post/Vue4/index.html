@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Vue学习第四天 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Vue学习第四天</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>Vue</strong> 第四天</p>
+<!-- more -->
+<h3 id="vue第四天"><code>Vue</code>第四天</h3>
+<h4 id="mini-ui的使用"><code>mini-ui</code>的使用：</h4>
+<ul>
+<li>
+<p><a href="http://mint-ui.github.io/docs/#/zh-cn/">mint-ui</a>是一款灰常优秀的<code>Vue</code>客户端<code>UI</code>框架，所谓<code>UI</code>框架就是在客户端开发时，有很多相似的排版效果，因此将这些相似的排版效果公共的全部封装出来，以一种组件的形式来直接使用，因此<code>UI框架</code>也是针对不同前端框架结构来开发设计的。</p>
+</li>
+<li>
+<p>下载安装<code>mint-ui</code>后就可以直接在代码中直接导入<code>MintUi</code>的关键对象了，进而使用<code>Vue</code>的静态方法<code>use</code>来使用这个中间件了</p>
+</li>
+<li>
+<p>但是实际开发时，这样直接用<code>use</code>使用<code>mint</code>的话，会把所有<code>mint-ui</code>里的组件全部导入到项目中，但是实际项目开发时有可能不会用那么多的组件，因此这样做是浪费资源的事情，所以优化的方式就是用哪个组件了就导入哪个组件来使用，以下边代码为例</p>
+<pre><code class="language-javascript">import Button from 'mint-ui/lib/button';
+Vue.component(Button.name,Button);
+//注意：Lazyload组件需要通过use()方法以中间件的方式
+//经验：因为弹框组件Toast经常在某个事件触发后去执行触发的，所以把它绑定到Vue对象上使用，通过Vue.prototype.$toast=Toast就ok了
+</code></pre>
+</li>
+<li>
+<p>可是对于<code>Lazyload</code>组件的使用就不能去像上边的方式来引入了，而是可以直接的采用<code>Vue</code>的<code>use()</code>方法来引入使用效果更佳，唯有这一个特殊一点，真正使用这块官网上也有详细解释</p>
+</li>
+</ul>
+<h4 id="vue-preview的使用"><code>vue-preview</code>的使用</h4>
+<ul>
+<li>
+<p><code>vue-preview</code>是<code>vue</code>的一款优秀的图片预览效果扩展架包，使用方式就是直接导入<code>VuePreview</code>对象后，使用<code>use</code>方法添加到<code>Vue</code>框架中使用即可</p>
+</li>
+<li>
+<p>使用方式就是，在项目中需要循环创建缩略图的地方，给每个<code>img</code>加上一个<code>preview-img</code>的<code>class</code>样式，然后在<code>@click</code>里调用<code>$preview.open(索引, 图片集合)</code></p>
+</li>
+<li>
+<p>注意：使用<code>vue-preview</code>时，如果接口响应的图片集合数据里没有宽高的字段时，需要自己加个宽高！否则<code>vue-preview</code>没效果！</p>
+<blockquote>
+<p>当然现在还有新的<code>vue2-preview</code>，可以自行去百度学习，或者<code>npm</code>安装好后，看里边的<code>readMe.md</code>学习</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="axios的使用"><code>axios</code>的使用</h4>
+<ul>
+<li>
+<p><code>axios</code>是一个优秀的基于<code>ajax</code>封装的扩展框架包(架包)，解决项目中<code>ajax</code>访问的问题</p>
+</li>
+<li>
+<p><code>axios</code>的优点有：</p>
+<ul>
+<li>基于浏览器模式创建<code>XMLHttpRequest</code>对象</li>
+<li>从<code>NodeJS</code>发出<code>http</code>请求</li>
+<li>响应结果接收支持<code>Promise</code>，解决了回调地狱问题</li>
+<li>带有请求和响应的<code>Intercept</code>拦截器功能</li>
+<li>可以转换请求(<code>Request</code>)参数和响应(<code>Response</code>)结果数据，那么基于拦截器功能，就可以根据判断条件取消请求发送行为</li>
+<li>自动转换<code>JSON</code>数据</li>
+<li>客户端支持防止<code>XSRF</code></li>
+</ul>
+</li>
+<li>
+<p>可以配置<code>proxy</code>代理请求模式</p>
+</li>
+<li>
+<p>导入<code>Axios</code>对象后，这货不能用<code>use</code>，因为没抱<code>Vue</code>大腿，人家是一个独立的框架，所以要扩展到<code>Vue</code>中使用则需要<code>Vue.prototype.$axios=Axios;</code>这样来做，这样了，就可以在<code>Vue</code>中通过<code>this.$axios</code>来使用</p>
+</li>
+<li>
+<p>基于上边的使用，可以直接调用<code>get()</code>方法，发送<code>get</code>请求</p>
+<pre><code class="language-javascript">this.$axios.get('请求路径地址/:id',{
+    //请求参数，可以这样独立配置，结果就是发送请求时，是以?拼接的请求参数，当然也可能是路由路径，那么就用上边方式在请求路径后边加上/:id动态路由参数即可
+    params:{
+        id:1,
+    }
+}).then(response =&gt; {
+    console.log(response);
+}).catch(err =&gt; console.log(err));
+</code></pre>
+</li>
+<li>
+<p>调用<code>post()</code>方法就可以直接发送<code>post</code>请求，<code>post()</code>方法的第二个参数直接传<code>json</code>做为<code>post</code>请求时的参数，当然动态路由路径参数，也是用和<code>get</code>拼接一样的使用</p>
+<blockquote>
+<p>什么情况下会用路由路径拼接参数的使用呢？毕竟这个<code>ajax</code>请求，不是我们说的算的！后端给的接口文档是啥？就照着啥弄即可！后端是大佬！</p>
+</blockquote>
+</li>
+<li>
+<p>如果是<code>post</code>请求的话，可以配置对请求参数的转换处理选项</p>
+<pre><code class="language-javascript">this.$axios.post(
+    '请求路径',
+    {参数},
+	{
+        //axios默认的请求参数是以&quot;application/json&quot;，服务端大多喜欢&quot;application/x-www-form-urlencoded&quot;
+        transformRequest(data){
+            //这个data就是请求参数的原值，有时后端直接传json过去他们不会解析时，会让你在这里转成拼接字符串传过去，唉，后端呀！！！
+            var queryString = '';
+            for(const key in data){
+                queryString+=`${key}=${data[key]}&amp;`;
+            }
+            queryString = querString.substring(0,queryString.lastIndexOf('&amp;'));
+            return queryString;
+        },
+        transformResponse(data){
+            return JSON.stringfy(data);
+        },
+    },
+).then(res=&gt;{});
+</code></pre>
+</li>
+<li>
+<p>不管是<code>get</code>还是<code>post</code>请求，<code>axios</code>里都可以使用<code>transformResponse</code>配置项来转换相应数据的类型</p>
+<pre><code class="language-javascript">this.$axios.post(
+    '请求路径',
+    {参数},
+	{
+        transformResponse(data){
+            //后端响应的数据如果是非json类型，而是json的字符串类型了，那么就需要在这里转数据类型使用后，再在then()里使用了
+            return JSON.parse(data);
+        },
+    },
+);
+</code></pre>
+</li>
+<li>
+<p>从上边两点可以看出<code>axios</code>自带了各种请求方法。是的，没错！不仅仅有<code>get</code>和<code>post</code>请求，还有<code>put</code>和<code>delete</code>请求方法，使用方式大同小异，要根据后端给的接口文档来判断使用</p>
+</li>
+<li>
+<p><code>axios</code>有很多通用配置，意思就是先配置<code>axios</code>请求对象，然后再发起请求时，有些功能可以直接使用了。配置方式有两种，一种是通过<code>axios.create()</code>方法创建出来一个新的<code>axios</code>对象，在<code>create</code>时传入一个<code>json</code>参数来进行配置，例如下边的</p>
+<pre><code class="language-javascript">const axiosInstance = this.$axios.create({
+    //baseURL是基本请求路径配置
+    baseURL:'请求路径的根路径配置',
+    //请求时长，毫秒为单位，意思就是在规定的毫秒数内如果接口路径未响应结果数据，则本次请求自动终止
+    timeout:2000,
+    //请求头的配置项
+    //类似原生的xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')    token令牌
+    headers:{
+        'Content-Type':'application/x-www-form-urlencoded',
+    },
+    //是否允许跨域接收cookie数据信息，配合xsrfCookieName配置项来防止xsrf攻击使用
+    //基于原生ajax的封装配置项  
+    //其作用就是是否允许接收到服务端跨域响应的一些资源数据，包括cookie等等
+    withCredentials:false,
+    //配置xsrf令牌值的cookie名称
+    xsrfCookieName:'XSRF-TOKEN',
+    //配置http头部里携带的xsrf令牌值名称
+    xsrfHeaderName:'X-XSRF-TOKEN',
+    //httpAgent和httpsAgent的作用是将本次请求做为一个http代理方式的请求配置，意思就是说把axios模仿成一个浏览器来请求
+    httpAgent:new http.Agent({keepAlive:true}),
+    httpsAgent:new https.Agent({keepAlive:true}),
+    //如果配置了httpAgent活httpsAgent后，就可以配置proxy代理跨域请求操作了，当然了你所使用的代理的IP和端口是能够帮你跨域的，不能了的话，即便配置了也没意义，所以说跨域还是后端的事，他们不给你跨域了就是他们的程序问题，让他们改bug！！！
+    proxy:{
+        host:'127.0.0.1',
+        port:9000,
+        auth: {
+      		username: 'mikeymike',
+      		password: 'rapunz3l'
+    	}
+    },
+});
+</code></pre>
+</li>
+<li>
+<p>如果不想上边那样使用<code>create()</code>方法来实例化一个新的<code>Axios</code>对象来做全局配置了，那么也可以像下边这样来做全局配置</p>
+<pre><code class="language-javascript">this.$axios.defaults.baseURL='';
+this.$axios.get();
+</code></pre>
+</li>
+<li>
+<p><code>axios</code>拦截器的使用，直接看下边代码</p>
+<pre><code class="language-javascript">//拦截器可以配置在整个项目的`main.js`入口里，包括配置项的使用也是
+Axios.defaults.baseURL = '请求路径根路径的配置';
+//请求前的拦截器，就是在请求前会执行这里边的代码
+Axios.interceptors.request.use((config) =&gt; {
+    //请求前可以考虑打开loading数据加载中的友好提示图标
+    //可以利用mint-ui里的Indicator组件来做
+    //将其他配置项返回出来继续传递
+    return config;
+});
+//响应后的拦截器，就是在请求响应成功后会触发执行这里边的代码
+Axios.interceptors.response.use((config) =&gt; {
+    //可以在这里将加载数据时的loading图标给关闭掉即可
+    return config;
+});
+</code></pre>
+</li>
+<li>
+<p><code>axios</code>可以合并请求，意思就是说一次发送多个请求，那么返回结果了也要分发响应接收处理</p>
+<pre><code class="language-javascript">//在all()方法里，通过传递个数组，来合并多个不同的请求
+this.$axios.all([
+    this.$axios.get('请求路径1'),
+    this.$axios.get('请求路径2'),
+]).then(this.$axios.spread((response1,response2) =&gt; {
+    //利用spread()方法则可以分发响应结果的接收
+ 	console.log(response1);
+    console.log(response2);
+}).catch(err =&gt; console.log(err));
+</code></pre>
+</li>
+</ul>
+<h4 id="项目基本环境的搭建">项目基本环境的搭建</h4>
+<ul>
+<li>跟着我的节奏，来一起搭建项目开发时的基本目录环境</li>
+<li>最后则是如果你不想自己手工搭建了，恭喜你，可以使用<code>vue</code>脚手架工具来初始化项目环境
+<ul>
+<li>先<code>npm i vue-cli -g</code>装一个全局的<code>vue</code>脚手架工具</li>
+<li>在某个目录里，打开命令窗口，在里边输入<code>vue init webpack 项目名</code></li>
+<li>再然后就是各个配置项的配置弄好就完事了！大功告成！</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/2_qcFNW6o" class="tag">
+                    vue
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/Vue3">
+                  <h3 class="post-title">
+                    Vue学习第三天
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

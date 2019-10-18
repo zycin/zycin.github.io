@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Vue学习第三天 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Vue学习第三天</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>Vue</strong> 第三天</p>
+<!-- more -->
+<h3 id="vue第三天"><code>Vue</code>第三天</h3>
+<h4 id="npm和yarn的使用"><code>npm</code>和<code>yarn</code>的使用</h4>
+<ul>
+<li>安装了<code>node</code>后，就可以直接使用<code>npm</code>来管理项目开发时的第三方一些扩展包的安装使用，并且初始化项目包资源结构清单</li>
+</ul>
+<h4 id="webpack入门使用"><code>webpack</code>入门使用</h4>
+<ul>
+<li>
+<p>自动化打包构建工具是目前前端开发中使用最火热的一种工具，为什么会有构建工具呢？主要是前端开发碰到的以下几种情况造成的</p>
+<ul>
+<li>代码开发过程中大量的注释，回车和换行导致文件不必要的变得过大，而客户端浏览器还是要通过流量来加载源文件及源文件里的各种<code>image</code>，<code>css</code>和<code>js</code>资源</li>
+<li><code>ES6</code>高级语法不断普及的使用。伴随着高级语法的产生，导致前端浏览器兼容解析<code>ES6</code>及再往上的高级语法时，兼容性是个大问题，即便是在移动端设备上，对<code>ES</code>高级语法的解析也是存在不同的兼容性的，如果不了解或者用的不妥当了，会直接因为兼容性问题导致程序<code>bug</code>和崩溃</li>
+<li><code>Angular</code>、<code>Vue</code>和<code>React</code>这种前端<code>MVVM</code>框架越来越火。目前学习到现在，我们会发现使用<code>Vue</code>可以有效将页面分割成不同的模块进行开发，并不太会影响开发效率的同时，对项目后期的扩展维护也更加的方便，可是问题在于，如果分割太多的模块对象，那么最终将资源整合到入口<code>index.html</code>上时会乱七八糟，越往后越不好收拾，并且入口<code>html</code>导入文件过多时也会影响用户的体验</li>
+</ul>
+</li>
+<li>
+<p>那么看到上边的这些在开发中碰到的实际问题后，所以才产生了前端自动化打包构建工具，可以有效解决前端开发中的各种问题</p>
+<ul>
+<li>可以把生产环境(开发环境)和产品环境独立开，意思就是说，该怎么生产就在生产目录里还是怎么生产，最后只需要用构建工具打包下，就可以完美将项目中多余空格，换行，注释，甚至是引号都能干掉了</li>
+<li><code>ES6</code>随便用，因为构建工具编译<code>js</code>时，可以通过相应的垫片工具来解析，将高版本的<code>ES</code>语法解析成兼容性更好的<code>ES4</code>或<code>ES5</code>的语法，避免了不必要的兼容性<code>bug</code></li>
+<li>对前端<code>MVVM</code>框架做了更好的资源整合，将所有模块整合在一起，最后入口<code>index.html</code>里只需要引入一个整合后的文件即可，不需要在担心各个模块间引入关系是否会弄错的尴尬局面</li>
+</ul>
+</li>
+<li>
+<pre><code class="language-javascript">minify: {
+	removeAttributeQuotes: true,
+    removeComments: true,
+    minifyCSS: true,
+    collapseWhitespace: true,
+    minifyJS: true,
+},
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><code>resolve</code>选项里可以配置<code>alias</code>路径名称和<code>extensions</code>默认解析后缀名的配置</li>
+</ul>
+<h4 id="webpack解决commonjs模块化的构建"><code>webpack</code>解决<code>CommonJS</code>模块化的构建</h4>
+<ul>
+<li>模块化开发概念：<code>js</code> 编程的封装顶端都是以对象来进行编程封装的，每一个对象在现今的<code>js</code>开发中不再用对象的概念来描述，而是被称为一个<code>模块</code>，那么一个项目在开发到后期时，模块越来越多，模块间的依赖关系越来越复杂后，就需要有<code>模块化规范</code>来连接和解决各个模块之间的关系！</li>
+<li><code>webpack</code>只是众多自动化构建工具中的一种，也是目前市场上主流使用的一种，那么对于<code>ES6</code>的高级模块化开发语法，自然也是可以构建并使用的，否则浏览器是无法兼容处理的</li>
+<li><code>CommonJS</code>模块化编程主要是对要导出的对象使用<code>exports</code>或<code>module.exports</code>来进行操作，前者是对一个空对象里追加要导出的元素，后者则只能导出一个明确的对象来使用</li>
+<li>那么最后在其他模块中要使用时，则通过关键词<code>require</code>来实现模块打导入</li>
+</ul>
+<h4 id="webpack结局es6的modules模块化的构建"><code>webpack</code>结局<code>ES6</code>的<code>Modules</code>模块化的构建</h4>
+<ul>
+<li>上边可以看到<code>webpack</code>可以解决<code>CommonJS</code>模块化编程的打包构建工作，<code>CommonJS</code>是什么模块化编程规范？那么可是<code>NodeJS</code>后端的模块化编程规范，也就是说要在<code>Node</code>虚拟机里的<code>V8</code>来解析的，所以说<code>webpack</code>的强大之处一目了然。</li>
+<li><code>(超重点)</code>那么前端现在的模块化编程规范有四种。一种是基于<code>require.js</code>的<code>AMD</code>模块化编程规范，一种是基于<code>sea.js</code>的<code>CMD</code>模块化编程规范，这两种都是解决以前面向对象编程时整合对象模块间关系的模块化插件框架。但是随着<code>ES6</code>高级语法的流行，又产生了以<code>NodeJS</code>为主的<code>CommonJS</code>模块化开发规范和以<code>ES6</code>高级语法的<code>Modules</code>模块化编程规范。</li>
+<li><code>ES6</code>的<code>Modules</code>模块化编程里主要是使用<code>export</code>和<code>import</code>来对模块对象进行导入导出操作的</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/2_qcFNW6o" class="tag">
+                    vue
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/Vue2">
+                  <h3 class="post-title">
+                    Vue学习第二天
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

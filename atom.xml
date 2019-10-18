@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-10-18T08:42:27.574Z</updated>
+    <updated>2019-10-18T11:14:38.838Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.fastt.cn"/>
     <link rel="self" href="https://www.fastt.cn/atom.xml"/>
@@ -11,29 +11,107 @@
     <icon>https://www.fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
     <entry>
-        <title type="html"><![CDATA[MarkDown语法教程]]></title>
-        <id>https://www.fastt.cn/post/Uxq5UPSzs</id>
-        <link href="https://www.fastt.cn/post/Uxq5UPSzs">
+        <title type="html"><![CDATA[Vuex学习]]></title>
+        <id>https://www.fastt.cn/post/vuex</id>
+        <link href="https://www.fastt.cn/post/vuex">
         </link>
-        <updated>2019-10-18T08:07:01.000Z</updated>
-        <summary type="html"><![CDATA[<p>这篇文章主要介绍MarkDown的常用语法</p>
+        <updated>2019-10-18T10:45:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vuex</strong>开始学习</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>这篇文章主要介绍MarkDown的常用语法</p>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vuex</strong>开始学习</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Hello GeekBlog]]></title>
-        <id>https://www.fastt.cn/post/Hello-GeekBlog</id>
-        <link href="https://www.fastt.cn/post/Hello-GeekBlog">
+        <title type="html"><![CDATA[Vue学习第四天]]></title>
+        <id>https://www.fastt.cn/post/Vue4</id>
+        <link href="https://www.fastt.cn/post/Vue4">
         </link>
-        <updated>2019-10-18T05:35:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 欢迎来到 <strong>GeekBlog</strong>！<br>
-这是一个用静态博客客户端所创建的个人站点.    —— <a href="https://gridea.dev">Gridea</a><br>
-我将用它来记录我的生活、心情、知识、笔记、创意... ...</p>
+        <updated>2019-10-18T10:44:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第四天</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 欢迎来到 <strong>GeekBlog</strong>！<br>
-这是一个用静态博客客户端所创建的个人站点.    —— <a href="https://gridea.dev">Gridea</a><br>
-我将用它来记录我的生活、心情、知识、笔记、创意... ...</p>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第四天</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue学习第三天]]></title>
+        <id>https://www.fastt.cn/post/Vue3</id>
+        <link href="https://www.fastt.cn/post/Vue3">
+        </link>
+        <updated>2019-10-18T10:43:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第三天</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第三天</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue学习第二天]]></title>
+        <id>https://www.fastt.cn/post/Vue2</id>
+        <link href="https://www.fastt.cn/post/Vue2">
+        </link>
+        <updated>2019-10-18T10:41:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第二天</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第二天</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue学习第一天]]></title>
+        <id>https://www.fastt.cn/post/Vue1</id>
+        <link href="https://www.fastt.cn/post/Vue1">
+        </link>
+        <updated>2019-10-18T10:40:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第一天</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第一天</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[模块化和npm]]></title>
+        <id>https://www.fastt.cn/post/module-npm</id>
+        <link href="https://www.fastt.cn/post/module-npm">
+        </link>
+        <updated>2019-10-18T10:36:36.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ES6新特性]]></title>
+        <id>https://www.fastt.cn/post/es6</id>
+        <link href="https://www.fastt.cn/post/es6">
+        </link>
+        <updated>2019-10-18T10:35:36.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nodeJS学习四]]></title>
+        <id>https://www.fastt.cn/post/nodejs4</id>
+        <link href="https://www.fastt.cn/post/nodejs4">
+        </link>
+        <updated>2019-10-18T09:53:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nodeJS学习三]]></title>
+        <id>https://www.fastt.cn/post/nodejs3</id>
+        <link href="https://www.fastt.cn/post/nodejs3">
+        </link>
+        <updated>2019-10-18T09:51:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nodeJS学习一]]></title>
+        <id>https://www.fastt.cn/post/nodejs1</id>
+        <link href="https://www.fastt.cn/post/nodejs1">
+        </link>
+        <updated>2019-10-18T09:50:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第一阶段<br>
+nodejs的简介以及基本语法教程</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第一阶段<br>
+nodejs的简介以及基本语法教程</p>
 ]]></content>
     </entry>
 </feed>

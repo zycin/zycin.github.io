@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>nodeJS学习三 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">nodeJS学习三</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
+<!-- more -->
+<h1 id="模块化编程">模块化编程</h1>
+<h2 id="什么是模块化">什么是模块化</h2>
+<p>所有的语言平台，只要其具有以下特征，则我们说它是使用模块编程：</p>
+<ul>
+<li>文件作用域
+<ul>
+<li>也叫<mark>模块作用域</mark>，即模块文件具有<strong>封装性</strong>，文件内容只能在内部使用 而不是在外部访问</li>
+</ul>
+</li>
+<li>加载与导出
+<ul>
+<li>使用专门的语法 导出接口列表：export语法、exports对象、module.exports等</li>
+<li>使用专门的方法 加载模块文件：require、include、import等。</li>
+</ul>
+</li>
+</ul>
+<p>目前为止，关于前端 我们学过的规范或者规则有：</p>
+<ul>
+<li>核心语法ECMAScript支持的模块语法，ES6以后可以使用，但在Node中支持不足</li>
+<li>第三方库 requireJS规范，适用于客户端浏览器环境的异步加载机制，让前端具备模块化编程的能力</li>
+<li>第三方库 CommonJS规范，适用于服务端环境的模块同步加载机制，也是Node模块加载采用的规范</li>
+</ul>
+<h2 id="es6模块规范">ES6模块规范</h2>
+<p>es6新增语法用于模块化编程，使得前端工程的结构更为合理，维护性和扩展性增强，但目前在node中支持不足</p>
+<h3 id="export语句">export语句</h3>
+<p>在客户端环境中，文件默认没有作用域可以通过script直接引入。当文件中存在export或者import语法时则被认为是模块文件并且具有封装性，export用来声明开放接口的列表，具体用法如下：</p>
+<ul>
+<li>
+<p>使用export直接导出定义，通过在创建该内容的代码块前面添加export关键字</p>
+<pre><code class="language-javascript">//demo.js
+//一个文件中可以存在多个export
+export let foo = &quot;foo&quot;;
+export function bar() {
+    return &quot;bar&quot;;
+};
+</code></pre>
+</li>
+<li>
+<p>export导出接口列表，以<code>{}</code>形式存放接口集合。此处的{}非对象的声明，只是集合语法</p>
+<pre><code class="language-javascript">let foo = &quot;foo&quot;;
+function bar () {
+    return &quot;bar&quot;;
+}
+
+export {
+    foo,
+    bar
+};  //此处不是对象的简洁属性，而是{}集合
+    //不能使用{fo : foo, ba : bar}
+    //可以使用as给接口设置别名
+
+export {
+    foo as fo,
+    bar as ba,
+}
+</code></pre>
+</li>
+<li>
+<p>export default用来设置默认接口，这样在加载页面时就无需声明列表，直接接收即可。</p>
+<pre><code class="language-javascript">//demo.js
+let foo = &quot;foo&quot;;
+function bar() {
+    
+}
+
+//将foo作为默认接口导出
+//export default foo;	
+//export default只能出现一次 如果要返回多个接口 可以将它们放入对象中
+export default {
+    foo,
+    bar,
+} //此处为对象的简洁写法
+
+//加载页面中使用
+import demo from './demo.js';
+console.dir(demo);	//demo为一个对象，包含多个接口
+
+</code></pre>
+</li>
+<li>
+<p>最后要注意，export语句必须处于模块文件顶层代码中，不能放在块级作用域中。</p>
+</li>
+</ul>
+<h3 id="import-语句">import 语句</h3>
+<p>页面中加载模块的script代码段需要声明type类型为module以区别普通的脚本；其次要以服务器地址来请求模块文件，否则会被跨域拦截。es6中使用import导入模块文件并接收接口列表。</p>
+<ul>
+<li>
+<p><code>import {add, minus} from './math.js'</code> 其中相对路径中的<code>./</code>不可省略，<code>.js</code>后缀也不可省略 。</p>
+<pre><code class="language-javascript">//math.js
+export function add(x, y) {
+    return x + y;
+}
+
+export function minus(x, y) {
+    return x - y;
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+	import {add, minu} from &quot;./math.js&quot;;
+    console.log(add, minu);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><code>import {add, minus as min } from './math.js'</code> 导入时使用as重命名接口名称</p>
+<pre><code class="language-javascript">//math.js
+function add(x, y) {
+    return x + y;
+}
+
+function minus(x, y) {
+    return x - y;
+}
+
+export {
+	add,
+    minus
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+	import {add as sum, minus as mus} math from './math.js';
+    console.log(sum, mus);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><code>import * as math from './math.js'</code> 将模块成员存入mod对象中使用。</p>
+<pre><code class="language-javascript">//math.js
+function add(x, y) {
+    return x + y;
+}
+
+function minus(x, y) {
+    return x - y;
+}
+
+export {
+	add,
+    minus
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+	import * as math from './math.js';
+    console.log(math);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p><code>import math from './math.js'</code> 使用了<code>export default</code>方式导出的接口</p>
+<pre><code class="language-javascript">//math.js
+export default {
+    add (x, y) {
+        return x + y;
+    },
+    
+    minus (x, y) {
+        return x - y;
+    }
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+	import math from './math.js';
+    console.log(math);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="cmd模块规范">CMD模块规范</h2>
+<p>CMD模块规范相对于AMD，得名来自<code>CommonJS</code>。CommonJS是适用于服务端的<mark>同步风格</mark>的模块加载机制，也是Node采用的规范。在CommonJS模块规范中，<strong>一个文件就是一个模块 具有封装性</strong>（作用域）。每个文件有一个<strong>隐式声明</strong>的<code>module.exports</code>对象，用来挂载接口。接下来在项目文件中，使用<code>require('模块路径')</code>载入该模块。</p>
+<h3 id="exports的使用">exports的使用</h3>
+<ul>
+<li>
+<p>在CommonJS中，每个模块文件都有一个隐式声明的<code>module.exports</code>对象以及一个引用它的<code>exports</code>对象，用来挂载接口 -  对象扩展；如果模块文件未设置module.exports或者exports则为一个<strong>空对象</strong>。</p>
+<pre><code class="language-javascript">//mode.js
+let foo = &quot;foo&quot;;
+
+function bar() {
+
+}
+
+//模块文件具有封装性 - 文件作用域
+console.log(&quot;hello world&quot;);
+
+//每个模块文件都有一个module.exports对象 用来挂载接口
+// module.exports.foo = foo;
+// module.exports.bar = bar;
+// console.log(module.exports);
+
+//exports引用了module.exports对象 便于使用
+// exports = module.exports;
+console.log(exports == module.exports); //true
+
+//因此可以直接简化导出接口列表的过程为：
+exports.foo = foo;
+exports.bar = bar;
+</code></pre>
+<p>在项目文件中，使用require('模块标识符')载入该模块，并定义变量来接收module.exports的内容：</p>
+<pre><code class="language-javascript">//index.js
+const mode  = require('./mode');
+console.log(mode);	//{foo : &quot;hello world&quot;, bar : function () {}}
+</code></pre>
+</li>
+<li>
+<p>除了扩展的方式外，我们还可以重写module.exports对象为一个新值，这样require接收到的即为该值，它主要有以下两点优势：</p>
+<ul>
+<li>当模块中 只有一个接口时 （例如 定义类的模块文件），可以直接将该类导出 而不是作为接口对象成员。</li>
+<li>当模块中 接口较多时 可以将它们集合到一个对象中 然后作为module.exports的新值。</li>
+</ul>
+<pre><code class="language-javascript">//comm.Rectangle.js
+//定义矩形操作类模块
+class Rectangle {
+    constructor(width, height) {
+        this.w = width;
+        this.h = height;
+    }
+
+    area() {
+        return this.w * this.h;
+    }
+
+    perimter() {
+        return 2 * (this.w + this.h);
+    }
+}
+
+//重写module.exports对象为该接口内容
+module.exports = Rectangle;   
+
+/*
+* 此处如果使用exports = Rectangle则无效
+* 因为真正能够导出接口的是module.exports
+* exports是因为引用module.exports而能导出接口
+* 现在重置exports将使得其不再具备接口导出的能力
+
+* 同理，module.exports重置后 也会使exports丧失挂载接口的能力
+*/
+
+//exports上挂载的一切接口都无效
+exports.a = &quot;hello&quot;;
+exports.b = &quot;world&quot;;
+</code></pre>
+<pre><code class="language-javascript">//index.js
+const Rectangle = require(&quot;./comm.Rectangle.js&quot;);
+console.log(Rectangle);	
+</code></pre>
+<p>对于<code>module.exports</code>或者exports导出的多接口，可以在项目文件中使用解构赋值的方式直接提取出来：</p>
+<pre><code class="language-javascript">//comm.math.js
+let x = 10,
+    y = 20;
+
+function add() {
+    return x + y;
+}
+
+function minus() {
+    return x - y;
+}
+
+module.exports = {
+    add,
+    minus,
+}
+</code></pre>
+<pre><code class="language-javascript">let {add, minus} = require('./comm.math.js');
+console.log(add, minus);
+</code></pre>
+</li>
+</ul>
+<h3 id="require的使用">require的使用</h3>
+<p>在一些平台中，存在require()与require_once() 这样两个用于加载模块的函数；其中require()会重复加载被引入的文件（多次执行），而require_once()则在每次加载前验证当前是否已有加载的文件，如果已有则不再加载，也就是说每个文件最多只加载一次；而node中的require也是<strong>只加载一次</strong>。</p>
+<pre><code class="language-php">//mode.php
+echo &quot;hello world&quot;;
+
+//index.php
+require(&quot;mode.php&quot;);//输出
+require(&quot;mode.php&quot;);//输出
+
+require_once(&quot;mode.php&quot;);	//不再输出
+require_once(&quot;mode.php&quot;);	//不再输出
+</code></pre>
+<pre><code class="language-javascript">//mode.js
+console.log(&quot;hello world&quot;);
+
+//index.js
+require(&quot;./mode&quot;);	//只执行一次
+require(&quot;./mode&quot;);
+</code></pre>
+<h2 id="amd模块规范">AMD模块规范</h2>
+<p>​	requireJS 是AMD风格的模块开发规范，所谓<code>AMD</code>是指<mark>异步模块定义规范</mark>，它非常适用于客户端（浏览器）环境</p>
+<p>​	模块开发是服务端必备的技术，随着前端发展 大规模的工程化应用也需要模块的支持 以增强项目的可维护性和扩展性。在前端模块化开发中，由于需要远程请求服务端资源 <strong>传统的script同步请求 在网络不佳的情况下 容易产生阻塞</strong>，因此必须使用<mark>异步</mark>的方式加载：</p>
+<p>​	<code>&lt;script src=&quot;jquery.js&quot; async=&quot;true&quot;&gt;&lt;/script&gt;</code></p>
+<p>​	如果要以异步方式加载，就要考虑文件和代码之间的依赖关系。之所以很多时候 我们以同步方式引入模块或者库文件，是因为后续代码的执行 必须依赖这个模块文件。现在 如果异步加载 势必要将依赖的代码 作为该模块加载完毕后的回调函数来执行，相当于这样：</p>
+<pre><code class="language-javascript">&lt;script src=&quot;jquery.js&quot; async=&quot;true&quot; onload=&quot;todo();&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    function todo() {
+    	//所有依赖jquery的代码 必须在此处执行
+    	
+	}
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>requireJS很好的解决了上述问题，并更加智能和高效。requireJS中，模块使用<code>define</code>定义，它有两个参数：
+<ul>
+<li>一是该模块依赖的其他模块，需要先异步加载进来</li>
+<li>另一个是模块的定义代码，作为其他依赖模块都加载完毕后的回调函数</li>
+</ul>
+</li>
+</ul>
+<p>requireJS模块的封装性是通过<mark>函数作用域</mark>实现的，接下来 需要返回一个<strong>公有对象</strong>存储接口列表并返回。</p>
+<pre><code class="language-javascript">//mode.js
+//该模块依赖jquery，当jquery加载完毕后 执行回调并接收jquery为$对象
+define(['jquery'], function ($) {
+    //---模块核心代码---
+    let foo = &quot;foo&quot;;
+    function bar() {};
+    
+    //---返回公有接口---
+    return {
+        foo, 
+        bar
+    } //使用简洁属性 模拟es6 exports导出的接口列表
+    
+});
+</code></pre>
+<ul>
+<li>定义好的模块和接口，接下来使用require函数引入，在require引入之前 需要使用<code>require.config()</code>配置模块和文件路径的映射 这样才能更好的加载和使用模块。</li>
+</ul>
+<pre><code class="language-javascript">//index.html中 首先载入require库文件 
+&lt;script src=&quot;require.js&quot; async=&quot;true&quot;&gt;&lt;/script&gt;
+//如果页面中的js作为外链文件 还可以声明data-main属性
+&lt;script src=&quot;require.js&quot; async=&quot;true&quot; data-main=&quot;js/index&quot;&gt;&lt;/script&gt;
+
+//index.js
+require.config({
+    baseUrl : &quot;./modules&quot;,	//模块根目录
+    paths : {
+        jquery : &quot;./jquery-2.0.2.min&quot;,	//可以省略js
+        foo : &quot;foo&quot;
+    }
+});
+
+//依次载入依赖的模块 然后执行页面代码
+require([&quot;foo&quot;, &quot;jquery&quot;], function (f, $) {
+    console.log(f, $);
+    
+    //页面特效的代码
+    
+});
+</code></pre>
+<h1 id="node模块系统">node模块系统</h1>
+<p>node中使用的模块系统包含以下几种：</p>
+<p>​	1) 核心模块：fs、http、url、querystring等</p>
+<p>​	2) 第三方模块：使用npm从外部下载安装的模块，例如 art-template</p>
+<p>​	3) 自定义模块：用户自己定义的模块文件，例如 math.js、mode.js等</p>
+<p>而require在引入上述模块时，可以传入两种格式的模块标识：路径形式和包名</p>
+<p>​	<code>require('模块标识符')</code></p>
+<ul>
+<li>
+<p>当传入了一个路径时（以**./<strong>或者</strong>../**开头） 表示加载按照路径加载文件 一般用于自定义模块中。</p>
+</li>
+<li>
+<p>当传入一个模块名时，就是参数中只有名称时 表示加载核心模块或者第三方模块。此时的模块文件是存在于Node核心文件（nodex.exe）中或者使用npm下载的node_modules目录中。</p>
+<ul>
+<li>
+<p><code>require('fs')</code>加载核心模块fs，<code>fs.js</code>模块文件随着node环境被编译到<code>node.exe</code>文件中。这里可以通过源码查看到该文件。@link http://github.com/nodejs</p>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558427719485.png" alt="1558427719485"></figure>
+</li>
+<li>
+<p><code>require(&quot;art-template&quot;)</code> 加载第三方模块包，这里的art-template模块是存储于npm下载的包里面</p>
+<p>接下来引入包时 它有一套明确的查找机制：</p>
+<ol>
+<li>首先查找当前目录的node_modules，定位<code>node_modules/包名/libs/package.json</code>包说明文件</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489537192.png" alt="1558489537192"></figure>
+<ol start="2">
+<li>查找配置项main，main用于指定包的入口文件，该文件用于调度包资源 并返回一个接口对象</li>
+</ol>
+<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489587833.png" alt="1558489587833"></figure>
+<p>同理，我们使用npm安装jquery，查看它的package.json文件 找到main配置的入口文件；再接下来 我们可以自定义包 并使用require加载该包。注意require中传入的是包名。</p>
+<ol start="3">
+<li>
+<p>如果上述规则不能有效的运行，例如 package.json不存在或者没有main项，或者main指定文件不存在， 此时它还有一个备选项 就是直接找到包中的<code>index.js</code>作为默认入口文件。</p>
+</li>
+<li>
+<p>上述条件都不成立时，它会沿着上级目录层层查找node_modules 直到磁盘根目录为止。也就是说存在于项目顶层目录node_modules中的模块 可以在所有的项目文件中使用require(包名)导入。因此 建议将node_modules放置于项目<strong>根目录</strong>中。</p>
+</li>
+</ol>
+<pre><code class="language-shell">a
+	node_modules/art-template
+b
+	require(&quot;art-template&quot;);	//找不到 除非使用路径查找
+	require(&quot;../a/node_modules/art-template/index.js&quot;); //可以找到
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="packagejson">package.json</h1>
+<p><code>package.json</code>是包说明文件，可用于项目中 用来添加项目描述以及管理项目中需要依赖的包。<code>package.json</code>文件可以通过<code>npm init</code>自动生成，该命令会以向导的方式提示基本的配置项。</p>
+<pre><code class="language-shell">#在控制台执行npm init
+d:\Wamp\WWW\node\day3\web&gt;npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt;` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (web)
+version: (1.0.0) 0.0.1
+description: 这是一个测试项目                                                     
+entry point: (index.js) index.js
+test command:
+git repository:
+keywords:
+author:
+license:
+d:\Wamp\WWW\node\day3\web&gt;npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt;` afterwards to install a package and
+save it as a dependency in the package.json file.
+Press ^C at any time to quit.
+
+package name: (web) web
+version: (1.0.0) 0.0.1
+description: demo app
+entry point: (index.js) inidex.js
+test command:
+git repository:
+keywords:
+author: lautin
+license: (ISC)
+About to write to d:\Wamp\WWW\node\day3\web\package.json:
+
+{
+  &quot;name&quot;: &quot;web&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;demo app&quot;,
+  &quot;main&quot;: &quot;inidex.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;lautin&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+
+Is this OK? (yes) yes
+</code></pre>
+<pre><code class="language-javascript">//package.json
+{
+  &quot;name&quot;: &quot;web&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;demo app&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;lautin&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre>
+<p><code>package.json</code>中还有一个比较重要的配置项<code>dependencies</code>用来添加项目所依赖的包名，在安装包时 通过<code>--save</code>参数可以将包写入该配置项，例如：</p>
+<pre><code class="language-shell"># 控制台使用npm
+&gt; npm install art-template --save
+</code></pre>
+<p>然后<code>package.json</code>中会自动添加一行：</p>
+<pre><code class="language-javascript">&quot;dependencies&quot;: {
+    &quot;art-template&quot;: &quot;^4.13.2&quot;
+ }
+</code></pre>
+<p>当项目中的node_modules丢失时 可以通过<code>npm install</code>一次性找回。<code>npm install</code>会依据<code>package.json</code>中<code>dependencies选项</code>挨个执行安装。因此 我们建议每个项目都添加一个<code>package.json</code></p>
+<h1 id="package-lockjson">package-lock.json</h1>
+<p>npm5+的版本中，无需手动<code>--save</code>，它也会自动保存依赖信息。除此以外还加入了名为<code>package-lock.json</code>的文件。该文件在安装包时自动创建，保存了node_modules中所有包的信息：版本、描述以及<mark>下载地址</mark>，如此一来当再次安装该包时，它的速度就会显著提升。</p>
+<p>lock文件被称为锁文件，主要是锁定包的版本，避免下次重装时以最新版本来下载。例如当前使用的是bootstrap3，当lock中记录了该版本时，下次安装就不会以最新的bootstrap4来下载，而是依然选择bt3。</p>
+<h1 id="npm的使用">npm的使用</h1>
+<h2 id="npm官网">npm官网</h2>
+<p>@link www.npmjs.com 专门用来管理第三方包的平台，所有可用npm安装的包 都需要事先提交到该网站。接下来才能在用户代码中 使用npm下载。如果你有兴趣 也可以向该平台提交包。</p>
+<h2 id="npm发布">npm发布</h2>
+<p>https://www.cnblogs.com/chengxs/p/7651653.html</p>
+<h2 id="npm指令">npm指令</h2>
+<p>npm是随着node一起安装的，当node安装完成npm也就有了， 并且写入了环境变量中。接下来在cmd窗口 可以直接使用npm来执行命令：</p>
+<ul>
+<li>
+<p><code>npm --version</code></p>
+<ul>
+<li>查看npm版本信息</li>
+</ul>
+</li>
+<li>
+<p><code>npm help</code></p>
+<ul>
+<li>查看使用帮助信息，命令列表</li>
+<li>命令手册 <code>npm install--help</code></li>
+</ul>
+</li>
+<li>
+<p><code>npm install npm --global</code></p>
+<ul>
+<li>升级npm</li>
+</ul>
+</li>
+<li>
+<p><code>npm init</code></p>
+<ul>
+<li>以向导形式 初始化<code>package.json</code>文件</li>
+<li><code>npm init -y</code> 则是跳过向导  快速生成</li>
+</ul>
+</li>
+<li>
+<p><code>npm install</code></p>
+<ul>
+<li>一次性安装 所有depenencies中的依赖包</li>
+<li>简写形式 <code>npm i</code></li>
+</ul>
+</li>
+<li>
+<p><code>npm install 包名</code></p>
+<ul>
+<li>安装指定的包到node_modules中</li>
+<li>简写形式 <code>npm i 包名</code></li>
+</ul>
+</li>
+<li>
+<p><code>npm install 包名 --save</code></p>
+<ul>
+<li>安装并将写包写入项目的依赖中</li>
+<li>简写形式 <code>npm i 包名 -S</code></li>
+</ul>
+</li>
+<li>
+<p><code>npm uninstall 包名</code></p>
+<ul>
+<li>删除一个包，保留依赖项</li>
+</ul>
+</li>
+<li>
+<p>简写形式 <code>npm un 包名</code></p>
+</li>
+<li>
+<p><code>npm uninstall 包名--save</code></p>
+<ul>
+<li>删除一个包以及依赖项</li>
+<li>简写形式 <code>npm un 包名 -S</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="npm配置">npm配置</h2>
+<ul>
+<li>
+<p>使用<code>npm config list</code>查看npm的基本配置信息</p>
+<p>它包括有<code>cli configs</code>、<code>userconfig</code>、<code>builtin config</code>几级配置，通常修改userConfig的配置。userconfig配置文件在<code>c:/users/admin/.npmrc.</code>文件中，可以直接修改该文件来设置用户配置项：</p>
+</li>
+</ul>
+<p>![1569255555145](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255555145.png)</p>
+<p>![1569255515730](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255515730.png)</p>
+<ul>
+<li>
+<p>使用<code>npm config list -l</code>查看npm配置的详细信息</p>
+</li>
+<li>
+<p><code>npm config get key</code>  读取一个配置项的值</p>
+<p>![1569255799831](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255799831.png)</p>
+</li>
+<li>
+<p><code>npm config set key value</code> 设置一个配置项的值</p>
+</li>
+</ul>
+<h1 id="cnpm代理">cnpm代理</h1>
+<p>npm远程服务器存放于国外，即便国内有CDN也会比较慢，因此建议使用时配置国内的镜像地址 。</p>
+<p>@link http://npm.taobao.org</p>
+<p>这是一个完整 <code>npmjs.org</code> 镜像，你可以用此代替官方版本(<strong>只读</strong>)，同步频率目前为 <strong>10分钟</strong> 一次 以保证尽量与官方服务同步。</p>
+<p>1）全局安装cnpm</p>
+<pre><code class="language-shell">&gt; npm install cnpm --global
+</code></pre>
+<p>2）使用cnpm安装包</p>
+<pre><code class="language-shell"># 使用cnpm安装art-template
+&gt; cnpm install art-template
+√ Installed 1 packages
+√ Linked 27 latest versions
+√ Run 0 scripts
+√ All packages installed (30 packages installed from npm registry, used 16s(network 16s), speed 69.44kB/s, json 28(79.46kB), tarball 1.01MB)
+</code></pre>
+<p>如果不想安装cnmp服务 而又想使用其镜像服务器下载包，则可以通过<code>--registry</code>来设置</p>
+<pre><code class="language-shell">&gt; npm install art-template --registry=https://registry.npm.taobao.org
+</code></pre>
+<p>或者直接修改npm配置项中下载入口地址：</p>
+<pre><code class="language-shell">&gt; npm config set registry https://registry.npm.taobao.org
+#查看npm配置项信息
+&gt; npm config list
+; cli configs
+metrics-registry = &quot;https://registry.npm.taobao.org/&quot;
+scope = &quot;&quot;
+user-agent = &quot;npm/6.4.1 node/v10.15.3 win32 x64&quot;
+
+; userconfig C:\Users\admin\.npmrc
+proxy = null
+registry = &quot;https://registry.npm.taobao.org/&quot;
+
+; builtin config undefined
+prefix = &quot;C:\\Users\\admin\\AppData\\Roaming\\npm&quot;
+
+; node bin location = D:\Program Files\nodejs\node.exe
+; cwd = D:\Wamp\WWW\node\day3\web
+; HOME = C:\Users\admin
+; &quot;npm config ls -l&quot; to show all defaults.
+</code></pre>
+<pre><code class="language-shell">&gt; npm config list -l
+; cli configs
+long = true
+metrics-registry = &quot;https://registry.npm.taobao.org/&quot;
+scope = &quot;&quot;
+user-agent = &quot;npm/6.4.1 node/v10.15.3 win32 x64&quot;
+
+; userconfig C:\Users\admin\.npmrc
+proxy = null
+registry = &quot;https://registry.npm.taobao.org/&quot;
+
+; builtin config undefined
+prefix = &quot;C:\\Users\\admin\\AppData\\Roaming\\npm&quot;
+
+; default values
+access = null
+allow-same-version = false
+also = null
+always-auth = false
+audit = true
+audit-level = &quot;low&quot;
+auth-type = &quot;legacy&quot;
+bin-links = true
+browser = null
+ca = null
+cache = &quot;C:\\Users\\admin\\AppData\\Roaming\\npm-cache&quot;
+cache-lock-retries = 10
+cache-lock-stale = 60000
+cache-lock-wait = 10000
+cache-max = null
+cache-min = 10
+cafile = undefined
+cert = null
+cidr = null
+color = true
+commit-hooks = true
+depth = null
+description = true
+dev = false
+dry-run = false
+editor = &quot;notepad.exe&quot;
+engine-strict = false
+fetch-retries = 2
+fetch-retry-factor = 10
+fetch-retry-maxtimeout = 60000
+fetch-retry-mintimeout = 10000
+force = false
+git = &quot;git&quot;
+git-tag-version = true
+global = false
+global-style = false
+globalconfig = &quot;C:\\Users\\admin\\AppData\\Roaming\\npm\\etc\\npmrc&quot;
+globalignorefile = &quot;C:\\Users\\admin\\AppData\\Roaming\\npm\\etc\\npmignore&quot;
+group = 0
+ham-it-up = false
+heading = &quot;npm&quot;
+https-proxy = null
+if-present = false
+ignore-prepublish = false
+ignore-scripts = false
+init-author-email = &quot;&quot;
+init-author-name = &quot;&quot;
+init-author-url = &quot;&quot;
+init-license = &quot;ISC&quot;
+init-module = &quot;C:\\Users\\admin\\.npm-init.js&quot;
+init-version = &quot;1.0.0&quot;
+json = false
+key = null
+legacy-bundling = false
+link = false
+local-address = undefined
+loglevel = &quot;notice&quot;
+logs-max = 10
+; long = false (overridden)
+maxsockets = 50
+message = &quot;%s&quot;
+; metrics-registry = null (overridden)
+node-options = null
+node-version = &quot;10.15.3&quot;
+noproxy = null
+offline = false
+onload-script = null
+only = null
+optional = true
+otp = null
+package-lock = true
+package-lock-only = false
+parseable = false
+prefer-offline = false
+prefer-online = false
+; prefix = &quot;D:\\Program Files\\nodejs&quot; (overridden)
+preid = &quot;&quot;
+production = false
+progress = true
+proxy = null
+read-only = false
+rebuild-bundle = true
+; registry = &quot;https://registry.npmjs.org/&quot; (overridden)
+rollback = true
+save = true
+save-bundle = false
+save-dev = false
+save-exact = false
+save-optional = false
+save-prefix = &quot;^&quot;
+save-prod = false
+scope = &quot;&quot;
+script-shell = null
+scripts-prepend-node-path = &quot;warn-only&quot;
+searchexclude = null
+searchlimit = 20
+searchopts = &quot;&quot;
+searchstaleness = 900
+send-metrics = false
+shell = &quot;C:\\Windows\\system32\\cmd.exe&quot;
+shrinkwrap = true
+sign-git-commit = false
+sign-git-tag = false
+sso-poll-frequency = 500
+sso-type = &quot;oauth&quot;
+strict-ssl = true
+tag = &quot;latest&quot;
+tag-version-prefix = &quot;v&quot;
+timing = false
+tmp = &quot;C:\\Users\\admin\\AppData\\Local\\Temp&quot;
+umask = 0
+unicode = false
+unsafe-perm = true
+update-notifier = true
+usage = false
+user = 0
+; user-agent = &quot;npm/{npm-version} node/{node-version} {platform} {arch}&quot; (overridden)
+userconfig = &quot;C:\\Users\\admin\\.npmrc&quot;
+version = false
+versions = false
+viewer = &quot;browser&quot;
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/PVYubv9CN" class="tag">
+                    node
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/nodejs1">
+                  <h3 class="post-title">
+                    nodeJS学习一
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

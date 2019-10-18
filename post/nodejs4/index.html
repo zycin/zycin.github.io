@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>nodeJS学习四 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571396353499">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571396353499" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">nodeJS学习四</h2>
+            <div class="post-date">2019-10-18</div>
+            
+            <div class="post-content">
+              <p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
+<!-- more -->
+<h1 id="nodemysql">node+mysql</h1>
+<p>nodejs同其他的服务端语言平台一样 具备数据库操作的能力。nodejs初期 主要与mongodb搭配 实现数据库操作，随着业务和语言的发展 现在它与mysql和其他数据库的交互越来越多。使用之前需要下载node执行mysql操作的模块 - <code>npm install mysql --global</code></p>
+<p><code>const mysql = require(&quot;mysql&quot;);</code></p>
+<p>使用mysql模块链接数据库：</p>
+<ol>
+<li>
+<p>配置数据库连接信息：数据库服务器地址、用户账号、密码、访问的数据库</p>
+</li>
+<li>
+<p>创建数据库连接对象： 执行数据库的连接</p>
+</li>
+<li>
+<p>执行mysql数据库的操作：执行增删改查语句</p>
+</li>
+<li>
+<p>执行完毕 关闭与mysql服务的连接</p>
+</li>
+</ol>
+<pre><code class="language-javascript">//创建连接
+const link = mysql.createConnection({
+    host : &quot;localhost&quot;,	//数据库服务器地址
+    port : &quot;3306&quot;,	//端口号
+    user : &quot;root&quot;,	//账号
+    password : &quot;&quot;,	//密码
+    database : &quot;test&quot;,	//要连接的数据库
+});
+
+//执行连接
+link.connect((err) =&gt; {
+    if (err)   console.log(err.message);
+    else {
+        console.log(&quot;mysql服务已连接，线程号：&quot; + link.threadId); 
+    }
+});
+
+//使用query方法执行操作
+link.query(&quot;SHOW TABLES&quot;, () =&gt; {});
+
+//关闭数据库连接
+link.end((err) =&gt; {
+    if (err) console.log(err.message);
+    else {
+        console.log(&quot;数据库服务已经关闭&quot;);
+        //关闭之后 不能再执行数据库操作
+    }
+});
+</code></pre>
+<h2 id="封装连接">封装连接</h2>
+<pre><code class="language-javascript">//创建数据库连接的模块 - db.connect.js
+
+const mysql = require(&quot;mysql&quot;);
+
+const link = mysql.createConnection({
+    host: &quot;localhost&quot;,
+    port: &quot;3306&quot;,
+    user: &quot;root&quot;,
+    password: &quot;&quot;,
+    database: &quot;student&quot;,
+
+});
+
+//创建数据库连接
+link.connect((err) =&gt; {
+    if (err) console.log(err.message);
+    else {
+        console.log(&quot;mysql服务已连接，线程号：&quot; + link.threadId);
+    }
+});
+
+//导出连接对象
+module.exports = link;
+</code></pre>
+<h2 id="curd操作">CURD操作</h2>
+<h3 id="查询语句">查询语句</h3>
+<ul>
+<li>
+<p>语法结构：</p>
+<ul>
+<li><code>SELECT 字段列表 FROM 表名 WHERE条件子句 ORDER排序子句 LIMIT子句</code></li>
+<li><code>SELECT * FROM shop_goods ORDER BY gid DESC LIMIT 10</code></li>
+</ul>
+</li>
+<li>
+<p>node代码：</p>
+<pre><code class="language-javascript">//加载数据库连接的模块
+const link = require(&quot;./db.connect&quot;);
+
+//执行查询任务的sql指令
+link.query(&quot;SELECT * FROM  user&quot;, (err, result) =&gt; {
+    if (err) {
+        console.log(&quot;sql错误提示：&quot; + err.sqlMessage);
+        console.log(&quot;当前执行sql：&quot; + err.sql);
+    } else {
+        console.log(result);
+    }
+});
+</code></pre>
+</li>
+<li>
+<p>执行结果：</p>
+<ul>
+<li>执行成功时 err为null，result为<mark>查询结果集</mark> - <strong>DataRowPocket</strong>对象集合数组；数据表中每条记录 对应一个数据对象 字段名为对象的属性 。</li>
+<li>执行失败时 err为<mark>错误对象</mark> ，result为null</li>
+</ul>
+</li>
+<li>
+<p>使用node+mysql查询表数据并在页面中显示</p>
+<pre><code class="language-javascript">
+
+</code></pre>
+</li>
+</ul>
+<h3 id="插入数据">插入数据</h3>
+<h3 id="删除记录">删除记录</h3>
+<h3 id="修改记录">修改记录</h3>
+<h1 id="mvc简介">MVC简介</h1>
+<p>我们经常说 在服务端使用MVC设计模式来进行开发，MVC分别表示：</p>
+<ul>
+<li>C：Controller 即控制器 是通过路由控制来实现业务流程和逻辑管理</li>
+<li>V：View 即视图层，用来渲染页面。通常需要使用模板引擎来操作，通过页面表现和程序分离 可以提高代码的可读性和维护性，同时也能实现更为高效的协同开发。
+<ul>
+<li>Node.js/Python/Java程序员专注于业务逻辑的设计和程序编码</li>
+<li>前端开发或者美工专职于用户交互效果的实现</li>
+</ul>
+</li>
+<li>M：Model即数据模型，封装方法用来快速实现数据的操作。这样开放人员 就能更多的将经历放在业务的设计和架构上，而不用过多考虑实现的问题。</li>
+</ul>
+<p>在MVC结构中，C层是核心 用来控制业务流，在实现的过程中 如果需要进行数据操作 则调用M层实现封装号的方法；如果需要渲染页面 则加载模板引擎编译模板页面返回给用户。</p>
+<h2 id="数据模型">数据模型</h2>
+<p>在数据中，它首先支持基本的CURD业务，基本的增删改查</p>
+<ul>
+<li>
+<p>select：select/findAll是查集合数据，表中的一条记录为一个数据对象，多条结果集就是对象集合的数组形式；即使只有一条符合查询的结果 它也返回数组。</p>
+<ul>
+<li>数据模板：<code>SELECT 字段列表 FROM 表名 WHERE 条件字句 ORDER BY 排序字句 LIMIT 限制字句</code></li>
+<li>从数据模板中，我们能够得知 尽管不同的sql查询语句 它们的参数不一样 但sql结构都是一样。那我们可以考虑 提取sql结构 然后以参数形式 来执行一条具体的指令</li>
+<li>在查询中 需要设置的参数有：<code>字段列表、表名、条件字句、排序字句、限制字句</code></li>
+<li>封装一个select方法 传入上述参数。接下来在select方法中 组装该条sql语句，然后执行返回结果：<code>select(字段列表、表名、条件字句、排序字句、限制字句)</code></li>
+</ul>
+<pre><code class="language-javascript">//SELECT * FROM users WHERE uid &gt; 100 ORDER BY uid DESC LIMIT 10
+const rows = select(&quot;*&quot;, &quot;users&quot;, &quot;uid &gt; 100&quot;, &quot;uid DESC&quot;, 10);
+</code></pre>
+<pre><code class="language-json">//对象集合数组的多条记录 形如这样：
+rows = [
+    {uid : 1, uname : &quot;lucy&quot;, gender : &quot;w&quot;},
+    {},
+    {}
+]
+//只有一条记录 但也返回数组
+//取得该条记录 需要使用arr[0]
+rows = [
+    {uid : 1, uname : &quot;lucy&quot;, gender : &quot;w&quot;},
+]
+</code></pre>
+</li>
+<li>
+<p>find：而find/findOne是返回结果集中的一条（limit 1）操作，重要的是它返回一维的数据对象</p>
+<ul>
+<li>find其实就是给select()方法中设置了limit参数值为1，然后对结果进行重构</li>
+</ul>
+<pre><code class="language-javascript">function find(fields, tbname, condition, order) {
+    //调用了select 写死了limit为1
+    const result = select(fields, tbname, condition, order, 1);
+    //将结果集数组 转化成数据对象
+    return result.length ? result[0] : {} 
+}
+const row = find(&quot;*&quot;, &quot;users&quot;, &quot;uid &gt; 100&quot;, &quot;uid DESC&quot;);
+</code></pre>
+<pre><code class="language-json">//find返回一个数据对象 形如下面：
+row = {
+    uid : 1, 
+    uname : &quot;lucy&quot;, 
+    gender : &quot;w&quot;
+},
+</code></pre>
+</li>
+<li>
+<p>add：add/insert/create用来添加一条记录到表中，它通常返回一个OKPackage对象；如果要同时插入多条数据，需要自己来循环，方法本身是不支持的。</p>
+<ul>
+<li>插入语句的结构：<code>INSERT INTO(uid, uname) VALUES (1, 'lucy')</code></li>
+<li>提取参数为 字段列表和值的映射对象 <code>{ uid : 1, uname : &quot;lucy&quot;}</code></li>
+</ul>
+<pre><code class="language-javascript">const OKPacket = add(&quot;users&quot;, {uid : 1, uname : &quot;lucy&quot;,,,,});
+console.log(&quot;新增行ID为：&quot; + OkPacket.insertId);
+</code></pre>
+</li>
+<li>
+<p>save：save/update是用来修改一条记录，它同add很像，区别在于save操作时会有一个where条件。</p>
+<pre><code class="language-javascript">const OKPacket = save(&quot;users&quot;, {uname : &quot;Kate&quot;}, &quot;uid = 1&quot;);
+console.log(&quot;修改了&quot; + OkPacket.affectedRows);
+</code></pre>
+</li>
+<li>
+<p>delete：delete方法删除记录，它需要删除条件，如果不设置则是整表的删除</p>
+<pre><code class="language-javascript">const OKPacket = delete(&quot;user&quot;, &quot;uname = 'demo'&quot;);
+console.log(&quot;删除了&quot; + OKpacket.affectedRows);
+</code></pre>
+</li>
+<li>
+<p>runSql ：当执行较为复杂的sql操作时，一般没有适用的方法，这样就需要手写sql语句来运行</p>
+<pre><code class="language-javascript">runSql(&quot;SELECT * FROM users&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="lautin-model">lautin-model</h2>
+<p>在实际开发中，通常会使用框架，例如<code>express、koa</code>。它们都有内置的对mongodb数据库封装的模型，对于mysql模块的扩展，通常需要通过npm来下载和安装。进入<code>npmjs.com</code>搜索<code>model</code>关键字，很多很多发布的关于mysql model的包，其中lautin-model是比较优秀的一款，推荐使用：</p>
+<h3 id="下载安装">下载安装</h3>
+<ul>
+<li><code>npm install lautin-model</code></li>
+<li>配置数据库连接：</li>
+</ul>
+<pre><code class="language-javascript">const db = require(&quot;lautin-model&quot;);
+db.setConnection({
+    type : &quot;mysql&quot;,	//加载的驱动
+    host : &quot;localhost&quot;,	//数据库地址
+    user : &quot;root&quot;,	//账号
+    password : &quot;&quot;,	//密码
+    database : &quot;test&quot;,	//选择数据库
+});	//配置数据库连接信息
+</code></pre>
+<ul>
+<li>全局封装的 <code>M(表名)方法</code> 进行数据操作</li>
+</ul>
+<pre><code class="language-javascript">M(&quot;users&quot;).find((err, result) =&gt; {
+    if (err) console.dir(err);
+    else console.log(result);
+});
+</code></pre>
+<h3 id="基本curd">基本CURD</h3>
+<ul>
+<li>
+<p>add方法添加一条记录</p>
+<ul>
+<li>用法：<code>M(表名).add(数据).then(resolve, reject)</code></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-javascript">const pms = M(&quot;users&quot;).add({
+    uname : &quot;熏凯旋&quot;,
+    nickname : &quot;孙行者&quot;,
+    password : md5('123456'),	//md5包需要额外安装
+});	//数据操作结果为一个正在进行的Promise
+    //使用then来接收完成时的结果或错误
+pms.then((result) =&gt; {
+    //增删改返回OkPacket对象 查询返回RowDataPacket集合
+    console.log(result);
+}, (err) =&gt; {
+    //err对象中 包含sql语句，sql错误提示以及mysql错误号
+    console.log(err);
+});
+</code></pre>
+</li>
+<li>
+<p>save方法修改表记录</p>
+<ul>
+<li>用法：<code>M(表名).save({新数据, 条件}).then(resolve, reject)</code></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-javascript">//修改编号100的用户昵称为foo
+M(&quot;users&quot;).save({
+    data : {
+        nickname : &quot;foo&quot;,
+    },
+    //where条件即可以是字符串('uid=100') 也可以是对象形式
+    where : {
+        uid : 100
+    },
+}).then((result) =&gt; {}, (err) =&gt; {});
+</code></pre>
+</li>
+<li>
+<p>delete删除记录</p>
+<ul>
+<li>用法：<code>M(表名).delete(条件).then(resolve, reject)</code></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-javascript">//删除编号为100的用户记录
+M(&quot;users&quot;).delete({uid : 100}).then((result) =&gt; {}, (err) =&gt; {});
+//还可以直接传入一个数值 表示删除主键编号为该值的一条记录
+M(&quot;user&quot;).delete(100).then((result) =&gt; {}, (err) =&gt; {})
+</code></pre>
+</li>
+<li>
+<p>select查询多条记录</p>
+<ul>
+<li>用法：<code>M(表名).select({字段列表, 条件, 排序规则, 限制行数}).then(resolve, reject)</code></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-javascript">//查询最新上架的笔记本 只显示10条
+M(&quot;goods&quot;).select({
+    where : {gname : [&quot;like&quot;, &quot;%笔记本%&quot;]},	// `gname` LIKE '%笔记本%'
+    order : &quot;created DESC&quot;,
+    limit : 10,
+}).then((result) =&gt; {
+    //result返回对象集合数组 即使只有查询结果[{}]
+    console.log(result);
+}, (err) =&gt; {});
+</code></pre>
+</li>
+<li>
+<p>find查找一条结果</p>
+<ul>
+<li>用法：<code>M(表名).find({字段列表, 条件, 排序规则}).then(resolve, reject)</code></li>
+<li>示例：</li>
+</ul>
+<pre><code class="language-javascript">//查找账号为lautin 或者 邮箱为1538731090@qq.com的用户
+M(&quot;users&quot;).find({
+    where : {
+        uname : &quot;lautin&quot;,
+        email : &quot;1538731090@qq.com&quot;,
+        _logic : &quot;OR&quot;
+    },		
+}).then((result) =&gt; {
+    //返回一个数据对象 不是集合形式
+    console.log(result);
+}, (err) =&gt; {});
+</code></pre>
+</li>
+</ul>
+<h3 id="链式操作">链式操作</h3>
+<p>上述方法，除了在方法体内一次性传参外，还可以使用链式调用 分别设置参数：</p>
+<ul>
+<li>data()方法：创建数据，传入一个数据对象</li>
+<li>where()方法：设置条件，支持字符串和对象两种形式，参数格式如下：
+<ul>
+<li><code>'id = 100'</code>等等其它运算符表达式</li>
+<li><code>{uname : 'foo', password : 'bar' }</code>  多个条件默认AND连接</li>
+<li><code>{uname : 'lautin', email : '1538731090@qq.com', _logic:'OR' }</code> 设置OR连接</li>
+<li><code>{uname : ['LIKE', '%abc%'] }</code>   模糊查询</li>
+<li><code>{id : ['IN' , '1,3,5' ] }</code> 编号为1,3,5的记录</li>
+<li><code>{id : [' NOT IN', '2,4,6'] }</code> 编号2,4,6以外的记录</li>
+<li><code>{id : ['BETWEEN', '10, 20'] }</code>编号10到20之间的记录</li>
+</ul>
+</li>
+<li>order()方法：设置排序规则，传入字符串 例如： <code>uid DESC</code></li>
+<li>limit()方法：限制行数，传入数值或者字符串，例如：<code>5</code> 或者 <code>'0, 5'</code></li>
+</ul>
+<p>链式操作中，可以结合实际情况 选择上述方法。链式方法在调用时 <strong>无需考虑它们的顺序</strong>  <mark>但必须以curd的调用方法结束</mark>，此时curd方法中 无需再传入sql分段参数。</p>
+<pre><code class="language-javascript">const pms = M(&quot;users&quot;).data({}).add();
+//const pms = M(&quot;users&quot;).data().where().save();
+//const pms = M(&quot;users&quot;).where().delete();
+//const pms = M(&quot;users&quot;).where().order().limit().select();
+//const pms = M(&quot;users&quot;).where().order().find();
+
+//再监听pms
+pms.then(resolve, reject);
+</code></pre>
+<h3 id="回调函数">回调函数</h3>
+<p>在链式操作中，curd方法 无需再传入sql参数，接下来使用then方法接收Promise决议结果。处理Promise外，链式操作的curd方法中 还可以直接传入一个回调函数来接收结果：</p>
+<pre><code class="language-javascript">M(&quot;users&quot;).where().order().select((err, result) =&gt; {
+    if (err) console.log(err);
+    else console.log(result);
+});//使用回调函数后 无需再then，其他操作方法同样使用
+</code></pre>
+<h3 id="高级应用">高级应用</h3>
+<ul>
+<li>手写sql语句：</li>
+</ul>
+<p>对于复杂的业务处理时，往往需要使用高级sql语句。例如：联合查询、交叉连接、事物和存储过程等。这样curd方法自然无法满足需求，但内置的runSql()可以接收一条sql语句 来定制实际需求。</p>
+<pre><code class="language-javascript">//执行sql指令时 设置空模型即可
+M().runSql(sql, (err, result) =&gt; {
+    
+});
+</code></pre>
+<ul>
+<li>自定义表模型：</li>
+</ul>
+<p>如果想要定制自己的模型方法，可以通过创建表模型类来完成。该模型需要继承核心的Model类，在使用前需要配置模型存放的根路径，该路径必须是一个绝对地址：</p>
+<pre><code class="language-javascript">const path = require(&quot;path&quot;);
+//使用path.resolve()方法 转化绝对路径
+db.use(&quot;model&quot;, path.resolve(&quot;./models&quot;));
+</code></pre>
+<pre><code class="language-javascript">//文件名必须和模型类名称保持一致，例如 ~/models/CateModel.js
+module.exports = function (Model) {
+
+    class CateModel extends Model {
+
+        constructor() {
+    
+            //部署表名、前缀和主键
+            super({
+                tableName: &quot;category&quot;,
+                tablePrefix: &quot;shop_&quot;,
+                pk : &quot;cid&quot;,
+            });
+    		
+            getNameById(cid) {
+                //to do here
+                
+            }
+        };
+
+         
+    }
+
+    return CateModel;
+
+}
+</code></pre>
+<p>对于自定义的表模型需要严格按照上述规范来定义，你也可以在命令行使用<code>make model CateModel</code>来帮你快速生成。当创建好模型后，使用D(类名) 创建它的示例：</p>
+<pre><code class="language-javascript">D(&quot;CateModel&quot;).getNameById(100);
+</code></pre>
+<h1 id="promise简介">Promise简介</h1>
+<h1 id="商品管理系统">商品管理系统</h1>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/PVYubv9CN" class="tag">
+                    node
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/nodejs3">
+                  <h3 class="post-title">
+                    nodeJS学习三
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

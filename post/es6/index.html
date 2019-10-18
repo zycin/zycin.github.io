@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>MarkDown语法教程 | Zycin | GeekBlog</title>
+<title>ES6新特性 | Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -102,118 +102,174 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">MarkDown语法教程</h2>
+            <h2 class="post-title">ES6新特性</h2>
             <div class="post-date">2019-10-18</div>
             
-              <div class="feature-container" style="background-image: url('https://www.fastt.cn/post-images/Uxq5UPSzs.png')">
-              </div>
-            
             <div class="post-content">
-              <p>这篇文章主要介绍MarkDown的常用语法</p>
-<!-- more -->
-<h1 id="这是一级标题">这是一级标题</h1>
-<h2 id="这是二级标题">这是二级标题</h2>
-<p>标题写法#号加空格 几级标题就加几个#号</p>
-<h1 id="字体加粗">字体加粗</h1>
-<p><strong>这是字体加粗</strong>  字体加粗是两边各两个**</p>
-<h1 id="字体变斜">字体变斜</h1>
-<p><em>这是斜体</em> 斜体需要两边各一个*</p>
-<h1 id="斜体加粗">斜体加粗</h1>
-<p><em><strong>这是斜体并且加粗</strong></em> 需要两边各三个***</p>
-<h1 id="删除线">删除线</h1>
-<p><s>这是删除线</s>  需要两边各两个~~</p>
-<h1 id="引用">引用</h1>
-<blockquote>
-<p>这是引用</p>
-</blockquote>
-<p>需要在前面加 一个 &gt;  然后两个回车退出引用<br>
-几级引用就加几个 &gt;</p>
-<h1 id="分割线">分割线</h1>
-<p>来个分割线</p>
-<hr>
-<p>分割线用三个或多个---或者***然后回车就可以生成</p>
-<h1 id="图片">图片</h1>
-<figure data-type="image" tabindex="1"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg%22%E6%88%91%E6%98%AF%E5%9B%BE%E7%89%87%E6%A0%87%E9%A2%98%22" alt="我是图片alt"></figure>
-<p>图片语法 !【图片alt】（图片地址&quot;图片标题&quot;）</p>
-<h1 id="超链接">超链接</h1>
-<p><a href="http://www.baidu.com" title="这是百度">这是超链接</a></p>
-<p>超链接写法  【超连接名】（链接地址 “超链接标题”）</p>
-<h1 id="无序列表">无序列表</h1>
+              <!-- more -->
+<ul>
+<li>函数的默认参数</li>
+</ul>
+<pre><code>    function f(x, y = 123) {
+        //替代原先使用 || 
+        let y = y || 123;
+    }
+</code></pre>
 <ul>
 <li>
-<p>这是列表</p>
+<p>...语法</p>
+<ul>
+<li>当其作为函数形参时，称为rest剩余参数，将多个值凝聚成数组<pre><code>    function f(...args) {
+        //替代了arguments
+
+    }
+</code></pre>
+</li>
+<li>当和数组一起使用时，它是将数组展开为多个值，spread语法<pre><code>    //用来复制或者拷贝数组
+    const arr = [1,2,3];
+    const arr2 = [...arr];
+    //解析数组为多个参数
+    Math.max.apply(null, arr);
+    Math.max(...arr);
+</code></pre>
+</li>
+</ul>
 </li>
 <li>
-<p>这也是列表</p>
+<p>箭头函数的声明</p>
+</li>
+</ul>
+<pre><code>    let f = () =&gt; {
+
+    }
+</code></pre>
+<ul>
+<li>
+<p>字面量对象扩展语法</p>
+<ul>
+<li>
+<p>简洁属性</p>
+<pre><code>    let foo = &quot;hello&quot;,
+        bar = &quot;world&quot;;
+    const o = {
+        foo : foo,
+        bar : bar,
+    } //简写成
+    const o = {foo, bar};
+
+</code></pre>
 </li>
 <li>
-<p>这还是列表</p>
+<p>简洁方法</p>
+<pre><code>    const o = {
+        f : function () {},
+        g : function () {},
+    } //简写成，和class中方法的声明一样，function语法糖
+    const o = {
+        f () {},
+        g () {},
+    }
+</code></pre>
+</li>
+<li>
+<p>计算属性</p>
+<pre><code>    let bar = &quot;baz&quot;;
+    const o = {
+        foo : &quot;hello&quot;,
+    }
+    //原来计算属性必须动态添加 使用[]添加，其中bar是变量
+    o[bar] = &quot;world&quot;;
+    //es6简化
+    const o = {
+        foo : &quot;hello&quot;,
+        bar : &quot;world&quot;,  //bar是标识符，不是变量bar
+        [bar] : &quot;world&quot;,
+    }
+</code></pre>
+</li>
+<li>
+<p>拦截器属性</p>
+<pre><code>    const o = {
+        name : &quot;张三&quot;;
+    }
+    //给o对象的name属性添加拦截器 使用defineProperty方法
+    Object.defineProperty(o, name, {
+        set () {},
+        get () {}
+    })
+
+    //es6中可以直接在字面量中设置拦截器
+    const o = {
+        name : &quot;张三&quot;,
+        //添加属性拦截器
+        get name () {
+            return name;
+        },
+        set name (val) {
+            name = val;
+        }
+    }
+</code></pre>
 </li>
 </ul>
-<p>列表写法 用一个 - 或者 + 或者 * 再加空格就行 两个回车退出列表</p>
-<h1 id="有序列表">有序列表</h1>
-<ol>
-<li>这是有序列表</li>
-</ol>
-<p>有序列表直接数字加 . 就行</p>
-<h1 id="列表嵌套">列表嵌套</h1>
+</li>
+<li>
+<p>关于作用域的</p>
 <ul>
-<li>这是一级列表
+<li>let创建块级作用域</li>
+<li>const创建块级常量</li>
+</ul>
+</li>
+<li>
+<p>解构赋值</p>
+<pre><code>    //先解析解构提取成员，再将它们赋值给变量列表
+    const arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+    let [a, b, c] = arr;
+    const obj = {foo : &quot;hello&quot;, bar : &quot;world&quot;};
+    let {foo, bar} = obj;
+</code></pre>
+</li>
+<li>
+<p>模板字符串的使用</p>
 <ul>
-<li>这是二级列表</li>
+<li>格式化字符串输出，支持排版的字符串</li>
+<li>支持插入表达式，以${}创建表达式</li>
+</ul>
+</li>
+<li>
+<p>面向对象相关</p>
+<ul>
+<li>class类语法糖<pre><code>    class Foo {
+        //class体内使用简洁方法 不用添加，
+        constructor () {
+
+        }
+
+        f () {
+
+        }
+
+        g() {
+
+        }
+
+    }
+</code></pre>
+</li>
+<li>constructor 构造函数</li>
+<li>extends 实现类继承</li>
+<li>super 调用父类或者父对象的方法</li>
+<li>static 声明静态方法</li>
 </ul>
 </li>
 </ul>
-<ol>
-<li>有序一级列表
-<ol>
-<li>有序二级列表</li>
-</ol>
-<ul>
-<li>无序二级列表</li>
-</ul>
-</li>
-</ol>
-<p>列表嵌套加一个tab键即可</p>
-<h1 id="表格">表格</h1>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">左对齐</th>
-<th style="text-align:right">右对齐</th>
-<th style="text-align:center">居中对齐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">单元格</td>
-<td style="text-align:right">单元格</td>
-<td style="text-align:center">单元格</td>
-</tr>
-<tr>
-<td style="text-align:left">单元格</td>
-<td style="text-align:right">单元格</td>
-<td style="text-align:center">单元格</td>
-</tr>
-</tbody>
-</table>
-<p>写法：</p>
-<blockquote>
-<p>| 左对齐 | 右对齐 | 居中对齐 |<br>
-| :-----| ----: | :----: |<br>
-| 单元格 | 单元格 | 单元格 |<br>
-| 单元格 | 单元格 | 单元格 |</p>
-</blockquote>
-<h1 id="代码">代码</h1>
-<p><code>&lt;a href=&quot;http://www.baidu.com&quot;&gt;&lt;/a&gt;</code><br>
-前后加反引号``</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://www.fastt.cn/tag/lbCh6fXBb" class="tag">
-                    MarkDown
+                  <a href="https://www.fastt.cn/tag/S_KrSln7H" class="tag">
+                    ES6
                   </a>
                 
               </div>
@@ -221,9 +277,9 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://www.fastt.cn/post/Hello-GeekBlog">
+                <a href="https://www.fastt.cn/post/nodejs4">
                   <h3 class="post-title">
-                    Hello GeekBlog
+                    nodeJS学习四
                   </h3>
                 </a>
               </div>
