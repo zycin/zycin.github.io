@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-10-18T12:16:09.411Z</updated>
+    <updated>2019-10-18T12:36:40.926Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.fastt.cn"/>
     <link rel="self" href="https://www.fastt.cn/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://www.fastt.cn/images/avatar.png</logo>
     <icon>https://www.fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[nodejs学习二]]></title>
+        <id>https://www.fastt.cn/post/_ZEoBGvDs</id>
+        <link href="https://www.fastt.cn/post/_ZEoBGvDs">
+        </link>
+        <updated>2019-10-18T12:26:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nodejs学习二]]></title>
+        <id>https://www.fastt.cn/post/nodejs2</id>
+        <link href="https://www.fastt.cn/post/nodejs2">
+        </link>
+        <updated>2019-10-18T10:50:37.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vuex学习]]></title>
         <id>https://www.fastt.cn/post/vuex</id>
@@ -88,30 +110,6 @@
         <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[nodeJS学习三]]></title>
-        <id>https://www.fastt.cn/post/nodejs3</id>
-        <link href="https://www.fastt.cn/post/nodejs3">
-        </link>
-        <updated>2019-10-18T09:51:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[nodeJS学习一]]></title>
-        <id>https://www.fastt.cn/post/nodejs1</id>
-        <link href="https://www.fastt.cn/post/nodejs1">
-        </link>
-        <updated>2019-10-18T09:50:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第一阶段<br>
-nodejs的简介以及基本语法教程</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第一阶段<br>
-nodejs的简介以及基本语法教程</p>
 ]]></content>
     </entry>
 </feed>
