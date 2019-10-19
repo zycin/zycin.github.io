@@ -422,7 +422,10 @@ a {
 }
 .pagination-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+.pagination-container .next {
+  margin-left: auto;
 }
 .pagination-container .prev,
 .pagination-container .next {
