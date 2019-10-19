@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571465904380">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571466253459">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://www.fastt.cn">
-        <img src="https://www.fastt.cn/images/avatar.png?v=1571465904380" class="site-logo">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571466253459" class="site-logo">
         <h1 class="site-title">Zycin | GeekBlog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -109,8 +109,9 @@
               </div>
             
             <div class="post-content">
-              <p>大致了解了<strong>Vue之后</strong>现在我们来看一下<strong>Vuex</strong><br>
-开始学习吧👇</p>
+              <p>大致了解了<strong>Vue之后</strong><br>
+现在我们来看一下<strong>Vuex</strong><br>
+begin enjoy👇</p>
 <!-- more -->
 <h3 id="vuex的使用"><code>vuex</code>的使用</h3>
 <h4 id="vuex的初步认识和使用"><code>vuex</code>的初步认识和使用</h4>
@@ -264,7 +265,8 @@ mutations:{
 </code></pre>
 <ul>
 <li>这样了，就可以直接通过<code>commit</code>来酱紫提交，<code>this.$store.commit('addOne',{num:10})</code></li>
-<li>但是这样提交很没风格，因此<code>vuex</code>也学了<code>redux</code>那样进行了对象风格的提交方式来操作，<code>this.$store.commit({type:'addOne',num:10})</code></li>
+<li>但是这样提交很没风格，因此<code>vuex</code>也学了<code>redux</code>那样进行了对象风格的提交方式<br>
+来操作<code>this.$store.commit({type:'addOne',num:10})</code></li>
 <li>如果要对<code>state</code>里某个对象进行新属性扩展了，<code>vue</code>虽然提供了<code>set</code>方法，但利用<code>ES6</code><br>
 可以让事情更加简单，用如下代码操作即可，<code>this.$store.state.obj={...this.$store.state.obj,age:18}</code></li>
 <li>因为可以直接利用对象风格化方式来提交<code>mutation</code>模块修改<code>state</code>，所以在一些中大型项<br>
