@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571467441855">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571472553874">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://www.fastt.cn">
-        <img src="https://www.fastt.cn/images/avatar.png?v=1571467441855" class="site-logo">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571472553874" class="site-logo">
         <h1 class="site-title">Zycin | GeekBlog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -103,13 +103,17 @@
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
             <h2 class="post-title">模块化和npm</h2>
-            <div class="post-date">2019-10-18</div>
+            <div class="post-date">2019-10-10</div>
             
               <div class="feature-container" style="background-image: url('https://www.fastt.cn/post-images/module-npm.jpg')">
               </div>
             
             <div class="post-content">
-              <!-- more -->
+              <p>此篇文章介绍<br>
+<strong><code>ES6的模块</code></strong> <strong><code>nodem模块</code></strong><br>
+<code>CMD和AMD</code> <code>npm的使用</code><br>
+begin enjoy👇</p>
+<!-- more -->
 <h1 id="模块化编程">模块化编程</h1>
 <h2 id="什么是模块化">什么是模块化</h2>
 <p>所有的语言平台，只要其具有以下特征，则我们说它是使用模块编程：</p>
@@ -485,22 +489,17 @@ require([&quot;foo&quot;, &quot;jquery&quot;], function (f, $) {
 <p>当传入一个模块名时，就是参数中只有名称时 表示加载核心模块或者第三方模块。此时的模块文件是存在于Node核心文件（nodex.exe）中或者使用npm下载的node_modules目录中。</p>
 <ul>
 <li>
-<p><code>require('fs')</code>加载核心模块fs，<code>fs.js</code>模块文件随着node环境被编译到<code>node.exe</code>文件中。这里可以通过源码查看到该文件。@link http://github.com/nodejs</p>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558427719485.png" alt="1558427719485"></figure>
+<p><code>require('fs')</code>加载核心模块fs，<code>fs.js</code>模块文件随着node环境被编译到<code>node.exe</code>文件中。这里可以通过源码查看到该文件。</p>
 </li>
 <li>
 <p><code>require(&quot;art-template&quot;)</code> 加载第三方模块包，这里的art-template模块是存储于npm下载的包里面</p>
 <p>接下来引入包时 它有一套明确的查找机制：</p>
 <ol>
 <li>首先查找当前目录的node_modules，定位<code>node_modules/包名/libs/package.json</code>包说明文件</li>
-</ol>
-<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489537192.png" alt="1558489537192"></figure>
-<ol start="2">
 <li>查找配置项main，main用于指定包的入口文件，该文件用于调度包资源 并返回一个接口对象</li>
 </ol>
-<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489587833.png" alt="1558489587833"></figure>
 <p>同理，我们使用npm安装jquery，查看它的package.json文件 找到main配置的入口文件；再接下来 我们可以自定义包 并使用require加载该包。注意require中传入的是包名。</p>
-<ol start="3">
+<ol>
 <li>
 <p>如果上述规则不能有效的运行，例如 package.json不存在或者没有main项，或者main指定文件不存在， 此时它还有一个备选项 就是直接找到包中的<code>index.js</code>作为默认入口文件。</p>
 </li>
@@ -724,7 +723,6 @@ $ npm install webpack --save-dev
 <li>升级npm</li>
 <li>需要全局使用的包，必须全局安装，它会将包下载到一个已经写入了环境变量的位置，例如：<code>C:\Users\admin\AppData\Roaming\npm\node_modules</code> 接下来在任意位置即可使用该包。</li>
 </ul>
- <img src='D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1570459325270.png' width=500 align="center"/>
 </li>
 <li>
 <p><code>npm init</code></p>
@@ -789,18 +787,13 @@ $ npm install webpack --save-dev
 <ul>
 <li>
 <p>使用<code>npm config list</code>查看npm的基本配置信息</p>
-<p>它包括有<code>cli configs</code>、<code>userconfig</code>、<code>builtin config</code>几级配置，通常修改userConfig的配置。userconfig配置文件在<code>c:/users/admin/.npmrc.</code>文件中，可以直接修改该文件来设置用户配置项：</p>
+<p>它包括有<code>cli configs</code>、<code>userconfig</code>、<code>builtin config</code>几级配置，通常修改userConfig的配置。userconfig配置文件在<code>c:/users/admin/.npmrc.</code>文件中，可以直接修改该文件来设置用户配置项</p>
 </li>
-</ul>
-<p>![1569255555145](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255555145.png)</p>
-<p>![1569255515730](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255515730.png)</p>
-<ul>
 <li>
 <p>使用<code>npm config list -l</code>查看npm配置的详细信息</p>
 </li>
 <li>
 <p><code>npm config get key</code>  读取一个配置项的值</p>
-<p>![1569255799831](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255799831.png)</p>
 </li>
 <li>
 <p><code>npm config set key value</code> 设置一个配置项的值</p>
@@ -814,7 +807,6 @@ npx官网：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.npmjs.com
 <pre><code class="language-shell">$ npm i -D mocha
 $ mocha --version
 </code></pre>
-<img src="D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1570462674119.png" alt="1570462674119" style="zoom:80%;margin:auto 0" />
 <p>想要在本地能够执行它的命令，通常需要符合以下三种情况：</p>
 <ul>
 <li>
@@ -1093,7 +1085,7 @@ viewer = &quot;browser&quot;
                 <div class="next">下一篇</div>
                 <a href="https://www.fastt.cn/post/es6">
                   <h3 class="post-title">
-                    ES6新特性
+                    ES6的语法
                   </h3>
                 </a>
               </div>

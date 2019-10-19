@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-10-19T06:44:11.188Z</updated>
+    <updated>2019-10-19T08:09:20.296Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.fastt.cn"/>
     <link rel="self" href="https://www.fastt.cn/atom.xml"/>
@@ -11,62 +11,93 @@
     <icon>https://www.fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
     <entry>
-        <title type="html"><![CDATA[Vuex学习]]></title>
+        <title type="html"><![CDATA[Vuex介绍]]></title>
         <id>https://www.fastt.cn/post/vuex</id>
         <link href="https://www.fastt.cn/post/vuex">
         </link>
-        <updated>2019-10-18T10:45:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>大致了解了<strong>Vue之后</strong><br>
+        <updated>2019-10-16T10:45:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>大致了解了<strong>Vue</strong>之后<br>
 现在我们来看一下<strong>Vuex</strong><br>
 begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>大致了解了<strong>Vue之后</strong><br>
+        <content type="html"><![CDATA[<p>大致了解了<strong>Vue</strong>之后<br>
 现在我们来看一下<strong>Vuex</strong><br>
 begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Vue学习第四天]]></title>
+        <title type="html"><![CDATA[Vue第四段]]></title>
         <id>https://www.fastt.cn/post/Vue4</id>
         <link href="https://www.fastt.cn/post/Vue4">
         </link>
-        <updated>2019-10-18T10:44:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第四天</p>
+        <updated>2019-10-15T10:44:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第四段~<br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第四天</p>
+        <content type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第四段~<br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Vue学习第三天]]></title>
+        <title type="html"><![CDATA[Vue第三段]]></title>
         <id>https://www.fastt.cn/post/Vue3</id>
         <link href="https://www.fastt.cn/post/Vue3">
         </link>
-        <updated>2019-10-18T10:43:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第三天</p>
+        <updated>2019-10-14T10:43:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第三段~<br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第三天</p>
+        <content type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第三段~<br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Vue学习第二天]]></title>
+        <title type="html"><![CDATA[Vue第二段]]></title>
         <id>https://www.fastt.cn/post/Vue2</id>
         <link href="https://www.fastt.cn/post/Vue2">
         </link>
-        <updated>2019-10-18T10:41:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第二天</p>
+        <updated>2019-10-13T10:41:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第二段~<br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第二天</p>
+        <content type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第二段~<br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Vue学习第一天]]></title>
+        <title type="html"><![CDATA[Vue第一段]]></title>
         <id>https://www.fastt.cn/post/Vue1</id>
         <link href="https://www.fastt.cn/post/Vue1">
         </link>
-        <updated>2019-10-18T10:40:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第一天</p>
+        <updated>2019-10-12T10:40:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第一段~<br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>Vue</strong> 第一天</p>
+        <content type="html"><![CDATA[<p>将<strong>Vue</strong>分成四个阶段<br>
+第一段~<br>
+begin enjoy👇</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Promise异步编程]]></title>
+        <id>https://www.fastt.cn/post/promise</id>
+        <link href="https://www.fastt.cn/post/promise">
+        </link>
+        <updated>2019-10-11T10:37:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>此篇讲解<code>Promise</code>的使用<br>
+介绍<code>promise</code>常用方法<br>
+begin enjoy👇</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>此篇讲解<code>Promise</code>的使用<br>
+介绍<code>promise</code>常用方法<br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
@@ -74,46 +105,65 @@ begin enjoy👇</p>
         <id>https://www.fastt.cn/post/module-npm</id>
         <link href="https://www.fastt.cn/post/module-npm">
         </link>
-        <updated>2019-10-18T10:36:36.000Z</updated>
+        <updated>2019-10-10T10:36:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>此篇文章介绍<br>
+<strong><code>ES6的模块</code></strong> <strong><code>nodem模块</code></strong><br>
+<code>CMD和AMD</code> <code>npm的使用</code><br>
+begin enjoy👇</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>此篇文章介绍<br>
+<strong><code>ES6的模块</code></strong> <strong><code>nodem模块</code></strong><br>
+<code>CMD和AMD</code> <code>npm的使用</code><br>
+begin enjoy👇</p>
+]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ES6新特性]]></title>
+        <title type="html"><![CDATA[ES6的语法]]></title>
         <id>https://www.fastt.cn/post/es6</id>
         <link href="https://www.fastt.cn/post/es6">
         </link>
-        <updated>2019-10-18T10:35:36.000Z</updated>
+        <updated>2019-10-09T10:35:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>这里总结一下<br>
+<code>ES6</code>的语法<br>
+begin enjoy👇</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>这里总结一下<br>
+<code>ES6</code>的语法<br>
+begin enjoy👇</p>
+]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[nodeJS学习四]]></title>
+        <title type="html"><![CDATA[nodeJS第四阶段]]></title>
         <id>https://www.fastt.cn/post/nodejs4</id>
         <link href="https://www.fastt.cn/post/nodejs4">
         </link>
-        <updated>2019-10-18T09:53:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
+        <updated>2019-10-08T09:53:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
+第四阶段~<br>
+<code>node+mysql</code><br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第四阶段</p>
+        <content type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
+第四阶段~<br>
+<code>node+mysql</code><br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[nodeJS学习三]]></title>
+        <title type="html"><![CDATA[nodeJS第三阶段]]></title>
         <id>https://www.fastt.cn/post/nodejs3</id>
         <link href="https://www.fastt.cn/post/nodejs3">
         </link>
-        <updated>2019-10-18T09:51:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
+        <updated>2019-10-07T09:51:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
+第三阶段~<br>
+<code>node</code>的模块化<br>
+begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[nodeJS学习二]]></title>
-        <id>https://www.fastt.cn/post/nodejs2</id>
-        <link href="https://www.fastt.cn/post/nodejs2">
-        </link>
-        <updated>2019-10-18T09:50:37.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏 👏 👏 <strong>NodeJs</strong> 第二阶段</p>
+        <content type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
+第三阶段~<br>
+<code>node</code>的模块化<br>
+begin enjoy👇</p>
 ]]></content>
     </entry>
 </feed>

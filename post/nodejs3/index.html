@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" >
 
-<title>nodeJS学习三 | Zycin | GeekBlog</title>
+<title>nodeJS第三阶段 | Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571467441855">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571472553874">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://www.fastt.cn">
-        <img src="https://www.fastt.cn/images/avatar.png?v=1571467441855" class="site-logo">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571472553874" class="site-logo">
         <h1 class="site-title">Zycin | GeekBlog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,14 +102,17 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">nodeJS学习三</h2>
-            <div class="post-date">2019-10-18</div>
+            <h2 class="post-title">nodeJS第三阶段</h2>
+            <div class="post-date">2019-10-07</div>
             
               <div class="feature-container" style="background-image: url('https://www.fastt.cn/post-images/nodejs3.jpg')">
               </div>
             
             <div class="post-content">
-              <p>👏 👏 👏 <strong>NodeJs</strong> 第三阶段</p>
+              <p>将<strong>NodeJs</strong>分为四个阶段<br>
+第三阶段~<br>
+<code>node</code>的模块化<br>
+begin enjoy👇</p>
 <!-- more -->
 <h1 id="模块化编程">模块化编程</h1>
 <h2 id="什么是模块化">什么是模块化</h2>
@@ -476,21 +479,16 @@ require([&quot;foo&quot;, &quot;jquery&quot;], function (f, $) {
 <ul>
 <li>
 <p><code>require('fs')</code>加载核心模块fs，<code>fs.js</code>模块文件随着node环境被编译到<code>node.exe</code>文件中。这里可以通过源码查看到该文件。@link http://github.com/nodejs</p>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558427719485.png" alt="1558427719485"></figure>
 </li>
 <li>
 <p><code>require(&quot;art-template&quot;)</code> 加载第三方模块包，这里的art-template模块是存储于npm下载的包里面</p>
 <p>接下来引入包时 它有一套明确的查找机制：</p>
 <ol>
 <li>首先查找当前目录的node_modules，定位<code>node_modules/包名/libs/package.json</code>包说明文件</li>
-</ol>
-<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489537192.png" alt="1558489537192"></figure>
-<ol start="2">
 <li>查找配置项main，main用于指定包的入口文件，该文件用于调度包资源 并返回一个接口对象</li>
 </ol>
-<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558489587833.png" alt="1558489587833"></figure>
 <p>同理，我们使用npm安装jquery，查看它的package.json文件 找到main配置的入口文件；再接下来 我们可以自定义包 并使用require加载该包。注意require中传入的是包名。</p>
-<ol start="3">
+<ol>
 <li>
 <p>如果上述规则不能有效的运行，例如 package.json不存在或者没有main项，或者main指定文件不存在， 此时它还有一个备选项 就是直接找到包中的<code>index.js</code>作为默认入口文件。</p>
 </li>
@@ -668,18 +666,13 @@ Is this OK? (yes) yes
 <ul>
 <li>
 <p>使用<code>npm config list</code>查看npm的基本配置信息</p>
-<p>它包括有<code>cli configs</code>、<code>userconfig</code>、<code>builtin config</code>几级配置，通常修改userConfig的配置。userconfig配置文件在<code>c:/users/admin/.npmrc.</code>文件中，可以直接修改该文件来设置用户配置项：</p>
+<p>它包括有<code>cli configs</code>、<code>userconfig</code>、<code>builtin config</code>几级配置，通常修改userConfig的配置。userconfig配置文件在<code>c:/users/admin/.npmrc.</code>文件中，可以直接修改该文件来设置用户配置项</p>
 </li>
-</ul>
-<p>![1569255555145](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255555145.png)</p>
-<p>![1569255515730](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255515730.png)</p>
-<ul>
 <li>
 <p>使用<code>npm config list -l</code>查看npm配置的详细信息</p>
 </li>
 <li>
 <p><code>npm config get key</code>  读取一个配置项的值</p>
-<p>![1569255799831](D:\My Documents\第3阶段 NodeJS全栈开发(20)\resource\1569255799831.png)</p>
 </li>
 <li>
 <p><code>npm config set key value</code> 设置一个配置项的值</p>
@@ -877,7 +870,7 @@ viewer = &quot;browser&quot;
                 <div class="next">下一篇</div>
                 <a href="https://www.fastt.cn/post/nodejs2">
                   <h3 class="post-title">
-                    nodeJS学习二
+                    nodeJS第二阶段
                   </h3>
                 </a>
               </div>

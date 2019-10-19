@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" >
 
-<title>nodeJS学习一 | Zycin | GeekBlog</title>
+<title>nodeJS第一阶段 | Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571467441855">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571472553874">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://www.fastt.cn">
-        <img src="https://www.fastt.cn/images/avatar.png?v=1571467441855" class="site-logo">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571472553874" class="site-logo">
         <h1 class="site-title">Zycin | GeekBlog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -102,15 +102,17 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">nodeJS学习一</h2>
-            <div class="post-date">2019-10-18</div>
+            <h2 class="post-title">nodeJS第一阶段</h2>
+            <div class="post-date">2019-10-05</div>
             
               <div class="feature-container" style="background-image: url('https://www.fastt.cn/post-images/nodejs1.jpg')">
               </div>
             
             <div class="post-content">
-              <p>👏 👏 👏 <strong>NodeJs</strong> 第一阶段<br>
-nodejs的简介以及基本语法教程</p>
+              <p>将<strong>NodeJs</strong>分为四个阶段<br>
+第一阶段~<br>
+nodejs的简介以及基本语法教程<br>
+begin enjoy👇</p>
 <!-- more -->
 <h1 id="什么是nodejs">什么是nodeJS</h1>
 <p>node.js是一个基于<code>Chrome V8</code>引擎的Javascript运行环境，<strong>node.js由ECMAScript和核心模块组成</strong>，没有浏览器环境的API，即DOM和BOM。</p>
@@ -124,17 +126,12 @@ xhr.onloadend = function () {
 xhr.send();
 </code></pre>
 <p>node.js的<strong>包管理器<code>npm</code></strong>(<code>node package manager</code>)，是一个在线的包托管平台。很多语言平台都有自己的开发生态。例如PHP中的composer依赖管理平台，npm就是nodejs语言平台包依赖管理工具，也是全球最大的开源生态系统。</p>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559789942793.png" alt="1559789942793"></figure>
 <p>node.js的包管理器npm，是全球最大的开源库生态系统。</p>
 <h1 id="nodejs环境安装">nodeJS环境安装</h1>
 <p>进入官网nodejs.cn，点击下载菜单，或者直接进入 @link http://nodejs.cn/download/</p>
-<p>window下支持图形界面的安装：</p>
-<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559790544745.png" alt="1559790544745"></figure>
-<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559790691006.png" alt="1559790691006"></figure>
-<p>node.ext是node环境启动文件，内置了编译号的node核心模块，所有的node代码都要使用node.exe文件来执行。类似于PHP代码执行时需要安装php.exe的PHP引擎。</p>
+<p><code>node.exe</code>是node环境启动文件，内置了编译号的node核心模块，所有的node代码都要使用node.exe文件来执行。类似于PHP代码执行时需要安装php.exe的PHP引擎。</p>
 <p>安装时，会将<code>node.exe</code>可执行程序自动写入环境变量。也就说接下来我们可以在任意目录中，使用node指令：</p>
 <p><code>node -v</code>用来查看node的安装版本：</p>
-<figure data-type="image" tabindex="4"><img src="D:%5CWamp%5CWWW%5Csz0812%5Cday30%5Cresource%5C1569207954482.png" alt="1569207954482"></figure>
 <pre><code class="language-shell">&gt; node -v
 </code></pre>
 <h1 id="开始使用nodejs">开始使用nodeJS</h1>
@@ -152,23 +149,18 @@ console.log(&quot;hello world&quot;);//内置的console模块
 <ul>
 <li>
 <p>系统<code>cmd</code>（comand）中 使用<code>cd</code>（change directory）命令切换到脚本所在目录</p>
-<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557477853030.png" alt="1557477853030"></figure>
 </li>
 <li>
 <p>在文件系统中进入文件所在目录位置，按住<code>shift键 + 右键</code> --&gt; <code>在此处打开PS窗口</code></p>
-<figure data-type="image" tabindex="6"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557477930187.png" alt="1557477930187"></figure>
-<figure data-type="image" tabindex="7"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557477992482.png" alt="1557477992482"></figure>
 </li>
 <li>
 <p>在编辑器中安装<code>Terminal</code>（终端）扩展，进入应用商店中搜索<code>Terminal</code>即可。例如：vs code中安装Termimal插件。如果是NetBeans IDE等 需要安装<code>cgywin</code>插件。</p>
-<figure data-type="image" tabindex="8"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557478246352.png" alt="1557478246352"></figure>
-<p>接下来 在文件工作区中 鼠标右键 <code>open in integrated Terminal</code> 则会显示如下终端界面：</p>
-<figure data-type="image" tabindex="9"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557478997363.png" alt="1557478997363"></figure>
+<p>接下来 在文件工作区中 鼠标右键 <code>open in integrated Terminal</code> 则会在当前目录打开终端</p>
 </li>
 </ul>
 </li>
 <li>
-<p>使用<code>node</code> 指令运行该文件 <code>node index.js</code> 	<img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557480089425.png" alt="1557480089425"></p>
+<p>使用<code>node</code> 指令运行指定文件 <code>node index.js</code></p>
 <ul>
 <li>
 <p>注意文件名不能是<code>node.js</code>  否则不执行。<code>node.js</code>文件导致其他文件无法正常执行和输出</p>
@@ -235,7 +227,6 @@ fs.readFile(&quot;foo.txt&quot;, (err, buffer) =&gt; {//服务端通常不涉及
 <pre><code class="language-html">&lt;!--在HTML中引入node代码--&gt;
 &lt;script src=&quot;fs.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<figure data-type="image" tabindex="10"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557592149210.png" alt="1557592149210"></figure>
 </li>
 </ul>
 <h3 id="向文件写入内容">向文件写入内容</h3>
@@ -254,7 +245,6 @@ fs.readFile(&quot;foo.txt&quot;, (err, buffer) =&gt; {//服务端通常不涉及
 </li>
 <li>
 <p>给已有文件写入内容会覆盖，新文件则创建之；如果文件名包含有特殊字符：<code>*/\^&amp;</code>等会产生错误</p>
-<figure data-type="image" tabindex="11"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557592632647.png" alt="1557592632647"></figure>
 </li>
 </ul>
 </li>
@@ -290,11 +280,8 @@ fs.writeFile(&quot;*.txt&quot;, &quot;hello nodeJS&quot;, (err) =&gt; {
 </code></pre>
 <p>现在，使用<code>cmd</code> 进入文件所在位置，执行<code>node 文件名</code> 即可实现类似Apache Web服务的启动。</p>
 <p>类似于Apache中进入http.conf中修改<code>listen 8000</code> ，然后命令行中运行<code>httpd -k start</code>来启动服务</p>
-<figure data-type="image" tabindex="12"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1556955505900.png" alt="启动服务"></figure>
 <p>注意端口号的设置应避免重复，当端口号被占用时服务无法启动。一个简单的示例 可以在<strong>另一个</strong>cmd窗口中运行该服务，由于使用了同样的端口号，则再次启动会失败。</p>
-<figure data-type="image" tabindex="13"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1556956433519.png" alt="1556956433519"></figure>
 <p>尽管服务已经启动，但还未添加任何对请求的处理，当在地址栏输入<code>127.0.0.1:8000</code>时，客户端未收到任何来自服务端的响应 始终处于<strong>等待状态</strong>。</p>
-<figure data-type="image" tabindex="14"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1556956221789.png" alt="发送请求"></figure>
 </li>
 <li>
 <p>设置请求的响应处理</p>
@@ -388,9 +375,7 @@ server.listen(8000, (err) =&gt; {
     }
 })
 </code></pre>
-<figure data-type="image" tabindex="15"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557665648110.png" alt="1557665648110"></figure>
 <p>当在浏览器地址栏输入<code>127.0.0.1:8000</code>时，你会发现控制台打印的请求路径中还包括有<code>/favicon.ico</code>。或者我们在浏览器开发者工具的<code>网络</code>查看，你也会找到该请求。这是一个浏览器默认行为 目的是找到该页面的图标提供给<strong>title</strong>和<strong>收藏夹</strong>使用。</p>
-<figure data-type="image" tabindex="16"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557665109015.png" alt="1557665109015"></figure>
 <h2 id="response对象">response对象</h2>
 <p>response对象用来返回响应的结果，它有几个基本的方法：</p>
 <ul>
@@ -416,36 +401,35 @@ server.listen(8000, (err) =&gt; {
 <li>
 <p>response.end()</p>
 <p>write()方法可以写入多次，但最终必须以end结束 否则客户端会一直等待；end()方法 也可结合write()一起使用 简化代码的输入。</p>
-<pre><code class="language-javascript"></code></pre>
+<pre><code class="language-javascript">//引入系统核心模块http
+const http = require(&quot;http&quot;);
+
+//创建http访问的服务器
+const server = http.createServer();
+
+server.on(&quot;request&quot;, (req, res) =&gt; {
+
+    res.writeHead(200, {
+        &quot;Content-Type&quot; : &quot;text/html;charset=utf-8&quot;,
+    });
+    
+    res.write(&quot;&lt;h4&gt;NodeJS服务返回的结果&lt;/h4&gt;&quot;);
+    
+    //end方法结束响应并返回结果
+    res.end();
+    
+});
+</code></pre>
+<pre><code class="language-javascript">//启动并设置监听端口
+server.listen(8000, (err) =&gt; {
+    if (err) console.dir(err);
+    else {
+        console.log(&quot;服务已启动...&quot;);
+    }
+});
+</code></pre>
 </li>
 </ul>
-<p>//引入系统核心模块http<br>
-const http = require(&quot;http&quot;);</p>
-<p>//创建http访问的服务器<br>
-const server = http.createServer();</p>
-<p>server.on(&quot;request&quot;, (req, res) =&gt; {</p>
-<pre><code>   res.writeHead(200, {
-       &quot;Content-Type&quot; : &quot;text/html;charset=utf-8&quot;,
-   });
-   
-   res.write(&quot;&lt;h4&gt;NodeJS服务返回的结果&lt;/h4&gt;&quot;);
-   
-   //end方法结束响应并返回结果
-   res.end();
-</code></pre>
-<p>});</p>
-<p>//启动并设置监听端口<br>
-server.listen(8000, (err) =&gt; {<br>
-if (err) console.dir(err);<br>
-else {<br>
-console.log(&quot;服务已启动...&quot;);<br>
-}<br>
-});</p>
-<pre><code>
-
-
-
-</code></pre>
 </li>
 </ol>
 <h1 id="模块化编程简介">模块化编程简介</h1>
@@ -462,7 +446,6 @@ console.log(&quot;服务已启动...&quot;);<br>
 </ul>
 <h3 id="系统核心模块">系统核心模块</h3>
 <p>系统核心模块是一个具名的模块文件，使用<code>require(模块名)</code>直接引入即可，并定义变量接收模块对象接口。</p>
-<figure data-type="image" tabindex="17"><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1557681125823.png" alt="1557681125823"></figure>
 <h3 id="用户定义模块">用户定义模块</h3>
 <ul>
 <li>
@@ -515,8 +498,7 @@ console.log(demo.bar());
 </ul>
 <h1 id="nodemon工具">nodemon工具</h1>
 <p><a href="https://www.npmjs.com/package/nodemon">https://www.npmjs.com/package/nodemon</a></p>
-<p>使用<code>npm install -g nodemon</code>全局安装nodemon自动刷新</p>
-<h1 id="inspector工具">inspector工具</h1>
+<p>使用<code>npm install -g nodemon</code>全局安装nodemon   自动刷新</p>
 <p>​</p>
 
             </div>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Promise异步编程 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571472553874">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://www.fastt.cn">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571472553874" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://www.fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Promise异步编程</h2>
+            <div class="post-date">2019-10-11</div>
+            
+              <div class="feature-container" style="background-image: url('https://www.fastt.cn/post-images/promise.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>此篇讲解<code>Promise</code>的使用<br>
+介绍<code>promise</code>常用方法<br>
+begin enjoy👇</p>
+<!-- more -->
+<h2 id="promise由来">Promise由来</h2>
+<ul>
+<li>在大前端或者全栈开发中，无论是前端还是后端，异步行为总是伴随着开发者</li>
+<li>前端常见的异步场景有：Ajax请求、注册事件、setTimeout</li>
+<li>服务端node中是更为典型的异步场景，绝大多数操作都是以异步线程来完成的，例如文件系统操作、数据库等</li>
+<li>通常在异步编程中使用回调函数来监听异步行为的结果，这样会产生一个问题：代码的编写和维护困难</li>
+</ul>
+<p>更多的时候，开发者希望能以同步化代码的方式处理异步的业务场景，类似于：</p>
+<pre><code class="language-javascript">        const xhr = new XMLHttpRequest;
+        let result;
+
+        xhr.open(&quot;get&quot;, &quot;localhost&quot;, true);
+        xhr.send(null);
+
+        //定义回调函数来接收结果
+        xhr.onloadend = function () {
+            if (this.status == 200) {
+                result = this.response;
+            }
+        }
+</code></pre>
+<p>其后使用ajax响应的数据  渲染界面  设置样式  填充容器</p>
+<p>但是这种做法在异步场景中是不合法的，</p>
+<ol>
+<li>回调函数需要在请求之前设置</li>
+<li>所有ajax响应之后的处理 都必须在回调函数中设置</li>
+</ol>
+<pre><code class="language-javascript">//代码应该这么改变：
+const xhr = new XMLHttpRequest;
+let result;
+
+//回调函数要先定义后使用，
+//当请求完成ajax会调用该函数
+xhr.onloadend = function () {
+    if (this.status == 200) {
+        result = this.response;
+        /*
+        * ajax之后的处理必须写在回调函数内，代码不但多，
+          而且犬牙交错，给代码的编写和维护带来困难
+        */ 
+        
+        //渲染界面 产生了input#btn
+        //设置样式
+        //填充容器
+
+        //绑定事件，设置效果
+        //....
+        btn.addEventListener(&quot;click&quot;, function() {
+            //....
+        })
+    }
+}
+xhr.open(&quot;get&quot;, &quot;localhost&quot;, true);
+xhr.send(null);
+</code></pre>
+<h2 id="promise起步">Promise起步</h2>
+<p><code>es6中增加了Promise的构造函数 用来封装一个异步的业务实现， Promise构造函数 接收一个函数参数，该函数用来写入异步的业务</code></p>
+<pre><code class="language-javascript">const pms = new Promise((resolve, reject) =&gt; {
+    const xhr = new XMLHttpRequest;
+    xhr.onloadend = function () {
+        if (this.status == 200) {//成功
+            //返回一个结果
+            resolve(this.responseText);
+        } else {//失败
+            //拒绝的原因
+            reject(this.statusText); // 404 NOT FOUND
+        }
+    }
+    xhr.open(&quot;get&quot;, &quot;http://localhost/&quot;);
+    xhr.send(null);
+});
+
+//使用then方法写入回调函数，也就是将来要执行的部分
+//整个代码是平行、自上而下的运行
+pms.then((value) =&gt; {
+    console.log(value);
+}, (reason) =&gt; {
+    console.log(reason);
+});
+</code></pre>
+<p><code>Promise是承诺，信守承诺 约定了结果 一定不会改变 Promise初始化时的状态的是 pending 一旦决议成功，状态由pending-&gt;fulfilled，并且产生一个值 一旦决议失败，状态由pending-&gt;rejected，伴随一个拒绝原因 无论是成功还是失败，它只有一个结果，决议一次</code></p>
+<pre><code class="language-javascript">const p = new Promise((resolve, reject) =&gt; {
+    
+    //决议失败
+    reject(&quot;NOT FOUND&quot;);
+
+    //决议成功
+    resolve(&quot;hello world&quot;);
+    
+});
+//在控制台打印Promise对象，可以通过其内部属性&lt;state&gt;查看Promise的状态
+console.log(p);
+</code></pre>
+<ul>
+<li>then方法写入将来要执行代码，也就是回调函数</li>
+<li>它接收两个参数，分别是成功时的处理以及失败时的处理</li>
+<li>如果只传入第一个参数 则表示只设置状态为fulfilled的处理</li>
+</ul>
+<pre><code class="language-javascript">const p1 = new Promise((resolve, reject) =&gt; {
+    resolve(&quot;hello world&quot;);
+});
+p1.then((value) =&gt; {
+    console.log(value); //hello world
+});
+
+//如果只想设置状态为rejected的处理，需要将fulfilled设为null
+const p2 = new Promise((resolve, reject) =&gt; {
+    reject(&quot;NOT FOUND&quot;);
+});
+
+// p2.then(null, (reason) =&gt; {
+//     console.log(reason);    //NOT FOUND
+// });
+
+//如果只捕获rejected状态，可以使用catch方法
+p2.catch((reason) =&gt; {
+    console.log(reason);
+});
+</code></pre>
+<h2 id="promise链式操作">Promise链式操作</h2>
+<p><code>then和catch方法 返回值是一个新的Promise对象 上一个Promise决议的返回值作为新的Promise状态，返回值有三种情况：</code></p>
+<ul>
+<li>返回的是一个值，例如 &quot;hello world&quot;, 123, false等，，那么新的Promise的状态是fulfilled</li>
+<li>如果上一个Promise扔出一个错误：throw new Error()，新的Promise的状态是rejected</li>
+<li>如果上一个Promise返回的是一个Promise对象，返回的Promise的决议作为新的Promise的状态</li>
+</ul>
+<pre><code class="language-javascript">const p1 = new Promise((resolve, reject) =&gt; {
+    // resolve(&quot;Ok&quot;);
+    reject(&quot;ERR&quot;); //实际业务中 当拒绝时一般都会产生Error
+});
+
+const p2 = p1.then((value) =&gt; {
+    console.log(value);
+}, (reason)=&gt; {
+    console.log(reason); //ERR
+    //如果返回一个值 新的Promise状态就是fulfilled且接收该值
+    // return &quot;hello world&quot;;
+    // return false;  
+    //如果扔出一个错误 新的Promise的状态就是 rejected且接收错误对象 
+    // throw new Error(&quot;NOT FOUND&quot;);
+    //如果返回一个Promise对象，该Promise的决议作为新的Promise的状态
+    return p1;
+});
+
+p2.then((value) =&gt; {
+    console.log(value); //false
+}, (reason) =&gt; {
+    console.log(reason);//Error('NOT FOUND')
+});
+</code></pre>
+<h2 id="promise静态方法">Promise静态方法</h2>
+<h3 id="race方法">race方法</h3>
+<pre><code class="language-javascript">const pms1 = Promise.resolve(1),
+    pms2 = new Promise((resolve) =&gt; {
+        setTimeout(() =&gt; {
+            resolve(2);
+        }, 100);
+    }),
+    pms3 = 3,
+    pms4 = new Promise((resolve, reject) =&gt; {
+        setTimeout(() =&gt; {
+            reject(4);
+        }, 10);
+    });
+
+//race()方法接收一组值，等待第一个 完成或者拒绝的Promise 再决议
+Promise.race([pms1, pms3]).then((value) =&gt; {
+    //pms1先完成
+    console.log(value); //1
+}, (reason) =&gt; {
+    console.log(reason);
+});
+
+Promise.race([pms2, pms4]).then((value) =&gt; {
+
+    console.log(value);
+}, (reason) =&gt; {
+    //pm4先拒绝
+    console.log(reason); //4
+});
+</code></pre>
+<h3 id="all方法">all方法</h3>
+<p><code>all()也接收一组值，只有当所有的值都完成，其结果才是完成的fulfilled， 如果有一个被拒绝，那么结果就拒绝</code></p>
+<pre><code class="language-javascript">Promise.all([pms1, pms2, pms3]).then((value) =&gt; {
+    console.log(value); //(3) [1, 2, 3]
+}, () =&gt; {
+
+});
+
+Promise.all([pms1, pms2, pms3, pms4]).then((value) =&gt; {
+
+}, (reason) =&gt; {
+    console.log(reason); //4
+});
+</code></pre>
+<h3 id="promise封装ajax">Promise封装ajax</h3>
+<pre><code class="language-javascript">function ajax(url, data = null) {
+    //使用Promise来封装Ajax操作
+    const pms = new Promise((resolve, reject) =&gt; {
+        const xhr = new XMLHttpRequest;
+        xhr.onloadend = function () {
+            if (this.status == 200) {
+                resolve(this.responseText);
+            } else {
+                reject(this.status);
+            }
+        }
+        xhr.open(&quot;get&quot;, url + &quot;?&quot; + data);
+        xhr.send(null);
+    });
+
+    return pms;
+}
+ajax(&quot;http://localhost&quot;).then((result) =&gt; {
+    console.log(result);
+});
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://www.fastt.cn/tag/S_KrSln7H" class="tag">
+                    ES6
+                  </a>
+                
+                  <a href="https://www.fastt.cn/tag/PVYubv9CN" class="tag">
+                    node
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://www.fastt.cn/post/module-npm">
+                  <h3 class="post-title">
+                    模块化和npm
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
