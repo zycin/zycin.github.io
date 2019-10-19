@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571457009393">
+<link rel="shortcut icon" href="https://www.fastt.cn/favicon.ico?v=1571465904380">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.fastt.cn/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://www.fastt.cn">
-        <img src="https://www.fastt.cn/images/avatar.png?v=1571457009393" class="site-logo">
+        <img src="https://www.fastt.cn/images/avatar.png?v=1571465904380" class="site-logo">
         <h1 class="site-title">Zycin | GeekBlog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -109,16 +109,21 @@
               </div>
             
             <div class="post-content">
-              <p>👏 👏 👏 <strong>Vuex</strong>开始学习</p>
+              <p>大致了解了<strong>Vue之后</strong>现在我们来看一下<strong>Vuex</strong><br>
+开始学习吧👇</p>
 <!-- more -->
 <h3 id="vuex的使用"><code>vuex</code>的使用</h3>
 <h4 id="vuex的初步认识和使用"><code>vuex</code>的初步认识和使用</h4>
 <ul>
 <li>
-<p><code>vuex</code>是一款基于<code>vue</code>开发的另一个神作框架，是辅助<code>vue</code>的全局数据状态管理框架，<code>vue</code>的特点就是单向数据流，导致有些数据的传递只能从上往下一个个组件来传递，或者使用<code>$on</code>和<code>$emit</code>来传递，这样到后期会增加<code>vue</code>项目的管理难度，导致项目迭代不断复杂，最终写到无法维护的地步而到崩溃跑路</p>
+<p><code>vuex</code>是一款基于<code>vue</code>开发的另一个神作框架，是辅助<code>vue</code>的全局数据状态管理框架，<br>
+<code>vue</code>的特点就是单向数据流，导致有些数据的传递只能从上往下一个个组件来传递，或者<br>
+使用<code>$on</code>和<code>$emit</code>来传递，这样到后期会增加<code>vue</code>项目的管理难度，导致项目迭代不断<br>
+复杂，最终写到无法维护的地步而到崩溃跑路。</p>
 </li>
 <li>
-<p><code>vuex</code>是通过<code>store</code>对象来进行全局数据状态管理的，通过将<code>store</code>注入到<code>vue</code>中达到了组件可以随意使用数据的目的</p>
+<p><code>vuex</code>是通过<code>store</code>对象来进行全局数据状态管理的，通过将<code>store</code>注入到<code>vue</code>中<br>
+到了组件可以随意使用数据的目的</p>
 <pre><code class="language-javascript">Vue.use(Vuex);
 const store = new Vuex.Store({
     state : {
@@ -137,7 +142,10 @@ new Vue({
 <h4 id="vuex的state模块"><code>vuex</code>的<code>state</code>模块</h4>
 <ul>
 <li>
-<p><code>vuex</code>使用<strong>单一状态树</strong>，用一个对象就包含了全部的应用层级状态。于是它便做为了一个<strong>唯一数据源</strong>。因此基于上边的定义的<code>state</code>模块的使用便可以在一个组件中直接获取这个值，而且无论是跨了多少层级的组件，在哪里都可以直接获取到，操作起来十分简单方便</p>
+<p><code>vuex</code>使用<strong>单一状态树</strong>，用一个对象就包含了全部的应用层级状态。于是它便做为<br>
+了一个<strong>唯一数据源</strong>。因此基于上边的定义的<code>state</code>模块的使用便可以在一个组件中直<br>
+接获取这个值，而且无论是跨了多少层级的组件，在哪里都可以直接获取到，操作起来十分<br>
+简单方便</p>
 <pre><code class="language-html">// App组件
 &lt;template&gt;
     &lt;div&gt;{{count}}&lt;/div&gt;
@@ -154,7 +162,8 @@ new Vue({
 </code></pre>
 </li>
 <li>
-<p>最后可以使用<code>mapState</code>来将<code>state</code>的值直接映射到组件中使用，当然只能映射到<code>computed</code>模块来用相当于直接通过<code>mapState</code>获取<code>state</code>里的值来用</p>
+<p>最后可以使用<code>mapState</code>来将<code>state</code>的值直接映射到组件中使用，当然只能映射到<br>
+<code>computed</code>模块来用相当于直接通过<code>mapState</code>获取<code>state</code>里的值来用</p>
 <pre><code class="language-javascript">// App组件
 &lt;template&gt;
     &lt;div&gt;
@@ -184,7 +193,10 @@ new Vue({
 </ul>
 <h4 id="vuex中的getter模块"><code>vuex</code>中的<code>getter</code>模块</h4>
 <ul>
-<li><code>state</code>中的数据有时不会是那么简单的一个数据，可能是一个数组集合数据，于是乎要获取其中某个数据值时的操作就需要先映射到组件中，然后用个<code>model</code>来接收再操作，会比较麻烦，那么<code>vuex</code>提供了<code>getter</code>模块来帮我们解决这个问题，可以先预置定义好要操作<code>state</code>的一些条件取值方法后，直接调用即可</li>
+<li><code>state</code>中的数据有时不会是那么简单的一个数据，可能是一个数组集合数据，于是乎要<br>
+获取其中某个数据值时的操作就需要先映射到组件中，然后用个<code>model</code>来接收再操作，会<br>
+比较麻烦，那么<code>vuex</code>提供了<code>getter</code>模块来帮我们解决这个问题，可以先预置定义好要<br>
+操作<code>state</code>的一些条件取值方法后，直接调用即可。</li>
 </ul>
 <pre><code class="language-javascript">const store = new Vuex.Store({
     state:{
@@ -209,13 +221,18 @@ new Vue({
 });
 </code></pre>
 <ul>
-<li>那么实际在组件中要使用了，可以通过<code>this.$store.getters.getPerson1</code>来获取<code>getters</code>筛选的结果即可</li>
+<li>那么实际在组件中要使用了，可以通过<code>this.$store.getters.getPerson1</code>来获取<br>
+<code>getters</code>筛选的结果即可</li>
 <li>如果是通过方法访问的，则需要酱紫调用<code>this.$store.getters.getPerson2('橘右京')</code></li>
-<li>最后一种在组件中的用法就是利用<code>mapGetters</code>将<code>getter</code>利用<code>ES6</code>的展开运算符，道理和<code>mapState</code>一样，在组件的<code>computed</code>模块里直接映射使用即可</li>
+<li>最后一种在组件中的用法就是利用<code>mapGetters</code>将<code>getter</code>利用<code>ES6</code>的展开运算符，<br>
+道理和<code>mapState</code>一样，在组件的<code>computed</code>模块里直接映射使用即可</li>
 </ul>
 <h4 id="vuex的mutation模块"><code>vuex</code>的<code>mutation</code>模块</h4>
 <ul>
-<li>修改<code>vuex</code>中的<code>store</code>中的<code>state</code>中的状态的唯一方法就是通过<code>mutation</code>模块来做处理才行，这个模块是操作<code>state</code>的唯一途径，类似<code>redux</code>里的<code>reducer</code>模块的作用一样，毕竟照抄人家<code>redux</code>的嘛，所以总结一下就是不是让你说想改就乱改的，而是需要通过<code>mutation</code>模块渠道来修改才行</li>
+<li>修改<code>vuex</code>中的<code>store</code>中的<code>state</code>中的状态的唯一方法就是通过<code>mutation</code>模块来做处<br>
+理才行，这个模块是操作<code>state</code>的唯一途径，类似<code>redux</code>里的<code>reducer</code>模块的作用一样，<br>
+毕竟照抄人家<code>redux</code>的嘛，所以总结一下就是不是让你说想改就乱改的，而是需要通过<br>
+<code>mutation</code>模块渠道来修改才行。</li>
 </ul>
 <pre><code class="language-javascript">state:{
     count:0,
@@ -227,8 +244,11 @@ mutations:{
 },
 </code></pre>
 <ul>
-<li>对于上边代码，可以直接在组件内部通过<code>@click</code>方法点击某个按钮时，调用<code>this.$store.commit('addOne')</code>来调用修改<code>state</code>，<code>commit</code>是触发<code>mutation</code>模块的唯一关键入口方法</li>
-<li>但是一般修改<code>state</code>时，都不会把要修改的值写死，而是通过载荷<code>payload</code>来进行修改，这样了通过提交对象参数，可以修改的更加灵活</li>
+<li>对于上边代码，可以直接在组件内部通过<code>@click</code>方法点击某个按钮时，调用<br>
+<code>this.$store.commit('addOne')</code>来调用修改<code>state</code>，<code>commit</code>是触发<code>mutation</code>模块的<br>
+唯一关键入口方法</li>
+<li>但是一般修改<code>state</code>时，都不会把要修改的值写死，而是通过载荷<code>payload</code>来进行修改，<br>
+这样了通过提交对象参数，可以修改的更加灵活</li>
 </ul>
 <pre><code class="language-javascript">state:{
     count:0,
@@ -245,8 +265,11 @@ mutations:{
 <ul>
 <li>这样了，就可以直接通过<code>commit</code>来酱紫提交，<code>this.$store.commit('addOne',{num:10})</code></li>
 <li>但是这样提交很没风格，因此<code>vuex</code>也学了<code>redux</code>那样进行了对象风格的提交方式来操作，<code>this.$store.commit({type:'addOne',num:10})</code></li>
-<li>如果要对<code>state</code>里某个对象进行新属性扩展了，<code>vue</code>虽然提供了<code>set</code>方法，但利用<code>ES6</code>可以让事情更加简单，用如下代码操作即可，<code>this.$store.state.obj={...this.$store.state.obj,age:18}</code></li>
-<li>因为可以直接利用对象风格化方式来提交<code>mutation</code>模块修改<code>state</code>，所以在一些中大型项目中往往不直接将<code>mutation</code>模块的名字定义那么死板，而是利用<code>actions</code>来定义<code>mutation</code>，这样做的目的就是增强代码的阅读性，利于其他人介入项目开发和更有效的利用<code>mutation</code>模块</li>
+<li>如果要对<code>state</code>里某个对象进行新属性扩展了，<code>vue</code>虽然提供了<code>set</code>方法，但利用<code>ES6</code><br>
+可以让事情更加简单，用如下代码操作即可，<code>this.$store.state.obj={...this.$store.state.obj,age:18}</code></li>
+<li>因为可以直接利用对象风格化方式来提交<code>mutation</code>模块修改<code>state</code>，所以在一些中大型项<br>
+目中往往不直接将<code>mutation</code>模块的名字定义那么死板，而是利用<code>actions</code>来定义<code>mutation</code>，<br>
+这样做的目的就是增强代码的阅读性，利于其他人介入项目开发和更有效的利用<code>mutation</code>模块</li>
 </ul>
 <pre><code class="language-javascript">import {ADD_ONE} from './mutation-actions';
 state:{
@@ -264,7 +287,9 @@ mutations:{
 },
 </code></pre>
 <ul>
-<li>注意：<code>mutation</code>模块的代码都是<strong>纯函数</strong>代码，所谓<strong>纯函数</strong>的意思就是必须是同步代码模块！默认的<code>mutation</code>模块是不支持异步代码模块的，要想异步化操作，在后边的<code>action</code>模块中会讲解到</li>
+<li>注意：<code>mutation</code>模块的代码都是<strong>纯函数</strong>代码，所谓<strong>纯函数</strong>的意思就是必须是同步<br>
+代码模块！默认的<code>mutation</code>模块是不支持异步代码模块的，要想异步化操作，在后边的<code>action</code><br>
+模块中会讲解到</li>
 <li>最后就是在<code>methods</code>模块中通过<code>mapMutations</code>来映射<code>mutation</code>模块的操作</li>
 </ul>
 <pre><code class="language-javascript">import { mapMutations } from 'vuex';
@@ -282,10 +307,6 @@ export default {
     }
 }
 </code></pre>
-<h4 id="vuex的action模块"><code>vuex</code>的<code>action</code>模块</h4>
-<ul>
-<li></li>
-</ul>
 
             </div>
             
