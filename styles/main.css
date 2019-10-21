@@ -585,11 +585,18 @@ a {
   border-bottom: 1px solid #ced4da;
   padding: 24px 0;
   margin: 32px 0;
+  overflow: hidden;
 }
 .next-post .post-title {
   font-size: 24px;
 }
 .next-post .next {
+  float: right;
+}
+.next-post .prev {
+  float: left;
+}
+.next-post .post-page {
   color: #ced4da;
   margin-bottom: 16px;
 }
