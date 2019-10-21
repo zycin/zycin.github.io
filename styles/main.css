@@ -592,6 +592,7 @@ a {
 }
 .next-post .next {
   float: right;
+  text-align: right;
 }
 .next-post .prev {
   float: left;
