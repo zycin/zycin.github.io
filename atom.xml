@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-10-22T03:02:09.534Z</updated>
+    <updated>2019-10-22T03:58:39.185Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fastt.cn"/>
     <link rel="self" href="https://fastt.cn/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://fastt.cn/images/avatar.png</logo>
     <icon>https://fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[正则表达式]]></title>
+        <id>https://fastt.cn/post/regex</id>
+        <link href="https://fastt.cn/post/regex">
+        </link>
+        <updated>2019-10-22T03:10:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>正则表达式<br>
+入门级学习<br>
+begin enjoy👇</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>正则表达式<br>
+入门级学习<br>
+begin enjoy👇</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vuex介绍]]></title>
         <id>https://fastt.cn/post/vuex</id>
@@ -146,23 +161,6 @@ begin enjoy👇</p>
         <content type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
 第四阶段~<br>
 <code>node+mysql</code><br>
-begin enjoy👇</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[nodeJS第三阶段]]></title>
-        <id>https://fastt.cn/post/nodejs3</id>
-        <link href="https://fastt.cn/post/nodejs3">
-        </link>
-        <updated>2019-10-07T09:51:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
-第三阶段~<br>
-<code>node</code>的模块化<br>
-begin enjoy👇</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>将<strong>NodeJs</strong>分为四个阶段<br>
-第三阶段~<br>
-<code>node</code>的模块化<br>
 begin enjoy👇</p>
 ]]></content>
     </entry>

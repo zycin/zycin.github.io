@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" >
+
+<title>正则表达式 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1571716683246">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+</head>
+
+<body>
+  <div id="app" class="main">
+
+    <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://fastt.cn">
+        <img src="https://fastt.cn/images/avatar.png?v=1571716683246" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">正则表达式</h2>
+          <div class="post-date">2019-10-22</div>
+          
+          <div class="feature-container" style="background-image: url('https://fastt.cn/post-images/regex.jpg')">
+          </div>
+          
+          <div class="post-content">
+            <p>正则表达式<br>
+入门级学习<br>
+begin enjoy👇</p>
+<!-- more -->
+<h1 id="一-正则表达式">一、  正则表达式</h1>
+<h2 id="1历史起源">1．历史起源</h2>
+<p>正则表达式（以下简称“正则”）的“祖先”可以一直上溯至对人类神经系统如何工作的早期研究。</p>
+<p>1956年, 一位叫 Stephen Kleene 的<strong>数学家</strong>在 McCulloch 和 Pitts 早期工作的基础上，发表的论文使用了正则表达式。正则表达式的第一个实用程序就是 Unix 中的 qed 编辑器。现在 绝大多数编辑器和IDE都支持对文件内容执行正则查找和替换。</p>
+<figure data-type="image" tabindex="1"><img src="https://fastt.cn/post-images/1571714198253.jpg" alt=""></figure>
+<h2 id="2正则概述">2．正则概述</h2>
+<p>正则表达式，又称规则表达式。英语：<mark>Regular Expression</mark>，描述了一<strong>种/类</strong>字符串匹配的模式,在代码中常简写为reg,regex。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。</p>
+<p>(可以用来检查一段内容中是否含有某种子串、将匹配的子串做替换或者从内容种取出符合条件的子串等。)</p>
+<p>正则表达式就是筛子，帮助我们在网页上筛选我们想要的内容。<br>
+<img src="https://fastt.cn/post-images/1571714300224.jpg" alt=""><br>
+正则表达式本身是一门独立的技术，可以被大多数编程语言所使用 很多编程语言都内置了<strong>接口</strong> 用来支持正则的操作，如Javascript、PHP、Java。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><img src="https://fastt.cn/post-images/1571714333071.gif" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3应用场景">3．应用场景</h2>
+<p>(1) 表单验证：验证字符的合法性，如邮箱是否合法，手机号是否合法等等。</p>
+<p>(2) 信息过滤：如论坛帖子或者评论中的非法字符，例如 sql注入、js脚本注入、煽动性的言论。</p>
+<p>(3) 信息采集（爬虫）：收集别人网站上的内容，例如整页采集时 筛选出需求部分的信息。</p>
+<h1 id="二-快速入门">二、  快速入门</h1>
+<h2 id="1用法用例">1．用法用例</h2>
+<ul>
+<li>手机号验证是否合法<br>
+<img src="https://fastt.cn/post-images/1571714368538.jpg" alt=""></li>
+<li>防XSS攻击：使用正则表达式过滤用户输入中的<code>&lt;script&gt;</code>代码片段<br>
+<img src="https://fastt.cn/post-images/1571714395285.jpg" alt=""></li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://fastt.cn/post-images/1571714401536.jpg" alt=""></figure>
+<p><img src="https://fastt.cn/post-images/1571714427295.jpg" alt=""><br>
+一次正则操作包含三个步骤：</p>
+<p>① 准备数据：要执行正则的字符串</p>
+<p>② 创建正则：设置要匹配内容的规则模式</p>
+<p>③ 执行正则：对使用正则匹配到的内容执行不同的处理：检测是否有、获取匹配内容、替换匹配内容</p>
+<p>正则表达式是由<strong>普通字符</strong>（例如字母、数字）以及<strong>特殊字符</strong>(<strong>元字符</strong>、<strong>限定符</strong>等)组成的文字模式。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。</p>
+<h2 id="2创建正则">2．创建正则</h2>
+<h3 id="1-字面量正则对象">1)   字面量正则对象</h3>
+<p>基本语法：<code>var 正则名称 = /正则表达式/匹配模式</code></p>
+<p>var reg = //;<code>//</code>正则表达式 是一个对象 不能使用引号括起来&quot;&quot;</p>
+<figure data-type="image" tabindex="3"><img src="https://fastt.cn/post-images/1571714457590.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://fastt.cn/post-images/1571714463939.jpg" alt=""></figure>
+<h3 id="2-显式创建正则对象">2)   显式创建正则对象</h3>
+<p>正则是一个对象 就有它的构造器，RegExp。可以通过构造器生成一个正则对象 即正则表达式。</p>
+<figure data-type="image" tabindex="5"><img src="https://fastt.cn/post-images/1571714491069.jpg" alt=""></figure>
+<p><img src="https://fastt.cn/post-images/1571714495585.jpg" alt=""><br>
+<code>g</code>：(global)全局搜索  reg.global是只读的属性</p>
+<p><code>i</code>：(ignoreCase)忽略大小写。reg.ignoreCase也是只读的属性</p>
+<h3 id="3-两种方式的区别">3)   两种方式的区别</h3>
+<p>在使用字面量定义的正则中，表达式只能是<strong>硬编码</strong>的字符串。也就是说其中的变量名不能被解析，因此当表达式中含有动态设置的内容时 需要显式地去创建正则对象。</p>
+<figure data-type="image" tabindex="6"><img src="https://fastt.cn/post-images/1571714526314.jpg" alt=""></figure>
+<h2 id="3执行正则">3．执行正则</h2>
+<h3 id="4-regexp对象方法">4)   RegExp对象方法</h3>
+<p><code>var reg = new RegExp(str);</code></p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>用法用例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RegExp.prototype</code>.<code>test(str)</code></td>
+<td><code>reg.test(str)</code></td>
+<td>匹配到返回true否则false</td>
+</tr>
+<tr>
+<td><code>RegExp.prototype</code>.<code>exec(str)</code></td>
+<td><code>reg.exec(str)</code></td>
+<td>返回匹配结果 数组形式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="regteststr">reg.test(str)</h3>
+<p>检测字符串是否含有指定模式的子串，如果找到则返回<strong>true</strong>，否则返回<strong>false</strong>；当设置全局查找时lastIndex指针位置会更新，保存下次匹配开始的位置。</p>
+<figure data-type="image" tabindex="7"><img src="https://fastt.cn/post-images/1571714582143.jpg" alt=""></figure>
+<figure data-type="image" tabindex="8"><img src="https://fastt.cn/post-images/1571714594742.jpg" alt=""></figure>
+<figure data-type="image" tabindex="9"><img src="https://fastt.cn/post-images/1571714609274.jpg" alt=""></figure>
+<figure data-type="image" tabindex="10"><img src="https://fastt.cn/post-images/1571714623870.jpg" alt=""></figure>
+<h3 id="regexecstr">reg.exec(str)</h3>
+<p>将正则用于一个字符串的执行 返回一个包含匹配到的值(整个表达式和引用部分)、索引位置、源字符串的<strong>数组，如果没有找到则返回<strong><strong>null</strong></strong>；当全局查找时</strong> <strong>同样会更新指针。</strong></p>
+<figure data-type="image" tabindex="11"><img src="https://fastt.cn/post-images/1571714638114.jpg" alt=""></figure>
+<figure data-type="image" tabindex="12"><img src="https://fastt.cn/post-images/1571714646523.jpg" alt=""></figure>
+<figure data-type="image" tabindex="13"><img src="https://fastt.cn/post-images/1571714654781.jpg" alt=""></figure>
+<figure data-type="image" tabindex="14"><img src="https://fastt.cn/post-images/1571714667088.jpg" alt=""></figure>
+<h3 id="5-string对象方法">5)   String对象方法</h3>
+<p>除了正则对象本身的方法外，字符串对象的一些方法 也支持传入正则表达式参数，实现更为精准和高效的操作。字符串对象的操作都是<strong>一次性</strong>执行，执行完毕指针重新初始化。</p>
+<p><code>var str = new String();</code></p>
+<table>
+<thead>
+<tr>
+<th><strong>方法名</strong></th>
+<th><strong>用法用例</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String.prototype.<strong>match</strong>(reg)</td>
+<td>str.match(reg)</td>
+<td>返回所有结果的数组</td>
+</tr>
+<tr>
+<td>String.prototype.<strong>search</strong>(reg)</td>
+<td>str.search(reg)</td>
+<td>返回索引位置</td>
+</tr>
+<tr>
+<td>String.prototype.<strong>replace</strong>(reg,new)</td>
+<td>str.replace(reg)</td>
+<td>返回替换后的字符串</td>
+</tr>
+<tr>
+<td>String.prototype.<strong>split</strong>(reg)</td>
+<td>str.split(reg)</td>
+<td>返回分割的数组</td>
+</tr>
+</tbody>
+</table>
+<h3 id="strsearchreg">str.search(reg)</h3>
+<p>查找指定模式的子字符在源字符串中<strong>第一次</strong>出现的位置（默认从0开始）或者查找第一个子串的位置，如果没有找到则返回-1；<strong>该方法不支持全局查找</strong>。</p>
+<pre><code>if (str.search(reg) &lt; 0) {  
+
+//未找到和正则匹配的内容
+
+}
+</code></pre>
+<figure data-type="image" tabindex="15"><img src="https://fastt.cn/post-images/1571714678590.jpg" alt=""></figure>
+<h3 id="strmatchreg">str.match(reg)</h3>
+<p>查找匹配正则的元素，返回一个包含所有匹配字符（引用部分）以及字符索引的数组（形如reg.exec()方法执行结果），如果没有匹配到则返回<strong>null</strong>；当设置全局查找时，返回所有<strong>匹配字符的集合</strong>（不包含引用部分）。</p>
+<figure data-type="image" tabindex="16"><img src="https://fastt.cn/post-images/1571714685112.jpg" alt=""></figure>
+<figure data-type="image" tabindex="17"><img src="https://fastt.cn/post-images/1571714691203.jpg" alt=""></figure>
+<h3 id="strreplacereg-new-str-callable-fn">str.replace(reg, new str | callable fn)</h3>
+<p>替换一个字符串中指定模式的子字符串，返回替换过后的新字符串。如果希望全局替换 需要设置成全局替换模式；该方法支持传入回调函数返回一个新值 用来实现精确替换。</p>
+<figure data-type="image" tabindex="18"><img src="https://fastt.cn/post-images/1571714700610.jpg" alt=""></figure>
+<figure data-type="image" tabindex="19"><img src="https://fastt.cn/post-images/1571714708093.jpg" alt=""></figure>
+<ul>
+<li>
+<p>将CSS中 使用下划线定义的样式 转化成能在js中操作的驼峰命名</p>
+<p>如将CSS属性background-image-position转化成backgroundImagePosition</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="20"><img src="https://fastt.cn/post-images/1571714715524.jpg" alt=""></figure>
+<figure data-type="image" tabindex="21"><img src="https://fastt.cn/post-images/1571714726980.jpg" alt=""></figure>
+<h3 id="strsplitreg">str.split(reg)</h3>
+<p>以指定的正则模式分割字符串，返回各个子串组成的<strong>数组</strong>，该方法<strong>默认全局执行</strong>，如果希望不区分大小写的操作 可以使用/i;</p>
+<p>split经常用来将一个字符串转化成数组，和数组的join方法 互为逆运算。</p>
+<figure data-type="image" tabindex="22"><img src="https://fastt.cn/post-images/1571714737323.jpg" alt=""></figure>
+<figure data-type="image" tabindex="23"><img src="https://fastt.cn/post-images/1571714744960.jpg" alt=""></figure>
+<h1 id="三-正则基本语法">三、  正则基本语法</h1>
+<p>关于正则使用时需要解决的几个问题：</p>
+<p>（1）我们需要查什么（限定内容）</p>
+<p>（2）我们需要查多少（限定数量）</p>
+<p>（3）我们从哪儿查起（限定位置）</p>
+<h2 id="4元字符">4．元字符</h2>
+<p>字符匹配符 用于匹配某个或<strong>某些</strong>字符，它们主要由元字符组成，包含多种类型的字符的统称。</p>
+<p>//预置的用来匹配的字符串 包含各种字符内容</p>
+<p><code>window.str = &quot;1234567890abcde fHIJKLMN!@#$%^&amp;*()[ ]{ }&lt; &gt;\\/'\&quot;:-_\n&quot;;</code></p>
+<figure data-type="image" tabindex="24"><img src="https://fastt.cn/post-images/1571714755950.jpg" alt=""></figure>
+<h3 id="6-字符簇cu查什么">6)   字符簇[cu]（查什么）</h3>
+<p>在正则表达式中，通过一对方括号**[ ]<strong>括起来的内容，我们称之为</strong>&quot;字符簇&quot;<strong>，用来表示</strong>范围<strong>中的</strong>一个**。</p>
+<p>[abcd]        匹配字母abcd中的任一字符</p>
+<p>[1234]        匹配数字1234中的任一数字</p>
+<p>[a-z]         匹配小写字母a-z中的任一字符</p>
+<p>[A-Z]         匹配大写字母A-Z中的任一字符</p>
+<p>[0-9]         匹配数字从0-9中的任一数字</p>
+<p>[0-9a-z]      匹配数字0-9或小写a-z中的任一字符</p>
+<p>[0-9a-zA-Z]   匹配数字0-9或字母a-z中的任一字符</p>
+<p><strong>注意：在字符簇中，<code>^</code>代表取反的含义</strong></p>
+<p>[^a-z]        匹配除a-z以外的任一字符</p>
+<p>[^0-9]        匹配除0-9以外的任一字符</p>
+<p>[^abcd]       匹配除字母abcd以外的任一字符</p>
+<figure data-type="image" tabindex="25"><img src="https://fastt.cn/post-images/1571714767141.jpg" alt=""></figure>
+<figure data-type="image" tabindex="26"><img src="https://fastt.cn/post-images/1571714774174.jpg" alt=""></figure>
+<h3 id="7-语义字符查什么">7)   语义字符（查什么）</h3>
+<p>\d ：      匹配一个数字字符   [0-9]  (decimal)</p>
+<p>\D ：      匹配一个<strong>非</strong>数字字符 [^\d]</p>
+<p>\w ：      匹配包括下划线的任何单字符[0-9a-zA-Z_] 不包括空格，js中的变量范围还包括$</p>
+<p>[\w$]+ 表示一个变量名组成(word)</p>
+<p>\W ：      匹配任何非单字符 [<strong>^</strong>\w]</p>
+<p>\s ：      匹配任何<strong>空白</strong>符，制表符（\t）、空格、换行（\n）、回车(\r)、换页（\f）  [\t\n\r\f]</p>
+<p>\S ：      匹配任何非空白字符 [^\s]</p>
+<p><strong><code>.</code></strong>  ：     匹配<strong>除 &quot;\n&quot;</strong> 之外的<strong>任何</strong>单个字符，匹配所有的话 则使用(.|\n)</p>
+<p><strong>注意：我们可以用</strong> <strong>[\w\W],[\d\D],[\s\S],</strong> 这几个组合来代替<strong>所有字符</strong> 也就是相当于&quot;<strong>.|\n</strong>&quot;</p>
+<figure data-type="image" tabindex="27"><img src="https://fastt.cn/post-images/1571714784977.jpg" alt=""></figure>
+<figure data-type="image" tabindex="28"><img src="https://fastt.cn/post-images/1571714790368.jpg" alt=""></figure>
+<h3 id="8-限定符查多少">8)   限定符（查多少）</h3>
+<p>限定符可以指定正则表达式的一个给定组件必须要出现多少次才能满足匹配。</p>
+<p>{n}        匹配确定的 n 次                              <strong>{5}</strong></p>
+<p>{n, }      至少匹配n 次                                 <strong>{5,}</strong></p>
+<p>{n, m}     最少匹配 n 次且最多匹配 m 次                   <strong>{5,10}</strong></p>
+<p><strong>*</strong>          匹配前面的子表达式零次或多次0到多{0, }       <strong>{0,}</strong> <strong>（可有可无）</strong></p>
+<p><strong>+</strong>          匹配前面的子表达式一次或多次 1到多 {1,}       <strong>{1,}</strong> <strong>（一定有）</strong></p>
+<p><strong>?</strong>          匹配前面的子表达式零次或一次 0或1{0,1}       <strong>{0,1}</strong> <strong>（有或没有）</strong></p>
+<ul>
+<li>
+<p>匹配4位连续的数字 [0-9][0-9][0-9][0-9]=&gt;\d\d\d\d=&gt;\d{4}</p>
+</li>
+<li>
+<p>至少匹配6位字符  \w{6, }</p>
+</li>
+<li>
+<p>匹配至少4位至多8位连续的数字  \d{4, 8}</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="29"><img src="https://fastt.cn/post-images/1571714798765.jpg" alt=""></figure>
+<figure data-type="image" tabindex="30"><img src="https://fastt.cn/post-images/1571714806875.jpg" alt=""></figure>
+<h3 id="9-定位符从哪儿">9)   定位符（从哪儿）</h3>
+<p>定位符可以将一个正则表达式固定在一行的<strong>开始或结束</strong>，也可以创建只在<strong>单词内</strong>或只在单词的开始或结尾处出现的正则表达式。</p>
+<p><strong>^</strong>          匹配输入字符串的开始位置</p>
+<p><strong>$</strong>          匹配输入字符串的结束位置</p>
+<p><strong>\b</strong>         匹配一个单词边界border</p>
+<p><strong>\B</strong>         匹配非单词边界</p>
+<p>如果^和$同时出现在正则表达式中，则是严格限定字符串的内容，而不是包含内容</p>
+<p>/^1[^12]\d{9}$/   -&gt; 13709237683</p>
+<p>/1[^12]\d{9}/   -&gt; abc13709237683def</p>
+<ul>
+<li>自定义trim函数，去除字符串头尾空白</li>
+</ul>
+<figure data-type="image" tabindex="31"><img src="https://fastt.cn/post-images/1571714813560.jpg" alt=""></figure>
+<figure data-type="image" tabindex="32"><img src="https://fastt.cn/post-images/1571714818996.jpg" alt=""></figure>
+<ul>
+<li>单词边界与非单词边界 注意：\b与\s的区别</li>
+</ul>
+<p>查找“hello javascript, you are not java!”中的分词java</p>
+<figure data-type="image" tabindex="33"><img src="https://fastt.cn/post-images/1571714825573.jpg" alt=""></figure>
+<figure data-type="image" tabindex="34"><img src="https://fastt.cn/post-images/1571714831660.jpg" alt=""></figure>
+<h2 id="5转义字符">5．转义字符</h2>
+<p>对于正则中的特殊字符，如果只匹配字符本身，需要使用反斜杠 \ 转义，如：</p>
+<p>\*  \+  \？ \[  \]  \{  \}  \(  \)  \.  \/  \^   \$</p>
+<figure data-type="image" tabindex="35"><img src="https://fastt.cn/post-images/1571714837078.jpg" alt=""></figure>
+<h2 id="6选择匹配符-表达式组合">6．选择匹配符 表达式组合</h2>
+<p>正则语法中 <code>“|”</code>管道符为选择匹配，可以匹配多个规则 并使用<code>()</code>创建<strong>组合</strong></p>
+<ul>
+<li>匹配字符串&quot;I'm learing language, hello javaEE&amp;hello javascript!&quot;中的hello javaEE或hello javascript的部分。</li>
+</ul>
+<figure data-type="image" tabindex="36"><img src="https://fastt.cn/post-images/1571714842105.jpg" alt=""></figure>
+<figure data-type="image" tabindex="37"><img src="https://fastt.cn/post-images/1571714848835.jpg" alt=""></figure>
+<h2 id="7模式修正符">7．模式修正符</h2>
+<p>模式不是正则表达式的一部分,但是能够影响正则表达式的作用效果。</p>
+<ul>
+<li>
+<p>g：global 全局模式</p>
+</li>
+<li>
+<p>i ：ignoreCase, 忽略(大小写)</p>
+</li>
+<li>
+<p>s：代表单行模式,把整个字符串当成一行来看待，js目前不支持单行模式</p>
+</li>
+<li>
+<p>m：多行模式</p>
+</li>
+</ul>
+<hr>
+<p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://fastt.cn/tag/regex" class="tag">
+              正则
+            </a>
+            
+          </div>
+          
+
+
+          
+          <div class="next-post">
+            
+            
+            <div class="next">
+              <div class="post-page">下一篇</div>
+              <a href="https://fastt.cn/post/vuex">
+                <h3 class="post-title">
+                  Vuex介绍
+                </h3>
+              </a>
+            </div>
+            
+          </div>
+          
+
+          
+          
+          <div id="gitalk-container" data-aos="fade-in"></div>
+          
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+</body>
+</html>
