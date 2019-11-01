@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" >
+
+<title>React第二段 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.min.css">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1572606041310">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.11.1/dist/katex.min.css" />
+<link rel="stylesheet" href="https://fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://unpkg.zhimg.com/vue@2.6.10/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150684183-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150684183-1');
+</script>
+
+
+</head>
+
+<body>
+  <div id="app" class="main">
+
+    <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://fastt.cn">
+        <img src="https://fastt.cn/images/avatar.png?v=1572606041310" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">React第二段</h2>
+          <div class="post-date">2019-11-01</div>
+          
+          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/react1.jpg')">
+          </div>
+          
+          <div class="post-content">
+            <p>创建<strong>React</strong>的组件<br>
+双向绑定<strong>state</strong>的设置<br>
+begin enjoy👇</p>
+<!-- more -->
+<h1 id="二-react">二 React</h1>
+<h2 id="组件">组件</h2>
+<p>组件就是将UI 拆分为独立可复用的代码片段。</p>
+<blockquote>
+<p>注意： 组件名称必须以大写字母开头。</p>
+</blockquote>
+<h3 id="组件创建三种方式">组件创建三种方式：</h3>
+<ol>
+<li>函数式组件<pre><code class="language-js">function Home(props) {
+    return &lt;div className='home'&gt;
+        &lt;h2&gt;home&lt;/h2&gt;
+        &lt;p&gt;{props.msg}&lt;/p&gt;
+    &lt;/div&gt;
+}
+
+ReactDOM.render(&lt;Home msg='123'/&gt;, document.getElementById('root'));
+</code></pre>
+<blockquote>
+<p>函数式组件在与用户交互时不方便，无状态，适用于静态展示<br>
+简单，性能好，不需要实例化，无生命周期。</p>
+</blockquote>
+</li>
+<li>React.Component ES6 CLASS语法定义组件<pre><code class="language-js">class Home extends React.Component{
+    constructor(props){
+        super()
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;h2&gt;home&lt;/h2&gt;
+            &lt;p&gt;{this.props.msg}&lt;/p&gt;
+        &lt;/div&gt;
+    }
+}
+
+ReactDOM.render(&lt;Home msg='hello'/&gt;, document.getElementById('root'));
+</code></pre>
+<blockquote>
+<p><code>constructor</code> 构造函数是可选的。</p>
+</blockquote>
+</li>
+<li>React.createClass ES5语法定义组件<pre><code class="language-js">const Home = React.createClass({
+    render:function(){
+        return &lt;div&gt;
+            hello,class component,{this.props.msg}
+        &lt;/div&gt;
+    }
+});
+
+ReactDOM.render(&lt;Home msg='hello'/&gt;, document.getElementById('root'));
+</code></pre>
+<blockquote>
+<p>React.createClass 需要在15.5之前版本才能使用，新版本不再支持。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="props">props</h3>
+<p>通过props可以向组件内部传递数据</p>
+<blockquote>
+<p>props 是只读的，任何时候都不要修改props中的数据</p>
+</blockquote>
+<h4 id="props默认值">props默认值</h4>
+<ol>
+<li>React.createClass<pre><code class="language-js">const Home = React.createClass({
+    getDefaultProps: function() {
+        return {
+            msg:'默认值'
+        };
+    },
+    render:function(){
+        return &lt;div&gt;
+            hello,class component,{this.props.msg}
+        &lt;/div&gt;
+    }
+});
+</code></pre>
+</li>
+<li>React.Component<pre><code class="language-js">class Home extends React.Component{
+    render(){
+        return &lt;div&gt;
+            &lt;h2&gt;home&lt;/h2&gt;
+            &lt;p&gt;{this.props.msg}&lt;/p&gt;
+        &lt;/div&gt;
+    }
+}
+Home.defaultProps ={
+    msg:&quot;Hello,World&quot;
+}
+</code></pre>
+</li>
+<li>函数式<pre><code class="language-js">function Home(props) {
+    return &lt;div className='home'&gt;
+        &lt;h2&gt;home&lt;/h2&gt;
+        &lt;p&gt;{props.msg}&lt;/p&gt;
+    &lt;/div&gt;
+}
+Home.defaultProps ={
+    msg:&quot;Hello,JSX&quot;
+}
+</code></pre>
+</li>
+</ol>
+<h4 id="props类型验证">props类型验证</h4>
+<blockquote>
+<p>自 React v15.5 起，React.PropTypes 已移入另一个包中。请使用 <a href="https://www.npmjs.com/package/prop-types">prop-types</a> 库 代替。</p>
+</blockquote>
+<ol>
+<li>React.createClass<pre><code class="language-js">const Home = React.createClass({
+    // 类型验证
+    propTypes: { 
+        msg:React.PropTypes.string,
+    },
+    render:function(){
+        return &lt;div&gt;
+            hello,class component,{this.props.msg}
+        &lt;/div&gt;
+    }
+});
+</code></pre>
+</li>
+<li>
+<pre><code class="language-js">&lt;script crossorigin src=&quot;https://unpkg.com/prop-types@15.7.2/prop-types.js&quot;&gt;&lt;/script&gt;
+...
+function Home(props) {
+    return &lt;div className='home'&gt;
+        &lt;h2&gt;home&lt;/h2&gt;
+        &lt;p&gt;{props.msg}&lt;/p&gt;
+    &lt;/div&gt;
+}
+//设置组件的属性类型验证
+Home.propTypes ={
+    msg:PropTypes.string,  
+}    
+
+ReactDOM.render(&lt;Home msg={123}/&gt;, document.getElementById('root'));
+</code></pre>
+</li>
+<li>React.Component<pre><code class="language-js">&lt;script crossorigin src=&quot;https://unpkg.com/prop-types@15.7.2/prop-types.js&quot;&gt;&lt;/script&gt;
+...
+class Home extends React.Component{
+    render(){
+        return &lt;div&gt;
+            &lt;h2&gt;home&lt;/h2&gt;
+            &lt;p&gt;{this.props.msg}&lt;/p&gt;
+        &lt;/div&gt;
+    }
+}
+Home.propTypes ={
+    msg:PropTypes.number, 
+}    
+
+ReactDOM.render(&lt;Home msg='998'/&gt;, document.getElementById('root'));
+</code></pre>
+</li>
+</ol>
+<h4 id="proptypes以下提供了使用不同验证器的例子">PropTypes以下提供了使用不同验证器的例子：</h4>
+<pre><code class="language-js">import PropTypes from 'prop-types'; 
+
+MyComponent.propTypes = {
+  // 你可以将属性声明为 JS 原生类型，默认情况下
+  // 这些属性都是可选的。
+  optionalArray: PropTypes.array,
+  optionalBool: PropTypes.bool,
+  optionalFunc: PropTypes.func,
+  optionalNumber: PropTypes.number,
+  optionalObject: PropTypes.object,
+  optionalString: PropTypes.string,
+  optionalSymbol: PropTypes.symbol,
+
+  // 任何可被渲染的元素（包括数字、字符串、元素或数组）
+  // (或 Fragment) 也包含这些类型。
+  optionalNode: PropTypes.node,
+
+  // 一个 React 元素。
+  optionalElement: PropTypes.element,
+
+  // 一个 React 元素类型（即，MyComponent）。
+  optionalElementType: PropTypes.elementType,
+
+  // 你也可以声明 prop 为类的实例，这里使用
+  // JS 的 instanceof 操作符。
+  optionalMessage: PropTypes.instanceOf(Message),
+
+  // 你可以让你的 prop 只能是特定的值，指定它为
+  // 枚举类型。
+  optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+
+  // 一个对象可以是几种类型中的任意一个类型
+  optionalUnion: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(Message)
+  ]),
+
+  // 可以指定一个数组由某一类型的元素组成
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+
+  // 可以指定一个对象由某一类型的值组成
+  optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+
+  // 可以指定一个对象由特定的类型值组成
+  optionalObjectWithShape: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number
+  }),
+  
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),   
+
+  // 你可以在任何 PropTypes 属性后面加上 `isRequired` ，确保
+  // 这个 prop 没有被提供时，会打印警告信息。
+  requiredFunc: PropTypes.func.isRequired,
+
+  // 任意类型的数据
+  requiredAny: PropTypes.any.isRequired,
+
+  // 你可以指定一个自定义验证器。它在验证失败时应返回一个 Error 对象。
+  // 请不要使用 `console.warn` 或抛出异常，因为这在 `onOfType` 中不会起作用。
+  customProp: function(props, propName, componentName) {
+    if (!/matchme/.test(props[propName])) {
+      return new Error(
+        'Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  },
+
+  // 你也可以提供一个自定义的 `arrayOf` 或 `objectOf` 验证器。
+  // 它应该在验证失败时返回一个 Error 对象。
+  // 验证器将验证数组或对象中的每个值。验证器的前两个参数
+  // 第一个是数组或对象本身
+  // 第二个是他们当前的键。
+  customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+    if (!/matchme/.test(propValue[key])) {
+      return new Error(
+        'Invalid prop `' + propFullName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  })
+};
+
+</code></pre>
+<hr>
+<h3 id="组件中事件">组件中事件</h3>
+<pre><code class="language-js">class Home extends React.Component{
+    btnClick(ev){
+        console.log(ev)
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;button onClick={this.btnClick}&gt;按钮&lt;/button&gt;
+        &lt;/div&gt;
+    }
+}
+</code></pre>
+<p>组件中事件回调函数时中使用this，this的值为undefined。</p>
+<ol>
+<li>使用bind函数修正this指向<pre><code class="language-js">class Home extends React.Component{
+    btnClick(ev){
+        console.log(this.props)
+    }
+    render(){
+        return &lt;div&gt;
+            {/* 使用bind修正this指向 */}
+            &lt;button onClick={this.btnClick.bind(this)}&gt;按钮&lt;/button&gt;
+        &lt;/div&gt;
+    }
+}
+</code></pre>
+</li>
+<li>也可以在构造函数中修改，修正后可以直接在元素中调用该方法<pre><code class="language-js">class Home extends React.Component{
+    constructor(props){
+        super()
+        // 修正this指向
+        this.btnClick = this.btnClick.bind(this)
+    }
+    btnClick(ev){
+        console.log(this)
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;button onClick={this.btnClick}&gt;按钮&lt;/button&gt;
+        &lt;/div&gt;
+    }
+}
+</code></pre>
+</li>
+<li>使用箭头函数<pre><code class="language-js">class Home extends React.Component{
+    btnClick(ev){
+        console.log(this)
+        console.log(ev)
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;button onClick={ev=&gt;this.btnClick(ev)}&gt;按钮&lt;/button&gt;
+        &lt;/div&gt;
+    }
+}
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="state"><strong>state</strong></h3>
+<p>更新已经渲染的元素可以使用 <code>state</code></p>
+<ul>
+<li><code>this.forceUpdate()</code> 强制刷新视图</li>
+</ul>
+<ol>
+<li>在构造函数中初始化<code>state</code>数据</li>
+<li>更新<code>state</code>中数据调用<code>setState()</code></li>
+</ol>
+<pre><code class="language-js">class Home extends React.Component{
+    constructor(props){
+        super()
+        // 初始化
+        this.state = {
+            msg:''
+        }
+    }
+    changeClick(ev){
+        // 修改state中数据
+        this.setState({msg: ev.target.value })
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;input type=&quot;text&quot; onChange={this.changeClick.bind(this)} /&gt;
+            &lt;h3&gt;{this.state.msg}&lt;/h3&gt;
+        &lt;/div&gt;
+    }
+}
+</code></pre>
+<ul>
+<li><code>state</code>更新数据是异步的如果想要获取更新后的值可以监听<code>setState</code>中的回调函数来获取新值</li>
+</ul>
+<pre><code class="language-js">this.setState(newState =&gt; {
+    console.log(newState.msg)
+})
+</code></pre>
+<hr>
+<p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
+
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://fastt.cn/tag/react" class="tag">
+              react
+            </a>
+            
+          </div>
+          
+
+
+          
+          <div class="next-post">
+            
+            
+            <div class="next">
+              <div class="post-page">下一篇</div>
+              <a href="https://fastt.cn/post/React1">
+                <h3 class="post-title">
+                  React第一段
+                </h3>
+              </a>
+            </div>
+            
+          </div>
+          
+
+          
+          
+          <div id="gitalk-container" data-aos="fade-in"></div>
+          
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
+<script src="https://unpkg.zhimg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+</body>
+</html>

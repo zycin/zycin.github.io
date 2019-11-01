@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-11-01T09:03:33.861Z</updated>
+    <updated>2019-11-01T11:00:50.616Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fastt.cn"/>
     <link rel="self" href="https://fastt.cn/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://fastt.cn/images/avatar.png</logo>
     <icon>https://fastt.cn/favicon.ico</icon>
     <rights>All rights reserved 2019, Zycin | GeekBlog</rights>
+    <entry>
+        <title type="html"><![CDATA[React第二段]]></title>
+        <id>https://fastt.cn/post/React2</id>
+        <link href="https://fastt.cn/post/React2">
+        </link>
+        <updated>2019-11-01T10:00:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>创建<strong>React</strong>的组件<br>
+双向绑定<strong>state</strong>的设置<br>
+begin enjoy👇</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>创建<strong>React</strong>的组件<br>
+双向绑定<strong>state</strong>的设置<br>
+begin enjoy👇</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[React第一段]]></title>
         <id>https://fastt.cn/post/React1</id>
@@ -142,23 +157,6 @@ begin enjoy👇</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>此篇讲解<code>Promise</code>的使用<br>
 介绍<code>promise</code>常用方法<br>
-begin enjoy👇</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[模块化和npm]]></title>
-        <id>https://fastt.cn/post/module-npm</id>
-        <link href="https://fastt.cn/post/module-npm">
-        </link>
-        <updated>2019-10-10T10:36:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>此篇文章介绍<br>
-<strong><code>ES6的模块</code></strong> <strong><code>nodem模块</code></strong><br>
-<code>CMD和AMD</code> <code>npm的使用</code><br>
-begin enjoy👇</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>此篇文章介绍<br>
-<strong><code>ES6的模块</code></strong> <strong><code>nodem模块</code></strong><br>
-<code>CMD和AMD</code> <code>npm的使用</code><br>
 begin enjoy👇</p>
 ]]></content>
     </entry>
