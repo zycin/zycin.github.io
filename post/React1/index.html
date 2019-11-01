@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" >
+
+<title>React第一段 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.min.css">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1572597712335">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.11.1/dist/katex.min.css" />
+<link rel="stylesheet" href="https://fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://unpkg.zhimg.com/vue@2.6.10/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150684183-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150684183-1');
+</script>
+
+
+</head>
+
+<body>
+  <div id="app" class="main">
+
+    <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://fastt.cn">
+        <img src="https://fastt.cn/images/avatar.png?v=1572597712335" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">React第一段</h2>
+          <div class="post-date">2019-11-01</div>
+          
+          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/react1.jpg')">
+          </div>
+          
+          <div class="post-content">
+            <p><strong>React</strong>的简单介绍<br>
+<strong>JSX</strong>的语法学习<br>
+begin enjoy👇</p>
+<!-- more -->
+<h1 id="一-react">一 React</h1>
+<p><strong>React</strong> 用于构建用户界面的 JavaScript 库，React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。</p>
+<ul>
+<li><a href="https://react.docschina.org/">react中文网</a></li>
+</ul>
+<h3 id="react特点">react特点</h3>
+<ol>
+<li>声明式设计：React采用声明范式，可以轻松描述应用。</li>
+<li>高效：React通过对DOM的模拟，最大限度地减少与DOM的交互。</li>
+<li>灵活：React可以与已知的库或框架很好地配合。</li>
+</ol>
+<blockquote>
+<p>react不同于vue的mvvm，react只负责视图层view层</p>
+</blockquote>
+<h2 id="第一个react应用">第一个react应用</h2>
+<pre><code class="language-html">&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+        
+&lt;!-- 引入react核心库 --&gt;
+&lt;script src=&quot;https://unpkg.com/react@16/umd/react.development.js&quot; crossorigin&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot; crossorigin&gt;&lt;/script&gt;
+&lt;!-- babel用来解析 jsx语法 --&gt;
+&lt;script src=&quot;https://unpkg.com/@babel/standalone/babel.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/babel&quot;&gt;
+    ReactDOM.render(
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+        document.getElementById('root')
+    );
+&lt;/script&gt;
+</code></pre>
+<h2 id="jsx">JSX</h2>
+<p>JSX是一种JavaScript的语法扩展，运用于React架构中，其格式比较像是模版语言，但事实上完全是在JavaScript内部实现的。React使用JSX来描述用户界面。使用JSX语法可以让我们在 js编写类似HTML的标签</p>
+<ul>
+<li><a href="https://www.babeljs.cn/">babel中文网</a></li>
+</ul>
+<blockquote>
+<p>JSX语法编写的代码并不能直接在浏览器中运行需要经过 <strong>babel</strong> 进行编译才会被浏览器识别。</p>
+</blockquote>
+<pre><code class="language-js">// JSX
+let template = &lt;h1&gt;Hello, JSX!&lt;/h1&gt;
+ReactDOM.render(template, document.getElementById('root'));
+</code></pre>
+<ul>
+<li>jsx标签必须包含在根标签下,否则会报语法错误。</li>
+</ul>
+<h3 id="jsx-注释">JSX 注释</h3>
+<p>在JSX中可以插入注释语句,语法<code>{/* */}</code></p>
+<pre><code class="language-js">let template = &lt;div&gt;
+    {/* jsx 注释 */}
+    &lt;h1&gt;标题&lt;/h1&gt;
+    &lt;p&gt;段落&lt;/p&gt;    
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="jsx-插入js表达式">JSX 插入js表达式</h3>
+<p>使用 花括号 <code>{}</code>可以在JSX插入JS表达式</p>
+<pre><code class="language-js">let num =199;
+let template = &lt;div&gt;
+    &lt;h1&gt;标题&lt;/h1&gt;
+    &lt;p&gt;段落{num - 19}&lt;/p&gt;    
+&lt;/div&gt;
+</code></pre>
+<h4 id="jsx-变量类型">JSX 变量类型</h4>
+<p>JSX 表达式中可以插入任意类型的变量。</p>
+<ul>
+<li>JSX插入以下三种类型的值并不能直接渲染到DOM
+<ul>
+<li><code>Boolan</code></li>
+<li><code>Null</code></li>
+<li><code>undefined</code></li>
+</ul>
+</li>
+<li>数组：插入的如果是数组类型那么，会自动展开所有数组成员。</li>
+</ul>
+<hr>
+<h3 id="jsx-表达式直接使用插入的数据是安全的">JSX 表达式直接使用插入的数据是安全的</h3>
+<p>React DOM 在渲染之前默认会 过滤 所有传入的值会将所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 XSS(跨站脚本) 攻击。</p>
+<pre><code class="language-js">&lt;!-- 接收用户输入 --&gt;
+&lt;input type=&quot;text&quot; class=&quot;userinput&quot;&gt;
+&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+...
+
+document.querySelector('.userinput').onchange = function (ev) { 
+    let value =  ev.target.value
+    let template = &lt;div&gt;
+        {/* 直接将用户输入的数据插入到JSX表达式 */}
+        &lt;p&gt;{value}&lt;/p&gt;
+    &lt;/div&gt;
+
+    ReactDOM.render(template, document.getElementById('root'));
+}
+</code></pre>
+<hr>
+<h3 id="jsx-属性">JSX 属性</h3>
+<p>JSX 语法上更接近 JavaScript 而不是 HTML，所以 React DOM 使用 camelCase（小驼峰命名）来定义属性的名称，而不使用 HTML 属性名称的命名约定。</p>
+<p>例如，JSX 里的 class 变成了 className，而 tabindex 则变为 tabIndex。</p>
+<pre><code class="language-js">let template = &lt;div&gt;
+    &lt;p className='box'&gt;白日依山尽&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>使用花括号 <code>{}</code> 为属性插入一个JS表达式</li>
+</ul>
+<pre><code class="language-js">let tValue = '这是一个标题'
+
+let template = &lt;div&gt;
+    // 给属性插入一个js达式
+    &lt;h2 title={tValue}&gt;标题&lt;/h2&gt;
+    &lt;p className='box'&gt;白日依山尽&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="style-属性">style 属性</h4>
+<p>在JSX中使用style来设置样式时,style的值必须是一个对象,各个样式属性作为key(驼峰命名),样式值为value</p>
+<pre><code class="language-js">var myStyle = {color:&quot;#ff0000&quot;,fontSize:40};
+let template = &lt;div&gt;
+    &lt;p style={myStyle}&gt;段落&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="jsx-事件">JSX 事件</h3>
+<p>JSX 支持所有的 HTML 元素的事件,但是有一点语法上的不同。</p>
+<ul>
+<li>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。</li>
+<li>使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。</li>
+</ul>
+<pre><code class="language-js">function  fun1(ev) {
+    console.log(ev)
+}
+let template = &lt;div&gt;
+    {/* 事件名称必须使用小驼峰 */}
+    &lt;button onClick={fun1}&gt;按钮1&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>在 React 中另一个不同点是你不能通过返回 <code>false</code> 的方式阻止默认行为。你必须显式的使用 <code>preventDefault()</code> 。</p>
+</blockquote>
+<h4 id="事件回调函数中传递数据">事件回调函数中传递数据</h4>
+<p>JSX 可以通过箭头函数的方式向事件回调函数中传递数据</p>
+<pre><code class="language-js">function  fun1(...args) {
+    console.log(args)
+}
+let template = &lt;div&gt;
+    &lt;button onClick={ev=&gt; fun1(ev,123,456) }&gt;按钮1&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>通过<code>bind</code>函数向传递数据</p>
+<pre><code class="language-js">function  fun1(args) {
+    console.log(args)
+}
+let template = &lt;div&gt;
+    &lt;button onClick={fun1.bind(null,'123') }&gt;按钮1&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p><strong>注意</strong> 使用<code>bind</code>方式向回调中传递数据时是不能获取到<code>event</code>对象的</p>
+</blockquote>
+<hr>
+<h3 id="更新已渲染的元素">更新已渲染的元素</h3>
+<p>React元素都是不可变的。当元素被创建之后，你是无法改变其内容或属性的。一个元素就像电影的单帧：它代表了某个特定时刻的 UI。</p>
+<p>如果要更新已经渲染界面可以通过重新通过render方法渲染。React DOM 会将元素和它的子元素与它们之前的状态进行比较，React 只会更新必要的部分</p>
+<pre><code class="language-js">let msg='msg'
+function  changeClick(ev) {
+    msg = ev.target.value
+    // 数据改变后重新渲染
+    let template = &lt;div&gt;
+        &lt;input type=&quot;text&quot; onChange={changeClick} /&gt;
+        &lt;div&gt;{msg}&lt;/div&gt;
+    &lt;/div&gt;
+
+    ReactDOM.render(template, document.getElementById('root'));
+}
+let template = &lt;div&gt;
+    &lt;input type=&quot;text&quot; onChange={changeClick} /&gt;
+    &lt;div&gt;{msg}&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="列表渲染">列表渲染</h3>
+<ol>
+<li>for循环</li>
+</ol>
+<pre><code class="language-js">let colors = ['red','blue','green','yellow']
+let colorsJSX = []
+// 将数组中内容展开到JSX表达式中
+for (let i = 0; i &lt; colors.length; i++) {
+    colorsJSX.push( &lt;li key={i}&gt;{colors[i]}&lt;/li&gt; )
+}
+
+let template = &lt;div&gt;
+    &lt;ul&gt;{colorsJSX}&lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<ol start="2">
+<li>map()</li>
+</ol>
+<pre><code class="language-js">let colors = ['red','blue','green','yellow']
+let colorsJSX =  colors.map( (item,index) =&gt; 
+    &lt;li key={index}&gt;{item}&lt;/li&gt; )
+    
+let template = &lt;div&gt;
+    &lt;ul&gt;{colorsJSX}&lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>列表中元素需要设置 <strong>key</strong> 属性，数组元素中使用的 key 在其兄弟节点之间应该是独一无二的。</p>
+</blockquote>
+<ol start="3">
+<li>JSX中嵌入map()。JSX 允许在花括号中嵌入任何表达式</li>
+</ol>
+<pre><code class="language-js">let colors = ['red','blue','green','yellow']
+
+let template = &lt;div&gt;&lt;ul&gt;
+    {
+        colors.map( (item,index) =&gt; 
+            &lt;li key={index}&gt;{item}&lt;/li&gt; )
+    }
+    &lt;/ul&gt;&lt;/div&gt;
+</code></pre>
+
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://fastt.cn/tag/react" class="tag">
+              react
+            </a>
+            
+          </div>
+          
+
+
+          
+          <div class="next-post">
+            
+            
+            <div class="next">
+              <div class="post-page">下一篇</div>
+              <a href="https://fastt.cn/post/bulider">
+                <h3 class="post-title">
+                  自动化构建
+                </h3>
+              </a>
+            </div>
+            
+          </div>
+          
+
+          
+          
+          <div id="gitalk-container" data-aos="fade-in"></div>
+          
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
+<script src="https://unpkg.zhimg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+</body>
+</html>
