@@ -1,35 +1,17 @@
-<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终" />
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573026457483">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<head>
-  <meta charset="utf-8" >
-
-<title>Vue第一段 | Zycin | GeekBlog</title>
-<meta name="description" content="不忘初心  方得始终">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.min.css">
-<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573023708846">
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
-<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.11.1/dist/katex.min.css" />
 <link rel="stylesheet" href="https://fastt.cn/styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://unpkg.zhimg.com/vue@2.6.10/dist/vue.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
-<link rel="stylesheet" href="https://unpkg.zhimg.com/aos@next/dist/aos.css" />
+<link rel="alternate" type="application/atom+xml" title="Zycin | GeekBlog - Atom Feed" href="https://fastt.cn/atom.xml">
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150684183-1"></script>
@@ -42,89 +24,102 @@
 </script>
 
 
-</head>
-
-<body>
-  <div id="app" class="main">
-
-    <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://fastt.cn">
-        <img src="https://fastt.cn/images/avatar.png?v=1573023708846" class="site-logo">
-        <h1 class="site-title">Zycin | GeekBlog</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://fastt.cn">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://fastt.cn/images/avatar.png?v=1573026457483" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Zycin | GeekBlog</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#vue%E7%AC%AC%E4%B8%80%E6%AE%B5"><code>Vue</code>第一段</a>
+<ul>
+<li><a href="#mvvm%E6%A1%86%E6%9E%B6%E5%92%8Cvue%E7%9A%84%E8%AE%A4%E8%AF%86"><code>MVVM</code>框架和<code>Vue</code>的认识</a></li>
+<li><a href="#vue%E6%A1%86%E6%9E%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><code>Vue</code>框架的底层原理</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E4%B8%AAvue%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81">第一个<code>Vue</code>基本使用代码</a></li>
+<li><a href="#vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E7%9A%84%E4%BD%BF%E7%94%A8"><code>Vue</code>双向数据绑定的使用</a></li>
+<li><a href="#vue%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><code>Vue</code>常用指令</a></li>
+<li><a href="#vue%E7%9A%84methods%E6%A8%A1%E5%9D%97"><code>Vue</code>的<code>methods</code>模块</a></li>
+<li><a href="#vue%E7%9A%84%E6%B8%B2%E6%9F%93"><code>Vue</code>的渲染</a></li>
+<li><a href="#vue%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><code>Vue</code>父子组件的使用</a></li>
+<li><a href="#vue%E7%9A%84%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><code>Vue</code>的常用事件修饰符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/zycin/" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      不忘初心  方得始终
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-
-    <div class="main-container">
-      <div class="content-container" data-aos="fade-up">
-        <div class="post-detail">
-          <h2 class="post-title">Vue第一段</h2>
-          <div class="post-date">2019-10-12</div>
-          
-          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/Vue1.jpg')">
-          </div>
-          
-          <div class="post-content">
-            <p>将<strong>Vue</strong>分成四个阶段<br>
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a></div>
+    <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Vue第一段</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-10-12 / 7 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://fastt-1252391792.file.myqcloud.com/Vue1.jpg" alt="">
+        
+        <div class="post-content yue">
+          <p>将<strong>Vue</strong>分成四个阶段<br>
 第一段~<br>
 begin enjoy👇</p>
 <!-- more -->
@@ -228,100 +223,168 @@ console.log(vm.city1,vm.city2);
 </ul>
 <hr>
 <p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
-          </div>
-          
-          <div class="tag-container">
-            
-            <a href="https://fastt.cn/tag/vue" class="tag">
-              vue
-            </a>
-            
-          </div>
-          
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://fastt.cn/tag/vue">
+            <span class="flex-auto">vue</span>
+          </a>
+        
 
 
+        <div class="flex justify-between py-8">
           
-          <div class="next-post">
-            
-            <div class="prev">
-              <div class="post-page">上一篇</div>
+            <div class="prev-post">
               <a href="https://fastt.cn/post/Vue2">
                 <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
                   Vue第二段
                 </h3>
               </a>
             </div>
-            
-            
-            <div class="next">
-              <div class="post-page">下一篇</div>
+          
+
+          
+            <div class="next-post">
               <a href="https://fastt.cn/post/promise">
                 <h3 class="post-title">
                   Promise异步编程
+                  <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>
             </div>
-            
-          </div>
           
-
-          
-          
-          <div id="gitalk-container" data-aos="fade-in"></div>
-          
-
-          
-          
-
         </div>
 
-      </div>
-    </div>
-  </div>
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-  <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
-<script src="https://unpkg.zhimg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
+<div id="gitalk-container"></div>
 
-AOS.init();
+<script>
 
-hljs.initHighlightingOnLoad()
+  var gitalk = new Gitalk({
+    clientID: 'f9c4cb98113788bb94e1',
+    clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+    repo: 'zycin.github.io',
+    owner: 'zycin',
+    admin: ['zycin'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  gitalk.render('gitalk-container')
 
 </script>
 
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://fastt.cn/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
-    <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-
-      var gitalk = new Gitalk({
-        clientID: 'f9c4cb98113788bb94e1',
-        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
-        repo: 'zycin.github.io',
-        owner: 'zycin',
-        admin: ['zycin'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
-
-
-
-
-</body>
+  </body>
 </html>
