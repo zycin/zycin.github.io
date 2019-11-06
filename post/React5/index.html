@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" >
+
+<title>React第五段 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.min.css">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573023708846">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.11.1/dist/katex.min.css" />
+<link rel="stylesheet" href="https://fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://unpkg.zhimg.com/vue@2.6.10/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150684183-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150684183-1');
+</script>
+
+
+</head>
+
+<body>
+  <div id="app" class="main">
+
+    <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://fastt.cn">
+        <img src="https://fastt.cn/images/avatar.png?v=1573023708846" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">React第五段</h2>
+          <div class="post-date">2019-11-03</div>
+          
+          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/react1.jpg')">
+          </div>
+          
+          <div class="post-content">
+            <p><strong>React</strong>的<strong>路由</strong>配置<br>
+<strong>refs</strong>和<strong>高阶组件</strong><br>
+begin enjoy👇</p>
+<!-- more -->
+<h1 id="五-react">五 React</h1>
+<h2 id="路由">路由</h2>
+<ul>
+<li><a href="https://github.com/ReactTraining/react-router">github中地址</a></li>
+<li><a href="https://reacttraining.com/react-router/web/guides/quick-start/">路由官方文档</a></li>
+</ul>
+<h2 id="下载路由文件">下载路由文件</h2>
+<ul>
+<li>只下载 <code>react-router-dom</code>，其它不用下载</li>
+<li><code>npm install --save react-router-dom</code></li>
+<li>cdn <code>&lt;script src=&quot;https://unpkg.com/react-router-dom/umd/react-router-dom.min.js&quot;&gt;&lt;/script&gt;</code></li>
+</ul>
+<h2 id="reactrouterdom">ReactRouterDOM</h2>
+<ul>
+<li><code>Route</code> : （抽象类） 路由对象，匹配浏览器地址栏url,所有路由记录都必须嵌套在该组件内。</li>
+<li><code>BrowserRouter</code>： （Route的实现类）按H5 history 模式匹配url</li>
+<li><code>HashRouter</code>：（Route的实现类）按 hash 模式匹配url</li>
+<li><code>StaticRouter</code>：（Route的实现类）</li>
+<li><code>MemoryRouter</code>：（Route的实现类）</li>
+<li><code>Redirect</code>: 重定向,必须配合 <code>&lt;Switch&gt;</code> 一起使用</li>
+</ul>
+<blockquote>
+<p>react不像vue路由规则匹配成功后就不往后面匹配了，react会将所有规则全部匹配。<br>
+react 路由规则配合上<code>&lt;Switch&gt;</code>组件使用就会匹配上第一个后就不再向后匹配，如果没有匹配上就继续匹配。</p>
+</blockquote>
+<ul>
+<li><code>Link</code> 声明性，可访问的导航。</li>
+<li><code>NavLink</code>：与Link不同点在于会动态的添加一个<code>active</code>类名</li>
+</ul>
+<blockquote>
+<p><code>NavLink</code> 组件中也要加上 exact 否则匹配时可能会出现都出现 <code>active</code>类名的现象。</p>
+</blockquote>
+<ul>
+<li>也可以指定自已的类名</li>
+</ul>
+<pre><code class="language-html">&lt;NavLink to='/goods/food' activeClassName='my-active' exact&gt;食物&lt;/NavLink&gt;
+</code></pre>
+<h2 id="路由基本使用">路由基本使用</h2>
+<pre><code class="language-js">// 获取路由对象
+const HashRouter = ReactRouterDOM.HashRouter
+const Route = ReactRouterDOM.Route //设定规则
+const Redirect = ReactRouterDOM.Redirect //重定向
+const Switch = ReactRouterDOM.Switch 
+const Link = ReactRouterDOM.Link
+const NavLink = ReactRouterDOM.NavLink
+
+//路由规则匹配匹配成功后要渲染的组件
+class Home extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Home&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+class About extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;About&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+
+class App extends React.Component{
+    render(){
+        return &lt;div&gt;
+        &lt;HashRouter&gt;
+            &lt;ul className='navbar'&gt;
+                &lt;li&gt;&lt;Link to='/home'&gt;home&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;Link to='/about'&gt;about&lt;/Link&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;NavLink to='/goods'&gt;goods&lt;/NavLink&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            {/* 定义路由规则 */}
+            &lt;Switch&gt;
+                &lt;Route path='/home' component={Home}&gt;&lt;/Route&gt;
+                &lt;Route path='/about' component={About}&gt;&lt;/Route&gt;
+                &lt;Route path='/goods' render={(props)=&gt;{return(
+                    &lt;div&gt;
+                        &lt;h2&gt;goods&lt;/h2&gt;
+                    &lt;/div&gt;
+                )}}&gt;&lt;/Route&gt;
+                &lt;Redirect push to='/home'  /&gt;
+            &lt;/Switch&gt;
+        &lt;/HashRouter&gt;
+        &lt;/div&gt;
+    }
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('app'))
+</code></pre>
+<h2 id="路由重定向">路由重定向</h2>
+<pre><code class="language-js">&lt;Redirect push to='/'  /&gt;
+</code></pre>
+<ul>
+<li>push 为true时，重定向会将新条目推送到历史记录而不是替换当前条目。</li>
+</ul>
+<h2 id="路由规则匹配模式">路由规则匹配模式</h2>
+<ul>
+<li><code>exact</code> 精确模式</li>
+</ul>
+<pre><code class="language-js">&lt;Route exact path=&quot;/one&quot; component={About} /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>path</th>
+<th style="text-align:center">location.pathname</th>
+<th style="text-align:right">exact</th>
+<th style="text-align:left">匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one</td>
+<td style="text-align:center">/one/two</td>
+<td style="text-align:right">true</td>
+<td style="text-align:left">no</td>
+</tr>
+<tr>
+<td>/one</td>
+<td style="text-align:center">/one/two</td>
+<td style="text-align:right">false</td>
+<td style="text-align:left">yes</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>strict</code> 严格模式</li>
+</ul>
+<pre><code class="language-js">&lt;Route strict path=&quot;/one/&quot; component={About} /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>path</th>
+<th style="text-align:center">location.pathname</th>
+<th style="text-align:left">匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one/</td>
+<td style="text-align:center">/one</td>
+<td style="text-align:left">no</td>
+</tr>
+<tr>
+<td>/one/</td>
+<td style="text-align:center">/one/</td>
+<td style="text-align:left">yes</td>
+</tr>
+<tr>
+<td>/one/</td>
+<td style="text-align:center">/one/two</td>
+<td style="text-align:left">yes</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-js">&lt;Route exact strict path=&quot;/one&quot; component={About} /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>path</th>
+<th style="text-align:center">location.pathname</th>
+<th style="text-align:left">匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one</td>
+<td style="text-align:center">/one</td>
+<td style="text-align:left">yes</td>
+</tr>
+<tr>
+<td>/one</td>
+<td style="text-align:center">/one/</td>
+<td style="text-align:left">no</td>
+</tr>
+<tr>
+<td>/one</td>
+<td style="text-align:center">/one/two</td>
+<td style="text-align:left">no</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>strict</code>会强制检查路径尾部是否有斜杠。</p>
+</blockquote>
+<h2 id="嵌套路由">嵌套路由</h2>
+<ul>
+<li>嵌套路由，首先会匹配到主路由规则然后再匹配子路由。</li>
+<li>主路由匹配规则中不能添加 <strong>exact</strong>，如果添加的话子路由将匹配不到。</li>
+</ul>
+<pre><code class="language-js">class Home extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Home&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+
+class Goods extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Goods&lt;/h2&gt;
+            {/* 配置子路由 */}
+            &lt;ul className='navbar'&gt;
+                &lt;li&gt;&lt;NavLink to='/goods/cloth' exact&gt;衣服&lt;/NavLink&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;NavLink to='/goods/food' activeClassName='my-active' exact&gt;食物&lt;/NavLink&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;Switch&gt;
+                &lt;Route path='/goods/cloth'  render={()=&gt;{return (&lt;div&gt;
+                    &lt;h2&gt;衣服&lt;/h2&gt;
+                    &lt;/div&gt;)}}&gt;&lt;/Route&gt;
+                &lt;Route path='/goods/food'  render={()=&gt;{return (&lt;div&gt;
+                    &lt;h2&gt;食物&lt;/h2&gt;
+                    &lt;/div&gt;)}}&gt;&lt;/Route&gt;
+                &lt;Redirect push to='/goods/cloth'  /&gt;
+            &lt;/Switch&gt;
+        &lt;/div&gt;)
+    }
+}
+
+class App extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;嵌套路由&lt;/h2&gt;
+            &lt;HashRouter&gt;
+                &lt;ul className='navbar'&gt;
+                    &lt;li&gt;&lt;NavLink to='/' exact&gt;home&lt;/NavLink&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;NavLink to='/goods'&gt;goods&lt;/NavLink&gt;&lt;/li&gt;
+                    
+                &lt;/ul&gt;
+                &lt;Switch&gt;
+                    &lt;Route path='/' exact component={Home}&gt;&lt;/Route&gt;
+                    {/* 不能添加 exact 否则主路由匹配不到子路由永远进入不了 */}
+                    &lt;Route path='/goods'  component={Goods}&gt;&lt;/Route&gt;
+                    &lt;Redirect push to='/'  /&gt;
+                &lt;/Switch&gt;
+            &lt;/HashRouter&gt;
+        &lt;/div&gt;)
+    }
+}
+</code></pre>
+<h2 id="动态路由">动态路由</h2>
+<pre><code class="language-js">&lt;Route path=&quot;/users/:id&quot; component={User} /&gt;
+</code></pre>
+<ul>
+<li><code>props.match.params</code> 接收动态路由传递的参数</li>
+</ul>
+<pre><code class="language-js">class Home extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Home&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+class Goods extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={ param:'' }
+    }
+    componentDidMount(){
+        // 获取到路由中传递的数据
+        let param =  this.props.match.params['goods']
+        console.log(param)
+        this.setState({param:param})
+        
+    }
+    // 数据有更新时渲染数据到页面
+    componentWillReceiveProps(nextProps){
+        let param =  nextProps.match.params['goods']
+        console.log(&quot;&gt;&gt; &quot; + param)
+        this.setState({param:param})
+    }
+
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Goods&lt;/h2&gt;
+            &lt;p&gt;{this.state.param}&lt;/p&gt;
+        &lt;/div&gt;)
+    }
+}
+
+class App extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;嵌套路由&lt;/h2&gt;
+            
+            &lt;HashRouter &gt;
+                &lt;ul className='navbar'&gt;
+                    &lt;li&gt;&lt;NavLink to='/' exact&gt;home&lt;/NavLink&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;NavLink to='/food'&gt;food&lt;/NavLink&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;NavLink to='/fruits'&gt;fruits&lt;/NavLink&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;Switch&gt;
+                    &lt;Route path='/' exact component={Home}&gt;&lt;/Route&gt;
+                    {/* 配置动太路由 */}
+                    &lt;Route path='/:goods'  component={Goods}&gt;&lt;/Route&gt;
+                    &lt;Redirect push to='/'  /&gt;
+                &lt;/Switch&gt;
+            &lt;/HashRouter&gt;
+        &lt;/div&gt;)
+    }
+}
+</code></pre>
+<h2 id="路由编程式导航">路由编程式导航</h2>
+<ul>
+<li>不是路由组件，但想使用路由组件中的对象方法，那么可以使用 <strong>withRouter</strong> 高阶组件进行封装。</li>
+</ul>
+<pre><code class="language-js">class Home extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Home&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+class Goods extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Goods&lt;/h2&gt;
+        &lt;/div&gt;)
+    }
+}
+// 普通组件需要经过高阶组件withRouter包装才能使用路由中方法
+class MyNav extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;div&gt;
+                &lt;button onClick={this.goHome.bind(this)}&gt;home&lt;/button&gt;
+                &lt;button onClick={this.goGoods.bind(this)}&gt;food&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;)
+    }
+    goHome(){
+        // 必须将该组件通过高阶组件 withRouter 转换后才可以使用push方法
+        this.props.history.push('/home')
+    }
+    goGoods(){
+        this.props.history.push('/goods')
+    }
+}
+// 高阶组件
+const withRouter = ReactRouterDOM.withRouter
+// 使用普通组件拥有路由组件的方法
+const NewNav = withRouter(MyNav)
+class App extends React.Component{
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;编辑式导航&lt;/h2&gt;
+            &lt;HashRouter&gt;
+                &lt;NewNav /&gt;
+                &lt;Switch&gt;
+                    &lt;Route path='/' exact component={Home}&gt;&lt;/Route&gt;
+                    &lt;Route path='/goods'  component={Goods}&gt;&lt;/Route&gt;
+                    &lt;Redirect push to='/'  /&gt;
+                &lt;/Switch&gt;
+            &lt;/HashRouter&gt;
+        &lt;/div&gt;)
+    }
+}
+</code></pre>
+<hr>
+<p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
+
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://fastt.cn/tag/react" class="tag">
+              react
+            </a>
+            
+          </div>
+          
+
+
+          
+          <div class="next-post">
+            
+            <div class="prev">
+              <div class="post-page">上一篇</div>
+              <a href="https://fastt.cn/post/React6">
+                <h3 class="post-title">
+                  React第六段
+                </h3>
+              </a>
+            </div>
+            
+            
+            <div class="next">
+              <div class="post-page">下一篇</div>
+              <a href="https://fastt.cn/post/React4">
+                <h3 class="post-title">
+                  React第四段
+                </h3>
+              </a>
+            </div>
+            
+          </div>
+          
+
+          
+          
+          <div id="gitalk-container" data-aos="fade-in"></div>
+          
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
+<script src="https://unpkg.zhimg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" >
 
-<title>ES6的语法 | Zycin | GeekBlog</title>
+<title>React第四段 | Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -117,181 +117,175 @@
     <div class="main-container">
       <div class="content-container" data-aos="fade-up">
         <div class="post-detail">
-          <h2 class="post-title">ES6的语法</h2>
-          <div class="post-date">2019-10-09</div>
+          <h2 class="post-title">React第四段</h2>
+          <div class="post-date">2019-11-02</div>
           
-          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/es6.jpg')">
+          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/react1.jpg')">
           </div>
           
           <div class="post-content">
-            <p>这里总结一下<br>
-<code>ES6</code>的语法<br>
+            <p><strong>React</strong>的内容分发<br>
+<strong>refs</strong>和<strong>高阶组件</strong><br>
 begin enjoy👇</p>
 <!-- more -->
+<h1 id="四-react">四 React</h1>
+<h2 id="内容分发">内容分发</h2>
+<h3 id="默认内容分发">默认内容分发</h3>
 <ul>
-<li>函数的默认参数</li>
+<li><code>props.children</code>对组件内已有内容进行保留</li>
 </ul>
-<pre><code>    function f(x, y = 123) {
-        //替代原先使用 || 
-        let y = y || 123;
+<pre><code class="language-js">class Home extends React.Component {
+    render() {
+        return &lt;div&gt;
+            &lt;h2&gt;home&lt;/h2&gt;
+            {/* 使用默认内容分发 */}
+            {this.props.children}
+        &lt;/div&gt;
+        
     }
-</code></pre>
-<ul>
-<li>
-<p>（...）函数参数语法</p>
-<ul>
-<li>当其作为函数形参时，称为rest剩余参数，将多个值凝聚成数组<pre><code>    function f(...args) {
-        //替代了arguments
+}
 
+ReactDOM.render(&lt;Home &gt;
+    {/* 设置分发内容 */}
+    &lt;h2&gt;内容分发&lt;/h2&gt;
+&lt;/Home&gt;, document.getElementById('root'));
+</code></pre>
+<h3 id="指定内容分发">指定内容分发</h3>
+<pre><code class="language-js">class Home extends React.Component {
+    render() {
+        return &lt;div&gt;
+            &lt;h2&gt;home&lt;/h2&gt;
+            {/* 使用默认内容分发 */}
+            {this.props.children}
+            {/* 指定内容分发 */}
+            {this.props.comp1}
+            {this.props.comp2}
+        &lt;/div&gt;
     }
+}
+    {/* 设置指定分发内容 */}
+ReactDOM.render(&lt;Home  
+    comp1={&lt;div&gt;内容1&lt;/div&gt;} comp2={&lt;div&gt;内容2&lt;/div&gt;}&gt;
+    {/* 设置默认分发内容 */}
+    &lt;h2&gt;内容分发&lt;/h2&gt;
+&lt;/Home&gt;, document.getElementById('root'));
 </code></pre>
-</li>
-<li>当和数组一起使用时，它是将数组展开为多个值，spread语法<pre><code>    //用来复制或者拷贝数组
-    const arr = [1,2,3];
-    const arr2 = [...arr];
-    //解析数组为多个参数
-    Math.max.apply(null, arr);
-    Math.max(...arr);
+<h2 id="refs">refs</h2>
+<p>refs属性显露组件的DOM元素</p>
+<h3 id="何时使用-refs">何时使用 Refs</h3>
+<p>下面是几个适合使用 refs 的情况：</p>
+<ol>
+<li>管理焦点，文本选择或媒体播放。</li>
+<li>触发强制动画。</li>
+<li>集成第三方 DOM 库。</li>
+</ol>
+<blockquote>
+<p>避免使用 refs 来做任何可以通过声明式实现来完成的事情。</p>
+</blockquote>
+<h3 id="refs获取有两种方式">refs获取有两种方式</h3>
+<ol>
+<li>React 16.3 版本之前使用回调函数方式</li>
+</ol>
+<pre><code class="language-js">class Home extends React.Component{
+    constructor(props){
+        super()
+        // 接收DOM对象
+        this.input1 = null
+    }
+    render(){
+        return &lt;div&gt;
+            {/*回调函数方式获取ref*/}
+            &lt;input type=&quot;text&quot; ref={el=&gt;{this.input1 = el;}}/&gt;
+        &lt;/div&gt;
+    }
+    componentDidMount() {
+        console.log(this.input1)
+    }
+}
 </code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>箭头函数的声明</p>
-</li>
-</ul>
-<pre><code>    let f = () =&gt; {
+<ol start="2">
+<li>React 16.3 版本使用的 React.createRef()</li>
+</ol>
+<pre><code class="language-js">class Home extends React.Component{
+    constructor(props){
+        super()
+        // 16.3版本使用
+        this.input1 = React.createRef()
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;input type=&quot;text&quot; ref={this.input1} /&gt;
+        &lt;/div&gt;
+    }
+    componentDidMount() {
+        console.log(this.input1)
+    }
+}
+</code></pre>
+<h2 id="非受控组件">非受控组件</h2>
+<p>非受控组件，表单数据将交由 DOM 节点来处理。非受控组件可以 使用 ref 来从 DOM 节点中获取表单数据。</p>
+<pre><code class="language-js">class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.input = React.createRef();
+    }
 
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.input.current.value);
+        event.preventDefault();
     }
-</code></pre>
-<ul>
-<li>
-<p>字面量对象扩展语法</p>
-<ul>
-<li>
-<p>简洁属性</p>
-<pre><code>    let foo = &quot;hello&quot;,
-        bar = &quot;world&quot;;
-    const o = {
-        foo : foo,
-        bar : bar,
-    } //简写成
-    const o = {foo, bar};
 
+    render() {
+        return (
+        &lt;form onSubmit={this.handleSubmit}&gt;
+            &lt;label&gt;
+            Name:
+            &lt;input type=&quot;text&quot; ref={this.input} /&gt;
+            &lt;/label&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
+        &lt;/form&gt;
+        );
+    }
+}
 </code></pre>
-</li>
-<li>
-<p>简洁方法</p>
-<pre><code>    const o = {
-        f : function () {},
-        g : function () {},
-    } //简写成，和class中方法的声明一样，function语法糖
-    const o = {
-        f () {},
-        g () {},
-    }
-</code></pre>
-</li>
-<li>
-<p>计算属性</p>
-<pre><code>    let bar = &quot;baz&quot;;
-    const o = {
-        foo : &quot;hello&quot;,
-    }
-    //原来计算属性必须动态添加 使用[]添加，其中bar是变量
-    o[bar] = &quot;world&quot;;
-    //es6简化
-    const o = {
-        foo : &quot;hello&quot;,
-        bar : &quot;world&quot;,  //bar是标识符，不是变量bar
-        [bar] : &quot;world&quot;,
-    }
-</code></pre>
-</li>
-<li>
-<p>拦截器属性</p>
-<pre><code>    const o = {
-        name : &quot;张三&quot;;
-    }
-    //给o对象的name属性添加拦截器 使用defineProperty方法
-    Object.defineProperty(o, name, {
-        set () {},
-        get () {}
-    })
-
-    //es6中可以直接在字面量中设置拦截器
-    const o = {
-        name : &quot;张三&quot;,
-        //添加属性拦截器
-        get name () {
-            return name;
-        },
-        set name (val) {
-            name = val;
+<h2 id="高阶组件">高阶组件</h2>
+<p>高阶组件是参数为组件，返回值为新组件的函数。</p>
+<pre><code class="language-js">//高阶函数
+// 参数表示一个组件(首字线要大写)
+function myHigerOrder(MyWrapped) {
+    return class extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={
+                msg:'hello'
+            }
+        }
+        // 生命周期函数
+        componentDidMount(){
+            console.log('componentDidMount...')
+        }
+        show(){
+            console.log('show...')
+        }
+        render() {
+            return &lt;MyWrapped show={this.show} msg={this.state.msg}/&gt;
         }
     }
+}
+// 使用定义好的组件利用高阶组件的功能
+const Hchild1= myHigerOrder(MyChild1)
+const Hchild2= myHigerOrder(MyChild1)
 </code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>关于作用域的</p>
-<ul>
-<li>let创建块级作用域</li>
-<li>const创建块级常量</li>
-</ul>
-</li>
-<li>
-<p>解构赋值</p>
-<pre><code>    //先解析解构提取成员，再将它们赋值给变量列表
-    const arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
-    let [a, b, c] = arr;
-    const obj = {foo : &quot;hello&quot;, bar : &quot;world&quot;};
-    let {foo, bar} = obj;
-</code></pre>
-</li>
-<li>
-<p>模板字符串的使用</p>
-<ul>
-<li>格式化字符串输出，支持排版的字符串``</li>
-<li>支持插入表达式，以${}创建表达式</li>
-</ul>
-</li>
-<li>
-<p>面向对象相关</p>
-<ul>
-<li>class类语法糖<pre><code>    class Foo {
-        //class体内使用简洁方法 不用添加，
-        constructor () {
-
-        }
-
-        f () {
-
-        }
-
-        g() {
-
-        }
-
-    }
-</code></pre>
-</li>
-<li>constructor 构造函数</li>
-<li>extends 实现类继承</li>
-<li>super 调用父类或者父对象的方法</li>
-<li>static 声明静态方法</li>
-</ul>
-</li>
-</ul>
 <hr>
 <p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
+
           </div>
           
           <div class="tag-container">
             
-            <a href="https://fastt.cn/tag/es6" class="tag">
-              ES6
+            <a href="https://fastt.cn/tag/react" class="tag">
+              react
             </a>
             
           </div>
@@ -303,9 +297,9 @@ begin enjoy👇</p>
             
             <div class="prev">
               <div class="post-page">上一篇</div>
-              <a href="https://fastt.cn/post/module-npm">
+              <a href="https://fastt.cn/post/React5">
                 <h3 class="post-title">
-                  模块化和npm
+                  React第五段
                 </h3>
               </a>
             </div>
@@ -313,9 +307,9 @@ begin enjoy👇</p>
             
             <div class="next">
               <div class="post-page">下一篇</div>
-              <a href="https://fastt.cn/post/nodejs4">
+              <a href="https://fastt.cn/post/React3">
                 <h3 class="post-title">
-                  nodeJS第四阶段
+                  React第三段
                 </h3>
               </a>
             </div>

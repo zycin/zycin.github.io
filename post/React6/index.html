@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" >
+
+<title>React第六段 | Zycin | GeekBlog</title>
+<meta name="description" content="不忘初心  方得始终">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.min.css">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573023708846">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.11.1/dist/katex.min.css" />
+<link rel="stylesheet" href="https://fastt.cn/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://unpkg.zhimg.com/vue@2.6.10/dist/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
+<link rel="stylesheet" href="https://unpkg.zhimg.com/aos@next/dist/aos.css" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150684183-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150684183-1');
+</script>
+
+
+</head>
+
+<body>
+  <div id="app" class="main">
+
+    <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://fastt.cn">
+        <img src="https://fastt.cn/images/avatar.png?v=1573023708846" class="site-logo">
+        <h1 class="site-title">Zycin | GeekBlog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/zycin/" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      不忘初心  方得始终
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a> | <a class="rss" href="https://fastt.cn/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">React第六段</h2>
+          <div class="post-date">2019-11-03</div>
+          
+          <div class="feature-container" style="background-image: url('https://fastt-1252391792.file.myqcloud.com/react1.jpg')">
+          </div>
+          
+          <div class="post-content">
+            <p><strong>React</strong>的<strong>状态</strong>管理<br>
+<strong>redux</strong>和<strong>react-redux</strong><br>
+begin enjoy👇</p>
+<!-- more -->
+<h1 id="六-react">六 React</h1>
+<h2 id="redux">redux</h2>
+<ul>
+<li>状态模式管理库(实现react中数据共享)</li>
+<li>官方的是：<strong>flux</strong></li>
+<li>redux 是第三方的</li>
+<li><a href="https://redux.js.org/">redux英文</a></li>
+<li><a href="https://www.redux.org.cn/">redux中文</a></li>
+<li><strong>npm</strong> 安装 <strong>npm install --save redux</strong></li>
+<li>cdn <strong>https://unpkg.com/redux@4.0.1/dist/redux.js</strong></li>
+</ul>
+<h2 id="redux核心概念">redux核心概念</h2>
+<ul>
+<li>store 存储数据</li>
+<li>Reducer 普通函数(不能有异步操作)，接收上一次的state以及用户的行为action产生一个新的 state</li>
+<li>Action 普通对象，记录用户行为以及传输的参数</li>
+</ul>
+<h2 id="redux-使用">redux 使用</h2>
+<pre><code class="language-js">//1. 创建 Reducer
+function myReducer(state=0,action) {
+    switch (action.type) {
+        case 'ADD':
+            return state+1
+            break;
+        case 'SUB':
+            return state-1
+            break;
+        default:
+            return state
+    }
+}
+
+// 2. 创建 store
+// 参数1：创建该容器的Reducer
+// 参数2：初始状态值(可选的)
+const store = Redux.createStore(myReducer,10)
+
+// 3. 监听 store中数据变化 (可以替代this.forceUpdate()刷新界面)
+// 返回值：调用返回值，可以取消监听
+const unSubscribe =  store.subscribe(()=&gt;{
+    console.log('a&gt; '+ store.getState())
+    //数据变化后再次渲染到界面
+    ReactDOM.render(&lt;App&gt;&lt;/App&gt;,  document.querySelector('#root'))
+    
+})
+//取消监听
+// unSubscribe() 
+
+class App extends React.Component{
+    add(){
+        store.dispatch({type:'ADD'})
+        // this.forceUpdate() //强制更新视图
+    }
+    sub(){
+        store.dispatch({type:'SUB'})
+        // this.forceUpdate()
+    }
+    render() {
+        return(&lt;div&gt;
+            &lt;h2&gt;Redux&lt;/h2&gt;
+            {/* 将 redux 中数据渲染到界面 */}
+            &lt;p&gt;{store.getState()}&lt;/p&gt;
+            &lt;button onClick={this.add.bind(this)}&gt;递增&lt;/button&gt;
+            &lt;button onClick={this.sub.bind(this)}&gt;递减&lt;/button&gt;
+        &lt;/div&gt;)
+    }
+}
+ReactDOM.render(&lt;App&gt;&lt;/App&gt;, document.querySelector('#root'))
+</code></pre>
+<h2 id="reducers-合并">Reducers 合并</h2>
+<ul>
+<li>调用 <code>Redux.combineReducers()</code> 将多个合并为一个</li>
+</ul>
+<pre><code class="language-js">let rootReducers =  Redux.combineReducers({
+    taskList, totalCount
+})
+</code></pre>
+<ul>
+<li>使用合并过的 Reducers 需要加上合并时的 Reducers 名称。</li>
+</ul>
+<pre><code class="language-js">store.getState().taskList
+</code></pre>
+<blockquote>
+<p>合并后 Reducers 后 相关 <strong>type</strong> 的 Reducers 都会被触发。</p>
+</blockquote>
+<h2 id="react-与-redux-结合使用">react 与 redux 结合使用</h2>
+<ul>
+<li><a href="http://cn.redux.js.org/docs/react-redux/">react-redux文档</a></li>
+<li><code>npm install --save react-redux</code></li>
+<li>cdn <code>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.0.3/react-redux.js&quot;&gt;&lt;/script&gt;</code></li>
+<li>react-redux 将 react 与 redux 结合在一起</li>
+</ul>
+<blockquote>
+<p>要使用 <code>react-redux</code> 需要先安装并引入 <code>redux</code> 库</p>
+</blockquote>
+<h3 id="react-redux-核心">react-redux 核心</h3>
+<ol>
+<li>Provider 组件，用户于挂载 redux 对象，Provider所包含的所有组件都可以获取到 store<pre><code class="language-html">&lt;Provider store={}&gt;
+    ...在这里写组件，必须要有根元素
+&lt;/Provider&gt;
+</code></pre>
+</li>
+<li>普通组件通过connect 连接可以使用 store中数据<pre><code class="language-js">const NewMyComponent = ReactRedux.connect(mapStateToProps,mapDispatchToProps)(MyComponent)
+</code></pre>
+</li>
+</ol>
+<h3 id="react-redux-使用">react-redux 使用</h3>
+<pre><code class="language-js">// 创建 Reducer
+const count=(state=0,action)=&gt;{
+    switch (action.type) {
+        case 'ADD':
+            return state + 1 
+        case 'SUB':
+            return state - 1 
+        default:
+            return state
+    }
+}
+// 合并reducer
+const rootReducers =  Redux.combineReducers({ count })
+// 创建 store
+const store = Redux.createStore(rootReducers)
+
+// 创建要使用 使用react-redux的组件
+class MyComponent extends React.Component{
+    render(){
+        return (&lt;div&gt;
+            &lt;h2&gt;{this.props.title}&lt;/h2&gt;
+            &lt;h6&gt;{ this.props.count }&lt;/h6&gt;
+            &lt;button onClick={this.props.add}&gt;按钮&lt;/button&gt;
+        &lt;/div&gt;)
+    }
+}
+// 将state 映射成props,
+// 参数2 parentProps 接收父级组件传递的 数据，！可选
+const mapStateToProps = function (state,parentProps) {
+    return {
+        count:state.count,
+        title:parentProps.title
+    }
+}
+// 将dispatch 映射为props
+// 参数2 parentProps 接收父级组件传递的 数据，！可选
+const mapDispatchToProps = function(dispatch,parentProps) {
+    return{
+        add(){
+            dispatch({
+                type:'ADD'
+            })
+        }
+    }
+}
+// 通过高阶组件连接 组件 和 redux
+const NewMyComponent = ReactRedux.connect(mapStateToProps,mapDispatchToProps)(MyComponent)
+
+class App extends React.Component{
+    render() {
+        return(&lt;ReactRedux.Provider store={store}&gt;
+            &lt;h2&gt;react-redux&lt;/h2&gt;
+            &lt;NewMyComponent title='标题'/&gt;
+        &lt;/ReactRedux.Provider&gt;)
+    }
+}
+
+ReactDOM.render(&lt;App&gt;&lt;/App&gt;, document.querySelector('#root'))
+</code></pre>
+<hr>
+<p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
+
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://fastt.cn/tag/react" class="tag">
+              react
+            </a>
+            
+          </div>
+          
+
+
+          
+          <div class="next-post">
+            
+            
+            <div class="next">
+              <div class="post-page">下一篇</div>
+              <a href="https://fastt.cn/post/React5">
+                <h3 class="post-title">
+                  React第五段
+                </h3>
+              </a>
+            </div>
+            
+          </div>
+          
+
+          
+          
+          <div id="gitalk-container" data-aos="fade-in"></div>
+          
+
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
+<script src="https://unpkg.zhimg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <!-- <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'f9c4cb98113788bb94e1',
+        clientSecret: 'd271ed343d3af9b71c24dff543d9c3e1e4d70a4b',
+        repo: 'zycin.github.io',
+        owner: 'zycin',
+        admin: ['zycin'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+</body>
+</html>
