@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://fastt.cn</id>
     <title>Zycin | GeekBlog</title>
-    <updated>2019-11-06T07:48:16.800Z</updated>
+    <updated>2019-11-06T07:56:43.203Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://fastt.cn"/>
     <link rel="self" href="https://fastt.cn/atom.xml"/>
@@ -16,12 +16,10 @@
         <link href="https://fastt.cn/post/React6">
         </link>
         <updated>2019-11-03T07:00:36.000Z</updated>
-        <summary type="html"><![CDATA[<p><strong>React</strong>的<strong>状态</strong>管理<br>
-<strong>redux</strong>和<strong>react-redux</strong><br>
+        <summary type="html"><![CDATA[<p><strong>React</strong>的<strong>状态</strong>管理  <strong>redux</strong>和<strong>react-redux</strong><br>
 begin enjoy👇</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p><strong>React</strong>的<strong>状态</strong>管理<br>
-<strong>redux</strong>和<strong>react-redux</strong><br>
+        <content type="html"><![CDATA[<p><strong>React</strong>的<strong>状态</strong>管理  <strong>redux</strong>和<strong>react-redux</strong><br>
 begin enjoy👇</p>
 ]]></content>
     </entry>
