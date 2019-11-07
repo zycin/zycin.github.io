@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终" />
-<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573093772012">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573109541766">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
 <link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.10.0/dist/katex.min.css" />
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
@@ -34,7 +34,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://fastt.cn">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://fastt.cn/images/avatar.png?v=1573093772012" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://fastt.cn/images/avatar.png?v=1573109541766" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Zycin | GeekBlog</h1>
       </div>
@@ -44,7 +44,83 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%AE%80%E6%98%93%E7%89%88apache">简易版Apache</a>
+<ul>
+<li><a href="#%E8%AF%B7%E6%B1%82%E7%AB%99%E7%82%B9%E6%96%87%E4%BB%B6">请求站点文件</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8">生成目录列表</a>
+<ul>
+<li><a href="#fsstats">fs.Stats()</a></li>
+<li><a href="#fsreaddir">fs.readdir()</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF">模板引擎技术</a></li>
+<li><a href="#%E5%9C%A8node%E4%B8%AD%E4%BD%BF%E7%94%A8art-template">在node中使用art-template</a></li>
+<li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8art-template">浏览器中使用art-template</a></li>
+<li><a href="#art-t%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95">art-T模板语法</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%87%BA">输出</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8E%9F%E6%96%87%E8%BE%93%E5%87%BA">原文输出</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-2">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-2">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5">条件语句</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-3">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-3">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5">循环语句</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-4">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-4">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E6%9D%BF%E5%8F%98%E9%87%8F">模板变量</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-5">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-5">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E6%9D%BF%E7%BB%A7%E6%89%BF">模板继承</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-6">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-6">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%90%E6%A8%A1%E6%9D%BF">子模板</a>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-7">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-7">原始语法</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8">过滤器</a>
+<ul>
+<li><a href="#%E6%B3%A8%E5%86%8C%E8%BF%87%E6%BB%A4%E5%99%A8">注册过滤器</a></li>
+<li><a href="#%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95-8">标准语法</a></li>
+<li><a href="#%E5%8E%9F%E5%A7%8B%E8%AF%AD%E6%B3%95-8">原始语法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%9E%8B">渲染模型</a>
+<ul>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93">客户端渲染</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93">服务端渲染</a></li>
+</ul>
+</li>
+<li><a href="#">!</a></li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -112,29 +188,534 @@ Powered by <a href="https://github.com/zycin" target="_blank">Zycin</a></div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">nodeJS第二阶段</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-10-06 / 1 min read
+          2019-10-06 / 15 min read
         </div>
         
           <img class="post-feature-image rounded-lg mx-auto my-4" src="https://fastt-1252391792.file.myqcloud.com/nodejs2.jpg" alt="">
         
         <div class="post-content yue">
           <p>将<strong>NodeJs</strong>分为四个阶段    第二阶段~<br>
-只有图不好意思啦<br>
 begin enjoy👇</p>
 <!-- more -->
-<p><img src="https://fastt.cn/post-images/1571403018593.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403118606.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403123045.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403127355.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403131111.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403135253.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403139484.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403144051.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403147450.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403150822.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403154062.jpg" alt=""><br>
-<img src="https://fastt.cn/post-images/1571403157108.jpg" alt=""></p>
-<hr>
+<h1 id="简易版apache">简易版Apache</h1>
+<p>apache是一款成熟的web服务软件，它不仅能够监听处理Web请求，并且设置了很多有用的规则：</p>
+<ul>
+<li>站点根目录：在apache的主配置文件中拥有 DocumentRoot 配置项，用来指定站点文件的根目录，然后根据url中的请求路径加载指定的文件。<br>
+<img src="https://fastt.cn/post-images/1573108955543.png" alt=""></li>
+<li>错误提示：例如找不到该文件时返回404错误！这里可以先将apache的404页面CTRL+S保存起来借鉴使用。<br>
+<img src="https://fastt.cn/post-images/1573109012994.png" alt=""></li>
+<li>默认首页：当请求路径为目录地址时，加载默认首页文件，一般为 index.html<br>
+<img src="https://fastt.cn/post-images/1573109024733.png" alt=""></li>
+<li>文件列表：当请求路径为目录地址时，如果没有index文件 则显示文件列表，这里也先将该页面内容保存以备使用。<br>
+<img src="https://fastt.cn/post-images/1573109041108.png" alt=""></li>
+</ul>
+<h2 id="请求站点文件">请求站点文件</h2>
+<p>检测路径是否合法需要使用 <code>fs.existsSync(path)</code> 方法，如果路径存在，该方法返回 true ，否则返回 false</p>
+<pre><code class="language-js">const http = require(&quot;http&quot;),
+fs = require(&quot;fs&quot;);
+const server = http.createServer();
+//定义站点根目录地址 使用绝对路径
+const DOCUMENT_ROOT = &quot;D:/wamp/www&quot;;
+server.on(&quot;request&quot;, (request, response) =&gt; {
+	//监听请求来源 解析文件编码 中文在http中被编码后 不能正常读写
+	let requestURI = decodeURIComponent(request.url);
+	//设置默认首页
+	if (requestURI == &quot;/&quot;)  {
+		requestURI = &quot;/index.html&quot;;
+	}
+	//组装请求文件
+	let filename = DOCUMENT_ROOT + requestURI;
+	//如果路径不存在 则加载404页面
+    if (!fs.existsSync(filename)) {
+        //404错误页面中包含动态渲染的文件名数据 需要使用模板引擎操作
+        filename = DOCUMENT_ROOT + &quot;/404.html&quot;;
+    }
+    console.log(filename);
+    //读取文件内容
+    fs.readFile(filename, (err, data) =&gt; {
+        if (err) {
+            //读取错误 输出提示信息
+            data = err.toString();
+
+        }
+        response.end(data);
+    });
+})
+server.listen(8000, (err) =&gt; {
+    if (err) {
+        console.log(err.toString());
+    } else {
+        console.log(&quot;服务器已经启动...&quot;);
+    }
+})
+</code></pre>
+<h2 id="生成目录列表">生成目录列表</h2>
+<h3 id="fsstats">fs.Stats()</h3>
+<p>apache访问目录地址时 会以列表形式呈现内容。这里我们首先需要借用一个 <code>fs.stat()</code> 方法来检查一个文件的状态和用户权限。 <code>fs.stat()</code> 回调返回的是一个Stats对象</p>
+<ul>
+<li>fs.stat(path, [option], callback)
+<ul>
+<li>path ：为检查的文件路径</li>
+<li>option ：可选项 标记返回的Stats对象是否采用bigint长整型的值</li>
+<li>callback ：回调函数，有两个参数 (err, stats)，其中 stats 是 fs.Stats   不建议在调用 fs.open() 、 fs.readFile() 或fs.writeFile() 之前使用 fs.stat() 检查文件是否存在。 而是应该直接打开、读取或写入文件，如果文件不可用则处理引发的错误。要检查文件是否存在但随后并不对其进行操作，则建议使用 <a href="http://nodejs.cn/s/NCPsM3">fs.access() </a>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>Stats对象的常用成员如下：</p>
+<ul>
+<li>
+<p>stats.isDirectory() ：如果 fs.Stats 对象描述文件系统目录，则返回 true 。</p>
+</li>
+<li>
+<p>stats.isFile() ：如果 fs.Stats 对象描述常规文件，则返回 true 。</p>
+</li>
+<li>
+<p>stats.size ：文件的大小（以字节为单位），如果是目录则返回 0</p>
+</li>
+<li>
+<p>stats.birthtime ：文件的创建时间</p>
+</li>
+<li>
+<p>stats.mtime ：最近一次修改的时间</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">const fs = require(&quot;fs&quot;);
+let path = &quot;d:/wamp/www&quot;;
+path = &quot;d:/wamp/www/index.html&quot;;
+/*
+  * 检测路径是否合法
+  */
+console.log(fs.existsSync(path));
+/*
+	* 检测文件状态
+	*/
+fs.stat(path, (err, stats) =&gt; {
+    //stats为一个Stats对象
+    console.log(stats);
+    //判断是否目录
+    console.log(stats.isDirectory()); //false
+    //判断是否文件
+    console.log(stats.isFile()); //true
+    //读取文件大小
+    console.log(stats.size); //28字节
+    //最后修改日期
+    console.log(Date.parse(stats.mtime)); //将2019-04-01T07:46:10.905Z解析为时间戳
+});
+</code></pre>
+<h3 id="fsreaddir">fs.readdir()</h3>
+<p>接下来，如果检测出来是一个目录 则读取该目录的文件列表信息 需要使用 <code>fs.readdir()</code> ，用法如下：</p>
+<ul>
+<li>
+<p>fs.readdir(path, option, callback)</p>
+<ul>
+<li>
+<p>path：要读取的目录地址</p>
+</li>
+<li>
+<p>options ： 可选的参数 一个对象 ，包含两项： <code>withFileTypes</code> 和 <code>encoding</code></p>
+<ul>
+<li>如果 <code>options.withFileTypes</code> 设置为 true ，则 files 数组将包含 <code>fs.Dirent</code> 对象 <code>options.encoding</code> 属性指定用于传给回调的文件名的字符编码；</li>
+<li>如果 <code>encoding</code> 设置为 'buffer' ，则返回的文件名是 Buffer 对象。</li>
+</ul>
+</li>
+<li>
+<p>callback：回调函数，包含err和files两个参数。读取成功则files为一个数组。</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">let path
+path = &quot;d:/wamp/www&quot;;
+fs.readdir(path, (err, files) =&gt; {
+    if (err) {
+        console.dir(err);
+    } else {
+        //files为一个文件列表数组
+        console.dir(files);
+    }
+});
+
+//设置options项
+fs.readdir(path, {
+    withFileTypes : true,
+    encoding: 'utf-8'
+}, (err, files) =&gt; {
+    if (err) {
+        console.dir(err);
+    } else {
+        //files为一个文件列表数组
+        console.log(files);
+        for (let item of files) {
+            //查找所有的symbol类型 返回数组形式
+            let syms = Object.getOwnPropertySymbols(item);
+            console.log(item.name, item[syms[0]]);
+        }
+    }
+});
+</code></pre>
+<ol>
+<li>
+<p>保存apache列表页模板文件为 list.html<br>
+<img src="https://fastt.cn/post-images/1573109094746.png" alt=""></p>
+</li>
+<li>
+<p>创建服务器并监听请求 判断请求路径为文件或目录，如果是文件 读取内容，如果是目录则获取列表</p>
+<pre><code class="language-js">const http = require(&quot;http&quot;),
+      fs = require(&quot;fs&quot;);
+const server = http.createServer();
+//配置站点根目录 不可修改的常量
+const DOCUMENT_ROOT = &quot;D:/wamp/www&quot;;
+//监听来自客户端 浏览器发起的请求
+server.on(&quot;request&quot;, (request, response) =&gt; {
+    //解析文件 编码中文在http中被编码后 不能正常读写
+    let requestURI = decodeURIComponent(request.url);
+    //默认首页
+    if (requestURI == &quot;/&quot;) requestURI = &quot;/index.html&quot;;
+    //组装路径
+    let filename = DOCUMENT_ROOT + requestURI;
+    //检测路径
+    if (!fs.existsSync(filename)) {
+        fullpath = DOCUMENT_ROOT + &quot;/404.html&quot;;
+    }
+    console.log(filename);
+    //fs.stat()返回一个Stats对象
+    //Stats对象用来检查文件状态和用户权限
+    fs.stat(filename, (err, stats) =&gt; {
+        if (err) {
+            console.dir(err);
+            return; //停止脚本继续运行
+        }
+        // console.log(stats);
+        switch(true) {
+            case stats.isFile() :
+                //读取文件内容
+                fs.readFile(filename, &quot;utf-8&quot;, (err, data) =&gt; {
+                    response.end(data);
+                });
+                break;
+            case stats.isDirectory() :
+                //读取目录列表
+                fs.readdir(filename, (err, files) =&gt; {
+                    //组装到list.html中
+                });
+                break;
+            default :
+        }
+    })
+})
+server.listen(8000, (err) =&gt; {
+    if (err)console.dir(err);
+    else console.log(&quot;服务器已经启动....&quot;);
+})
+</code></pre>
+</li>
+<li>
+<p>替换模板中的动态内容为占位符形式，将标题替换为 <code>%title%</code> ，列表项替换为 <code>%items%</code><br>
+<img src="https://fastt.cn/post-images/1573109122623.png" alt=""></p>
+<pre><code class="language-js">//读取目录列表
+fs.readdir(fullpath, (err, files) =&gt; {
+    //组装标题和列表项
+    let title = requestURI,
+        items = files.map((item, index) =&gt; {
+            return `&lt;li&gt;&lt;a href='${path.join(requestURI, item)}'&gt;${item}&lt;/a&gt;
+&lt;/li&gt;`;}).join(&quot;&quot;);
+    //替换list.html模板内容,类似于置换行模板
+    fs.readFile(DOCUMENT_ROOT + &quot;/list.html&quot;, &quot;utf-8&quot;, (err, data) =&gt; {
+        //str.replace()方法 需要先将二进制的数据 转化成字符串
+        let htmlStr = data.replace(/%(\w+?)%/g, (match, quote) =&gt; {
+            console.log(match, quote);
+            //编译字符串为变量的值
+            return eval(quote);
+        });
+        response.end(htmlStr);
+    });
+});
+</code></pre>
+</li>
+<li>
+<p>整个过程的注意事项如下：</p>
+<ol>
+<li>
+<p>http传输中会对url中的特殊字符进行urlencode编码，需要手动的使用 <code>decodeURIComponent()</code> 解码</p>
+</li>
+<li>
+<p>每次遍历目录时需要及时更新路径，该路径在重构时避免 ./ 前缀 ，因为request.url里面已经包含了 /</p>
+</li>
+<li>
+<p>replace替换模板时需要确保模板内容为字符串而非buﬀer，可以使用 toString() 或者设置 utf-8 编码</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="模板引擎技术">模板引擎技术</h2>
+<p>模板引擎作为服务端一项传统技术，在node中也是必须的。模板引擎替代原始的脚本嵌入式方式填充数据，能够有效的将业务逻辑和界面表现分离 并有利于团队的协同开发；</p>
+<pre><code class="language-js">&lt;ul&gt;
+    &lt;script&gt;
+    //使用脚本渲染的数据 业务逻辑和页面表现耦合
+    //可读性和维护性差，需要使用模板引擎分离
+    //程序中处理页面表现层的过程
+    //1、准备数据
+    //2、遍历数据
+    //3、组装数据
+    //4、innerHTML填充到容器或者在容器中直接输出
+    [1, 2, 3, 4].forEach((item, index) =&gt; {
+    document.write(`&lt;li&gt;&lt;a href=&quot;&quot;&gt;${item}&lt;/a&gt;&lt;/li&gt;`);
+});
+&lt;/script&gt;
+&lt;/ul&gt;	
+&lt;!-- 模板引擎将数据和表现层分离，它的语法也更简洁 --&gt;
+    &lt;script type=&quot;text/html&quot; id=&quot;tpl&quot;&gt;
+        &lt;ul&gt;
+        {{ each [1, 2, 3, 4] }}
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;{{ $value }}&lt;/a&gt;&lt;/li&gt;
+        {{ /each }}
+        &lt;/ul&gt;
+    &lt;/script&gt;
+</code></pre>
+<p>模板引擎有自己的模板语法，但学习成本低，容易驾驭！</p>
+<p>事实上，在浏览器环境中 也存在模板引擎的概念，它能让用户更方便的将数据渲染到页面中，例如 art-template ，则既可以用于浏览器 也可用于node中。</p>
+<ul>
+<li>
+<p>使用npm下载和本地安装 <strong>art-template：</strong> <code>npm install art-template</code></p>
+</li>
+<li>
+<p>在需要使用模板引擎的页面使用 <code>require('art-template')</code> 包名就是 <code>art-template</code></p>
+</li>
+<li>
+<p>查询文档，关于art-template的使用<code>https://aui.github.io/art-template/zh-cn/docs/</code></p>
+</li>
+</ul>
+<h2 id="在node中使用art-template">在node中使用art-template</h2>
+<ul>
+<li>引入art-template模块</li>
+</ul>
+<p><code>const at = require('art-template')</code></p>
+<ul>
+<li>使用art语法重构模板</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://fastt.cn/post-images/1573109140906.png" alt=""></figure>
+<pre><code class="language-js">//循环基本语法
+{{each target}}
+{{$index}} {{$value}}
+{{/each}}
+</code></pre>
+<p>target 支持 array 与 object 的迭代，其默认值为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi><mi mathvariant="normal">。</mi></mrow><annotation encoding="application/x-tex">data。</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord cjk_fallback">。</span></span></span></span>value 与 $index 可以自定义：<code>{{each target val key}}</code>。</p>
+<ul>
+<li>
+<p>发送数据到模板编译</p>
+<pre><code class="language-js">let title = requestURI,
+    origin = request.headers.referer;
+fs.readdir(filename, (err, files) =&gt; {
+    //发送数据到模板
+    let htmlStr = template(DOCUMENT_ROOT + &quot;/list2.html&quot;, {
+        //左边是模板变量名 后边是数据值
+        // title : title,
+        // origin : origin,
+        // files : files,
+        //使用简洁属性设置
+        title,
+        origin,
+        files,
+    });
+    response.end(htmlStr);});
+</code></pre>
+</li>
+</ul>
+<h2 id="浏览器中使用art-template">浏览器中使用art-template</h2>
+<p>首先在浏览器环境中需要以 script:src 请求核心文件 template-web.js ；其次模板内容被放置在 <code>&lt;script type='text/html' id='tpl'&gt;&lt;/script&gt;</code> 中。因为浏览器不支持文件系统，所以 <code>template(filename, data)</code> 无效，需要将filename替换成tpl容器，它内部使用 <code>document.getElementById(tpl).innerHTML</code> 来获取模板。</p>
+<ul>
+<li>引入核心文件</li>
+</ul>
+<p><code>&lt;script src='node_modules/art-template/libs/template-web.js'&gt;&lt;/script&gt;</code></p>
+<ul>
+<li>
+<p>设置模板内容</p>
+<pre><code class="language-js">&lt;script type=&quot;text/html&quot; id=&quot;tpl&quot;&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;#&lt;/th&gt;
+            &lt;th&gt;商品名称&lt;/th&gt;
+            &lt;th&gt;商品描述&lt;/th&gt;
+		&lt;/tr&gt;
+	{{ each data }}
+	&lt;tr&gt;
+        &lt;td&gt; {{ $value.gid }}&lt;/td&gt;
+    	&lt;td&gt; {{ $value.gname }}&lt;/td&gt;
+    	&lt;td&gt; {{ $value.gdesc }}&lt;/td&gt;
+	&lt;/tr&gt;
+	{{ /each }}
+  &lt;/table&gt;
+&lt;/script&gt;
+  &lt;div id=&quot;container&quot;&gt;
+      &lt;!--存放模板解析的内容--&gt;
+  &lt;/div&gt;
+</code></pre>
+</li>
+</ul>
+<ul>
+<li>
+<p>渲染模板内容</p>
+<pre><code class="language-js">const goods = [{
+    gid: 1,
+    gname: &quot;飞利浦电动剃须刀&quot;,
+    gdesc: &quot;好用，针对男士护理&quot;
+},{
+    gid: 2,
+    gname: &quot;美的电冰箱&quot;,
+    gdesc: &quot;节能环保，家用首选&quot;
+}];
+//使用模板引擎来渲染页面
+let htmlStr = template(&quot;tpl&quot;, {
+    data : goods,
+});
+console.log(htmlStr);
+container.innerHTML = htmlStr;
+</code></pre>
+</li>
+</ul>
+<h2 id="art-t模板语法">art-T模板语法</h2>
+<p>art-template 支持标准语法与原始语法。标准语法可以让模板易读写，而原始语法拥有强大的逻辑表达能力。</p>
+<p>标准语法支持基本模板语法以及基本 JavaScript 表达式；原始语法支持任意 JavaScript 语句，这和 EJS 一样。</p>
+<h3 id="输出">输出</h3>
+<h4 id="标准语法">标准语法</h4>
+<pre><code>{{value}}
+{{data.key}}
+{{data['key']}}
+{{a ? b : c}}
+{{a || b}}
+{{a + b}}
+</code></pre>
+<h4 id="原始语法">原始语法</h4>
+<pre><code>&lt;%= value %&gt;
+&lt;%= data.key %&gt;
+&lt;%= data['key'] %&gt;
+&lt;%= a ? b : c %&gt; 5 &lt;%= a || b %&gt;
+&lt;%= a + b %&gt;
+</code></pre>
+<p>模板一级特殊变量可以使用 $data 加下标的方式访问：</p>
+<pre><code>{{$data['user list']}}
+</code></pre>
+<h3 id="原文输出">原文输出</h3>
+<h4 id="标准语法-2">标准语法</h4>
+<pre><code>{{@ value }}
+</code></pre>
+<h4 id="原始语法-2">原始语法</h4>
+<pre><code>&lt;%- value %&gt;
+</code></pre>
+<blockquote>
+<p>原文输出语句不会对 HTML 内容进行转义处理，可能存在安全风险，请谨慎使用。</p>
+</blockquote>
+<h3 id="条件语句">条件语句</h3>
+<h4 id="标准语法-3">标准语法</h4>
+<pre><code>{{if value}} ... {{/if}}
+{{if v1}} ... {{else if v2}} ... {{/if}}
+</code></pre>
+<h4 id="原始语法-3">原始语法</h4>
+<pre><code>&lt;% if (value) { %&gt; ... &lt;% } %&gt;
+&lt;% if (v1) { %&gt; ... &lt;% } else if (v2) { %&gt; ... &lt;% } %&gt;
+</code></pre>
+<h3 id="循环语句">循环语句</h3>
+<p>art-Template中的each可以遍历数组元素或者对象属性</p>
+<h4 id="标准语法-4">标准语法</h4>
+<pre><code>{{each target}}
+{{$index}} {{$value}} 3 {{/each}}
+</code></pre>
+<h4 id="原始语法-4">原始语法</h4>
+<pre><code>&lt;% for(var i = 0; i &lt; target.length; i++){ %&gt;
+&lt;%= i %&gt; &lt;%= target[i] %&gt;
+&lt;%}%&gt;
+</code></pre>
+<ol>
+<li>
+<p>target 支持 array 与 object 的迭代，其默认值为 $data 。</p>
+</li>
+<li>
+<p>$value 与 $index 可以自定义： {{each target val key}} 。</p>
+</li>
+</ol>
+<h3 id="模板变量">模板变量</h3>
+<h4 id="标准语法-5">标准语法</h4>
+<pre><code>{{set temp = data.sub.content}}
+</code></pre>
+<h4 id="原始语法-5">原始语法</h4>
+<pre><code>&lt;% var temp = data.sub.content; %&gt;
+</code></pre>
+<h3 id="模板继承">模板继承</h3>
+<h4 id="标准语法-6">标准语法</h4>
+<pre><code>{{extend './layout.art'}}
+{{block 'head'}} ... {{/block}}
+</code></pre>
+<h4 id="原始语法-6">原始语法</h4>
+<pre><code>&lt;% extend('./layout.art') %&gt;
+&lt;% block('head', function(){ %&gt; ... &lt;% }) %&gt;
+</code></pre>
+<p>模板继承允许你构建一个包含你站点共同元素的基本模板“骨架”。范例：</p>
+<pre><code class="language-html">&lt;!--layout.art--&gt;
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;{{block 'title'}}My Site{{/block}}&lt;/title&gt;
+        {{block 'head'}}
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;main.css&quot;&gt;
+        {{/block}}
+    &lt;/head&gt;
+    &lt;body&gt;
+        {{block 'content'}}{{/block}}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>渲染 index.art 后，将自动应用布局骨架。VSCode中可以下载Art Template Helper来高亮 .art 文件。</p>
+<pre><code class="language-html">&lt;!--index.art--&gt;
+{{extend './layout.art'}}
+{{block 'title'}}{{title}}{{/block}}
+{{block 'head'}}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;custom.css&quot;&gt;
+{{/block}}
+{{block 'content'}}
+&lt;p&gt;This is just an awesome page.&lt;/p&gt;
+{{/block}}
+</code></pre>
+<h3 id="子模板">子模板</h3>
+<h4 id="标准语法-7">标准语法</h4>
+<pre><code>{{include './header.art'}}
+{{include './header.art' data}}
+</code></pre>
+<h4 id="原始语法-7">原始语法</h4>
+<pre><code>&lt;% include('./header.art') %&gt;
+&lt;% include('./header.art', data) %&gt;
+</code></pre>
+<ol>
+<li>
+<p>data 默认值为 $data ；标准语法不支持声明 object 与 array ，只支持引用变量，而原始语法不受限制。</p>
+</li>
+<li>
+<p>art-template 内建 HTML 压缩器，请避免书写 HTML 非正常闭合的子模板，否则开启压缩后标签可能会被意外“优化。</p>
+</li>
+</ol>
+<h3 id="过滤器">过滤器</h3>
+<h4 id="注册过滤器">注册过滤器</h4>
+<pre><code>template.defaults.imports.dateFormat = function(date, format){/*[code..]*/};
+template.defaults.imports.timestamp = function(value){return value * 1000};
+</code></pre>
+<p>过滤器函数第一个参数接受目标值。</p>
+<h4 id="标准语法-8">标准语法</h4>
+<pre><code>{{date | timestamp | dateFormat 'yyyy-MM-dd hh:mm:ss'}}
+</code></pre>
+<p><code>{{value | filter}}</code> 过滤器语法类似管道操作符，它的上一个输出作为下一个输入。</p>
+<h4 id="原始语法-8">原始语法</h4>
+<pre><code>&lt;%= $imports.dateFormat($imports.timestamp(date), 'yyyy-MM-dd hh:mm:ss') %&gt;
+</code></pre>
+<h2 id="渲染模型">渲染模型</h2>
+<p>服务端渲染中 模板文件不能直接运行 必须由控制层引入执行，控制层即是node程序文件。</p>
+<h3 id="客户端渲染">客户端渲染</h3>
+<figure data-type="image" tabindex="2"><img src="https://fastt.cn/post-images/1573109183119.png" alt=""></figure>
+<h3 id="服务端渲染">服务端渲染</h3>
+<h2 id=""><img src="https://fastt.cn/post-images/1573109195303.png" alt=""></h2>
 <p align="right">posted @ Zycin (非转载 来自个人学习资料整理)</p>
         </div>
 
