@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zycin | GeekBlog</title>
 <meta name="description" content="不忘初心  方得始终" />
-<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573033895316">
+<link rel="shortcut icon" href="https://fastt.cn/favicon.ico?v=1573093772012">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
 <link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.10.0/dist/katex.min.css" />
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
@@ -34,7 +34,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://fastt.cn">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://fastt.cn/images/avatar.png?v=1573033895316" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://fastt.cn/images/avatar.png?v=1573093772012" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Zycin | GeekBlog</h1>
       </div>
@@ -107,7 +107,7 @@
 			<a
 				href="https://github.com/zycin/"
 				target="_blank"
-				class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900"
+				class="text-xl text-gray-400 font-light hover:text-gray-900"
 			>
 				<i class="remixicon-github-line"></i>
 			</a>
@@ -115,7 +115,7 @@
 			<a
 				href="http://wpa.qq.com/msgrd?v=3&amp;uin=785227561&amp;site=qq&amp;menu=yes"
 				target="_blank"
-				class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900"
+				class="text-xl text-gray-400 font-light hover:text-gray-900"
 			>
 				<i class="remixicon-qq-line"></i>
 			</a>
@@ -272,7 +272,7 @@ mutations:{
 </code></pre>
 <ul>
 <li>这样了，就可以直接通过<code>commit</code>来酱紫提交，<code>this.$store.commit('addOne',{num:10})</code></li>
-<li>但是这样提交很没风格，因此<code>vuex</code>也学了<code>redux</code>那样进行了对象风格的提交方式来操作this.$store.commit({type:'addOne',num:10})</li>
+<li>但是这样提交很没风格，因此<code>vuex</code>也学了<code>redux</code>那样进行了对象风格的提交方式来操作<code>this.$store.commit({type:'addOne',num:10})</code></li>
 <li>如果要对<code>state</code>里某个对象进行新属性扩展了，<code>vue</code>虽然提供了<code>set</code>方法，但利用<code>ES6</code>可以让事情更加简单，用如下代码操作即可，<code>this.$store.state.obj={...this.$store.state.objage:18</code></li>
 <li>因为可以直接利用对象风格化方式来提交<code>mutation</code>模块修改<code>state</code>，所以在一些中大型项目中往往不直接将<code>mutation</code>模块的名字定义那么死板，而是利用<code>actions</code>来定义<code>mutation</code>，这样做的目的就是增强代码的阅读性，利于其他人介入项目开发和更有效的利用<code>mutation</code>模块</li>
 </ul>

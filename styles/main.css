@@ -6211,6 +6211,8 @@ pre[data-line] {
   font-size: 0.96em;
   box-sizing: border-box;
   border-width: 1;
+  word-break: break-all;
+  word-wrap: break-all;
 }
 .yue th,
 .yue td {
